@@ -3,8 +3,8 @@
 set -e
 
 pushd .
-git clone https://github.com/glimix/liknorm
-cd liknorm
+git clone https://github.com/glimix/liknorm liknorm-lib
+cd liknorm-lib
 mkdir build
 cd build
 cmake ..
