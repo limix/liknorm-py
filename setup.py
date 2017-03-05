@@ -27,7 +27,7 @@ def setup_package():
 
     metadata = dict(
         name='liknorm-py',
-        version='1.0.0.dev0',
+        version='1.0.0.dev1',
         maintainer="Danilo Horta",
         maintainer_email="horta@ebi.ac.uk",
         license="MIT",
@@ -35,7 +35,7 @@ def setup_package():
         long_description=long_description,
         url='https://github.com/glimix/liknorm-py',
         packages=find_packages(),
-        zip_safe=True,
+        zip_safe=False,
         install_requires=install_requires,
         setup_requires=setup_requires,
         tests_require=tests_require,
