@@ -3,7 +3,6 @@
 [![PyPIl](https://img.shields.io/pypi/l/liknorm-py.svg?style=flat-square)](https://pypi.python.org/pypi/liknorm-py/)
 [![PyPIv](https://img.shields.io/pypi/v/liknorm-py.svg?style=flat-square)](https://pypi.python.org/pypi/liknorm-py/)
 [![Anaconda-Server Badge](https://anaconda.org/conda-forge/liknorm-py/badges/version.svg)](https://anaconda.org/conda-forge/liknorm-py)
-[![Documentation Status](https://readthedocs.org/projects/liknorm-py/badge/?style=flat-square&version=latest)](https://liknorm-py.readthedocs.io/en/latest/)
 
 Liknorm Python wrapper.
 
@@ -21,9 +20,6 @@ library and then
 ```bash
 pip install liknorm-py
 ```
-
-Refer to [documentation](http://liknorm-py.readthedocs.io/en/latest/)
-for more information.
 
 ## Running the tests
 
