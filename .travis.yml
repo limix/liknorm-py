@@ -21,6 +21,8 @@ notifications:
   email: false
 deploy:
   provider: pypi
+  skip_upload_docs: true
+  skip_cleanup: true
   user: dhorta
   password:
     secure: TUxf1XJ1mlkWgFOEBJBTlVQq/et0LKnD0MRL9GQi/Co3KPG/7YN2tC+sJffAPwJOD6bIJz0FZ/pMWVANQdGJOv0ZquGtEHTMjN/Q73wmt3KvTOGLw//i0RNYM7E9+kGWSpm0duFzQNCZP7Sy0eL93YPdWS0JG3LPPNW1x0dZlNQXK0gAgz5BuoloklbCftnOqytdK6E0sXpmUfEHXSsmfxfhNdhj0+cH2JPcdsD0/9CQcg77nS+PshTcYsRDhy7MaHUGEiC2jg2YHgXm0mm1ww906XDuiPOl7/MRFA9XfAyiLglJagYeiC3O8dfgxyiPFQh/4Kvygc9O5SheWVFujTrh/kS3khW6Qm59hPdrwiTCoKzvBcz2WKg+mNAa70+KxxmkCksyOgP39DSqlje7y7sUovQLUju+y/+pvWKrpMzmPHIUW3NdDqVrpQcBzcZWwz6D1KHLntKw7rje5LUJnRzjuFfxfNMhMX2XsSG5mSbSAwbiMVCAfL+xRlwzSK45rtNOiCvP7vEDmZecIosEm0fKIaEkGpBjXPMlz9TbmaQXt3ZcXQVRb9xQk+9spzqtuw6mE7bcPaLaDOdRJdCi0rmbRjCuGSM/cy+JNJ4Z4sh/YDGb/y0JjstiNk/19gAdQIm7wR3O7n8GnUIladUGy1tuzmY2CGvUIXiEQF5bn+E=

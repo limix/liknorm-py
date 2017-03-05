@@ -6,14 +6,14 @@ from pkg_resources import get_distribution as _get_distribution
 from pkg_resources import DistributionNotFound as _DistributionNotFound
 
 try:
-    __version__ = _get_distribution('liknorm_py').version
+    __version__ = _get_distribution('liknorm').version
 except _DistributionNotFound:
     __version__ = 'unknown'
 
 
 def test():
     import os
-    p = __import__('liknorm_py').__path__[0]
+    p = __import__('liknorm').__path__[0]
     src_path = os.path.abspath(p)
     old_path = os.getcwd()
     os.chdir(src_path)
