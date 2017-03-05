@@ -21,7 +21,7 @@ def setup_package():
     needs_pytest = {'pytest', 'test', 'ptr'}.intersection(sys.argv)
     pytest_runner = ['pytest-runner>=2.9'] if needs_pytest else []
 
-    setup_requires = [] + pytest_runner
+    setup_requires = ['cffi'] + pytest_runner
     install_requires = []
     tests_require = ['pytest']
 

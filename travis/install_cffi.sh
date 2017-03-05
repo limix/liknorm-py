@@ -17,3 +17,5 @@ case "$TRAVIS_OS_NAME" in
     echo "Unknown travis OS $TRAVIS_OS_NAME"
     exit 1
 esac
+
+pip install cffi
