@@ -1,5 +1,5 @@
 from numpy import all as npall
-from numpy import ascontiguousarray, isfinite
+from numpy import isfinite
 
 from ._ffi.lib import create_machine, destroy_machine, apply1d, apply2d
 
@@ -9,6 +9,32 @@ def ptr(a):
     return ffi.cast("double *", a.ctypes.data)
 
 class LikNormMachine(object):
+    r"""Moments of ExpFam times Normal distribution.
+
+    Example
+    -------
+
+    .. doctest::
+
+        >>> from numpy import empty
+        >>> from numpy.random import RandomState
+        >>> from liknorm import LikNormMachine
+        >>>
+        >>> machine = LikNormMachine('bernoulli')
+        >>> random = RandomState(0)
+        >>> outcome = random.randint(0, 2, 5)
+        >>> tau = random.rand(5)
+        >>> eta = random.randn(5) * tau
+        >>>
+        >>> log_zeroth = empty(5)
+        >>> mean = empty(5)
+        >>> variance = empty(5)
+        >>>
+        >>> moments = {'log_zeroth': log_zeroth, 'mean': mean, 'variance': variance}
+        >>> machine.moments(outcome, eta, tau, moments)
+        >>> print('%.3f %.3f %.3f' % (log_zeroth[0], mean[0], variance[0]))
+        -0.671 -0.515 0.946
+    """
     def __init__(self, likname, npoints=500):
         from ._ffi import lib
         self._likname = likname
@@ -34,6 +60,8 @@ class LikNormMachine(object):
         """
 
         size = len(moments['log_zeroth'])
+        if not isinstance(y, (list, tuple)):
+            y = (y, )
 
         args = y + (tau, eta, moments['log_zeroth'], moments['mean'],
                     moments['variance'])
