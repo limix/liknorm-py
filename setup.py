@@ -27,7 +27,7 @@ def setup_package():
 
     metadata = dict(
         name='liknorm-py',
-        version='1.0.0.dev2',
+        version='1.0.0.rc0',
         maintainer="Danilo Horta",
         maintainer_email="horta@ebi.ac.uk",
         license="MIT",
