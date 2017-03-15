@@ -1,12 +1,14 @@
 from numpy import all as npall
-from numpy import isfinite
+from numpy import asarray, isfinite
 
-from ._ffi.lib import create_machine, destroy_machine, apply1d, apply2d
+# pylint: disable=E0401
+from ._ffi.lib import apply1d, apply2d, create_machine, destroy_machine
 
 
 def ptr(a):
     from ._ffi import ffi
     return ffi.cast("double *", a.ctypes.data)
+
 
 class LikNormMachine(object):
     r"""Moments of ExpFam times Normal distribution.
@@ -36,6 +38,7 @@ class LikNormMachine(object):
         >>> print('%.3f %.3f %.3f' % (log_zeroth[0], mean[0], variance[0]))
         -0.671 -0.515 0.946
     """
+
     def __init__(self, likname, npoints=500):
         from ._ffi import lib
         self._likname = likname
@@ -63,6 +66,8 @@ class LikNormMachine(object):
         size = len(moments['log_zeroth'])
         if not isinstance(y, (list, tuple)):
             y = (y, )
+
+        y = tuple(asarray(yi, float) for yi in y)
 
         args = y + (tau, eta, moments['log_zeroth'], moments['mean'],
                     moments['variance'])

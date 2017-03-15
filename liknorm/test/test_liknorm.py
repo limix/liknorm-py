@@ -15,7 +15,7 @@ def test_liknormmachine():
     ntrials = asarray(ntrials)
     nsuccesses = asarray(nsuccesses)
 
-    y = (ntrials, nsuccesses)
+    y = (nsuccesses, ntrials)
     ceta = random.rand(5)
     ctau = random.randn(5) * ceta
 
@@ -28,17 +28,22 @@ def test_liknormmachine():
                      'mean': hmu,
                      'variance': hvar})
 
-    assert_allclose(lmom0, [
-        -2.55989674e-12, -2.56128452e-12, -2.55787058e-12, 2.79396772e-09,
-        -2.55950816e-12
-    ])
-    assert_allclose(hmu, [
-        2.25294624e+00, 2.99693419e+00, 6.69308618e-01, 1.90604126e+07,
-        3.19419728e+00
-    ])
-    assert_allclose(hvar, [
-        5.87559282e+00, 3.78532198e+00, 1.26548506e+00, 3.35662124e+07,
-        3.45096033e+00
-    ])
+    assert_allclose(
+        lmom0, [
+            -3.478250e+00, -6.179203e+00, -4.473831e+00, -6.086356e+08,
+            -7.042068e+00
+        ],
+        atol=1e-7)
+    assert_allclose(
+        hmu, [
+            1.952541e+00, -1.351837e+00, -6.763551e-01, 1.901923e+07,
+            -1.438112e+00
+        ],
+        rtol=1e-5,
+        atol=1e-5)
+    assert_allclose(
+        hvar,
+        [2.008703e-01, 1.257172e-01, 6.619332e-02, 9.629856e+11, 9.355299e-02],
+        atol=1e-7)
 
     machine.finish()
