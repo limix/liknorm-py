@@ -22,12 +22,12 @@ def setup_package():
     pytest_runner = ['pytest-runner>=2.9'] if needs_pytest else []
 
     setup_requires = ['cffi'] + pytest_runner
-    install_requires = []
+    install_requires = ['numpy']
     tests_require = ['pytest']
 
     metadata = dict(
         name='liknorm-py',
-        version='1.0.2',
+        version='1.0.3',
         maintainer="Danilo Horta",
         maintainer_email="horta@ebi.ac.uk",
         license="MIT",
