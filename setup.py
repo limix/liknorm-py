@@ -33,7 +33,7 @@ def setup_package():
         license="MIT",
         description="Liknorm Python wrapper.",
         long_description=long_description,
-        url='https://github.com/glimix/liknorm-py',
+        url='https://github.com/limix/liknorm-py',
         packages=find_packages(),
         zip_safe=False,
         install_requires=install_requires,
