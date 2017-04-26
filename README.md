@@ -15,7 +15,7 @@ conda install -c conda-forge liknorm-py
 ```
 
 An alternative way would be via [pip](https://pypi.python.org/pypi/pip).
-First you need to install [liknorm](http://liknorm.readthedocs.io/en/latest/)
+First you need to install [liknorm](http://liknorm.readthedocs.io/)
 library and then
 ```bash
 pip install liknorm-py
