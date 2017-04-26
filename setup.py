@@ -21,8 +21,8 @@ def setup_package():
     needs_pytest = {'pytest', 'test', 'ptr'}.intersection(sys.argv)
     pytest_runner = ['pytest-runner>=2.9'] if needs_pytest else []
 
-    setup_requires = ['cffi>=1.7'] + pytest_runner
-    install_requires = ['numpy', 'cffi>=1.7']
+    setup_requires = ['cffi>=1.8'] + pytest_runner
+    install_requires = ['numpy', 'cffi>=1.8']
     tests_require = ['pytest']
 
     metadata = dict(
