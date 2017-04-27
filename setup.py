@@ -22,7 +22,7 @@ def setup_package():
     pytest_runner = ['pytest-runner>=2.9'] if needs_pytest else []
 
     setup_requires = ['cffi>=1.8'] + pytest_runner
-    install_requires = ['numpy', 'cffi>=1.8']
+    install_requires = ['numpy>=1.10', 'cffi>=1.8']
     tests_require = ['pytest']
 
     metadata = dict(
