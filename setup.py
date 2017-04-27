@@ -21,13 +21,13 @@ def setup_package():
     needs_pytest = {'pytest', 'test', 'ptr'}.intersection(sys.argv)
     pytest_runner = ['pytest-runner>=2.9'] if needs_pytest else []
 
-    setup_requires = ['cffi>=1.7'] + pytest_runner
-    install_requires = ['numpy', 'cffi>=1.7']
+    setup_requires = ['cffi>=1.8'] + pytest_runner
+    install_requires = ['numpy>=1.10', 'cffi>=1.8']
     tests_require = ['pytest']
 
     metadata = dict(
         name='liknorm-py',
-        version='1.0.3',
+        version='1.0.4',
         maintainer="Danilo Horta",
         maintainer_email="horta@ebi.ac.uk",
         license="MIT",
