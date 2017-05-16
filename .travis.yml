@@ -39,6 +39,7 @@ env:
     - PKG_NAME=liknorm
     - PRJ_NAME=liknorm_py
     - LIKNORM=true
+    - DONT_RELEASE_WHEEL=true
 deploy:
   provider: pypi
   user: dhorta
