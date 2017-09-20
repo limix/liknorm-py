@@ -1,4 +1,4 @@
 include LICENSE.txt
 include README.rst
-include setup.cfg
-recursive-include liknorm *.py
+include requirements.txt
+include test-requirements.txt

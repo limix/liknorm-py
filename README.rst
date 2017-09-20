@@ -9,7 +9,7 @@ liknorm-py
 Liknorm Python wrapper.
 
 Install
-------
+-------
 
 The recommended way of installing it is via conda_
 

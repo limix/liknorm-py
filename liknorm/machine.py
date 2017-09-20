@@ -31,7 +31,8 @@ class LikNormMachine(object):
         >>> mean = empty(5)
         >>> variance = empty(5)
         >>>
-        >>> moments = {'log_zeroth': log_zeroth, 'mean': mean, 'variance': variance}
+        >>> moments = {'log_zeroth': log_zeroth, 'mean': mean,
+        ...            'variance': variance}
         >>> machine.moments(outcome, eta, tau, moments)
         >>>
         >>> print('%.3f %.3f %.3f' % (log_zeroth[0], mean[0], variance[0]))

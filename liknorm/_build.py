@@ -38,8 +38,12 @@ ffibuilder.set_source(
         GEOMETRIC
     };
 
-    LikNormMachine* create_machine(int n) { return liknorm_create_machine(n); }
-    void destroy_machine(LikNormMachine *machine) { liknorm_destroy_machine(machine); }
+    LikNormMachine* create_machine(int n) {
+        return liknorm_create_machine(n);
+    }
+    void destroy_machine(LikNormMachine *machine) {
+        liknorm_destroy_machine(machine);
+    }
 
     typedef void lik1d(LikNormMachine*, double);
     typedef void lik2d(LikNormMachine*, double, double);
@@ -52,8 +56,8 @@ ffibuilder.set_source(
                        liknorm_set_geometric};
 
     void apply1d(LikNormMachine *machine,
-                 enum Lik lik, size_t size, double *x, double *tau, double *eta,
-                 double *log_zeroth, double *mean,
+                 enum Lik lik, size_t size, double *x, double *tau,
+                 double *eta, double *log_zeroth, double *mean,
                  double *variance)
     {
         size_t i;
@@ -66,8 +70,8 @@ ffibuilder.set_source(
     }
 
     void apply2d(LikNormMachine *machine,
-                 enum Lik lik, size_t size, double *x0, double *x1, double *tau,
-                 double *eta, double *log_zeroth, double *mean,
+                 enum Lik lik, size_t size, double *x0, double *x1,
+                 double *tau, double *eta, double *log_zeroth, double *mean,
                  double *variance)
     {
         size_t i;
