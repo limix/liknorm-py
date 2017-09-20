@@ -1,7 +1,6 @@
 from numpy import all as npall
 from numpy import asarray, isfinite
 
-# pylint: disable=E0401
 from ._ffi.lib import apply1d, apply2d, create_machine, destroy_machine
 
 

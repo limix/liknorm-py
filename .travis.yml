@@ -1,6 +1,5 @@
 language: python
 sudo: required
-dist: trusty
 services: docker
 git:
   depth: 5
@@ -12,7 +11,6 @@ cache:
 matrix:
   include:
   - python: 2.7
-  - python: 3.5
   - python: 3.6
   - env: DOCKER_IMAGE=quay.io/pypa/manylinux1_x86_64
   - os: osx
@@ -20,13 +18,12 @@ matrix:
     env: PYENV=py27
   - os: osx
     language: generic
-    env: PYENV=py35
-  - os: osx
-    language: generic
     env: PYENV=py36
 before_install:
 - travis_retry bash <(curl -s https://raw.githubusercontent.com/limix/travis-tools/master/get-travis-tools.sh)
 - travis_retry travis/before-install.sh
+install:
+- travis_retry travis/install.sh
 script:
 - travis_retry travis/script.sh
 after_success:
@@ -39,7 +36,6 @@ env:
     - PKG_NAME=liknorm
     - PRJ_NAME=liknorm_py
     - LIKNORM=true
-    - DONT_RELEASE_WHEEL=true
 deploy:
   provider: pypi
   user: dhorta

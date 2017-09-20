@@ -1,6 +1,7 @@
-from cffi import FFI
 from os.path import join
 from sysconfig import get_config_var
+
+from cffi import FFI
 
 ffibuilder = FFI()
 
@@ -23,8 +24,9 @@ ffibuilder.cdef(r"""
     void destroy_machine(LikNormMachine *);
 """)
 
-ffibuilder.set_source("liknorm._ffi",
-r"""
+ffibuilder.set_source(
+    "liknorm._ffi",
+    r"""
     #include "liknorm/liknorm.h"
 
     enum Lik {
@@ -76,9 +78,10 @@ r"""
             liknorm_integrate(machine, log_zeroth+i, mean+i, variance+i);
         }
     }
-""", libraries=['liknorm'],
-     library_dirs=[join(get_config_var('prefix'), 'lib')],
-     include_dirs=[join(get_config_var('prefix'), 'include')])
+""",
+    libraries=['liknorm'],
+    library_dirs=[join(get_config_var('prefix'), 'lib')],
+    include_dirs=[join(get_config_var('prefix'), 'include')])
 
 if __name__ == "__main__":
     ffibuilder.compile(verbose=True)
