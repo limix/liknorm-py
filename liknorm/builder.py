@@ -26,7 +26,7 @@ ffibuilder.cdef(r"""
 """)
 
 ffibuilder.set_source(
-    "liknorm.machine",
+    "liknorm.machine_ffi",
     r"""
     #include "liknorm/liknorm.h"
 

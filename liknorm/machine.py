@@ -1,8 +1,8 @@
 from numpy import all as npall
 from numpy import asarray, isfinite
 
-from .machine import ffi
-from .machine.lib import apply1d, apply2d, create_machine, destroy_machine
+from .machine_ffi import ffi, lib
+from .machine_ffi.lib import apply1d, apply2d, create_machine, destroy_machine
 
 
 def ptr(a):
@@ -40,7 +40,6 @@ class LikNormMachine(object):
     """
 
     def __init__(self, likname, npoints=500):
-        from ._ffi import lib
         self._likname = likname
         self._machine = create_machine(npoints)
         self._lik = getattr(lib, likname.upper())
