@@ -3,11 +3,6 @@ sudo: required
 services: docker
 git:
   depth: 5
-cache:
-  pip: true
-  directories:
-  - "$HOME/bin"
-  - "$HOME/.download"
 matrix:
   include:
   - python: 2.7
@@ -29,7 +24,11 @@ script:
 after_success:
 - travis_retry travis/after-success.sh
 notifications:
-  email: false
+  email:
+    recipients:
+      - danilo.horta@gmail.com
+    on_success: change
+    on_failure: always
 env:
   global:
     - secure: usXItuqGNY02VtJTz8i7OtpC48oxtMUSPE4u/3GUwW3S9owpcvK3oMbw4EPASroixb63Jm2hJJfYLOLyLmMUqk5I4kasi23Jx2tXvJYp5/NgfEQgqNgib9vopIKp/EEezvcpFPgBUwSMaedHcGKrVUcJxHA/CgfkJFhv+hBn8MtM10JDc83QS9fhNPtLbeqfsSuWmCupXQ2PuUj9mve7/E20zMcOxxNF4Og5I7E8DqvND9jp5R7yyL6IXV8oOsufawQHw1cKW64Fh9DIVXn/cYJLEcMnt4l0UdXIucw9O6L6NHx9XPlFdW8LBZurk/50MCuUku6W1m/aDE9einZNVMMHGqRkOF1mMmzbDBEx7tMN8ZE+JQ91/BdwuSzvQhOMvXUkAFRpLcn7gT1VcfcM/n7ArJBOME/ggel5QKYzw9CTT9ZJ8CALzNAunTWUWi3qMi3nWk6qHjvJiyaL3CT0MLhccAme52MDJk/cCfKd+kSEIwIXSj/eBZJ915xlOCDy1vKB1ENTWvgd4vIbtTfxREpc0QpKefC2bdgNKJaWR/faeSrXGxxX9x73PpTSJdWSZtNfna7UwkcOxO/Tdw4YW7/42yt5ac7bd3gvxS6Sf395lyjptSEWGjqXyXaxDuzZJQAyqCCrxMYYe8nIaOZl3fiR9CpH2IUjFMPLz9Ap6LA=

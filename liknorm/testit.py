@@ -27,7 +27,7 @@
 
   <meta name="viewport" content="width=device-width">
   
-  <title>setup/conftest.py at master · limix/setup · GitHub</title>
+  <title>setup/testit.py at master · limix/setup · GitHub</title>
   <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="GitHub">
   <link rel="fluid-icon" href="https://github.com/fluidicon.png" title="GitHub">
   <meta property="fb:app_id" content="1401488693436528">
@@ -39,7 +39,7 @@
   
   <meta name="pjax-timeout" content="1000">
   
-  <meta name="request-id" content="F35E:30C1:37A12D4:56DEA87:59D0A75B" data-pjax-transient>
+  <meta name="request-id" content="F3A6:30C1:37A6216:56E6812:59D0A7CD" data-pjax-transient>
   
 
   <meta name="selected-link" value="repo_source" data-pjax-transient>
@@ -48,7 +48,7 @@
 <meta name="google-site-verification" content="ZzhVyEFwb7w3e0-uOTltm8Jsck2F5StVihD0exw2fsA">
     <meta name="google-analytics" content="UA-3769691-2">
 
-<meta content="collector.githubapp.com" name="octolytics-host" /><meta content="github" name="octolytics-app-id" /><meta content="https://collector.githubapp.com/github-external/browser_event" name="octolytics-event-url" /><meta content="F35E:30C1:37A12D4:56DEA87:59D0A75B" name="octolytics-dimension-request_id" /><meta content="iad" name="octolytics-dimension-region_edge" /><meta content="iad" name="octolytics-dimension-region_render" />
+<meta content="collector.githubapp.com" name="octolytics-host" /><meta content="github" name="octolytics-app-id" /><meta content="https://collector.githubapp.com/github-external/browser_event" name="octolytics-event-url" /><meta content="F3A6:30C1:37A6216:56E6812:59D0A7CD" name="octolytics-dimension-request_id" /><meta content="iad" name="octolytics-dimension-region_edge" /><meta content="iad" name="octolytics-dimension-region_render" />
 <meta content="/&lt;user-name&gt;/&lt;repo-name&gt;/blob/show" data-pjax-transient="true" name="analytics-location" />
 
 
@@ -63,10 +63,10 @@
   <meta name="user-login" content="">
 
       <meta name="expected-hostname" content="github.com">
-    <meta name="js-proxy-site-detection-payload" content="ZWU3YjU4ZTg5NjViMWIwNDFmODYzYTkzZGIxZGM1NGYzZmFlNDhlNjJlYWFiOWZkNGI2ZTA2NGRlMzdlMTM2Y3x7InJlbW90ZV9hZGRyZXNzIjoiODEuMTg3LjE5MC4xNjMiLCJyZXF1ZXN0X2lkIjoiRjM1RTozMEMxOjM3QTEyRDQ6NTZERUE4Nzo1OUQwQTc1QiIsInRpbWVzdGFtcCI6MTUwNjg0NjU1NiwiaG9zdCI6ImdpdGh1Yi5jb20ifQ==">
+    <meta name="js-proxy-site-detection-payload" content="MTJkMTA5ZjdmMmRjOGRhMjkzMDUxZGJmNjZhM2JiYzFiMDg1MGViZWIzMzJjZmU2ZjdkYmUyODIwNjZkZGUzZXx7InJlbW90ZV9hZGRyZXNzIjoiODEuMTg3LjE5MC4xNjMiLCJyZXF1ZXN0X2lkIjoiRjNBNjozMEMxOjM3QTYyMTY6NTZFNjgxMjo1OUQwQTdDRCIsInRpbWVzdGFtcCI6MTUwNjg0NjY2OSwiaG9zdCI6ImdpdGh1Yi5jb20ifQ==">
 
 
-  <meta name="html-safe-nonce" content="29d9011f988dd646d53cbb83db57619f3fa7009f">
+  <meta name="html-safe-nonce" content="83f6e84dcc5db79325a482a48aa0c81cf738b505">
 
   <meta http-equiv="x-pjax-version" content="ef1ae5965f157ea6cca26157aaa21ddb">
   
@@ -79,7 +79,7 @@
   <meta content="24399766" name="octolytics-dimension-user_id" /><meta content="limix" name="octolytics-dimension-user_login" /><meta content="101545278" name="octolytics-dimension-repository_id" /><meta content="limix/setup" name="octolytics-dimension-repository_nwo" /><meta content="true" name="octolytics-dimension-repository_public" /><meta content="false" name="octolytics-dimension-repository_is_fork" /><meta content="101545278" name="octolytics-dimension-repository_network_root_id" /><meta content="limix/setup" name="octolytics-dimension-repository_network_root_nwo" /><meta content="false" name="octolytics-dimension-repository_explore_github_marketplace_ci_cta_shown" />
 
 
-    <link rel="canonical" href="https://github.com/limix/setup/blob/master/conftest.py" data-pjax-transient>
+    <link rel="canonical" href="https://github.com/limix/setup/blob/master/testit.py" data-pjax-transient>
 
 
   <meta name="browser-stats-url" content="https://api.github.com/_private/browser/stats">
@@ -150,7 +150,7 @@
             <div class="header-search scoped-search site-scoped-search js-site-search" role="search">
   <!-- '"` --><!-- </textarea></xmp> --></option></form><form accept-charset="UTF-8" action="/limix/setup/search" class="js-site-search-form" data-scoped-search-url="/limix/setup/search" data-unscoped-search-url="/search" method="get"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div>
     <label class="form-control header-search-wrapper js-chromeless-input-container">
-        <a href="/limix/setup/blob/master/conftest.py" class="header-search-scope no-underline">This repository</a>
+        <a href="/limix/setup/blob/master/testit.py" class="header-search-scope no-underline">This repository</a>
       <input type="text"
         class="form-control header-search-input js-site-search-focus js-site-search-field is-clearable"
         data-hotkey="s"
@@ -169,7 +169,7 @@
 
         <span class="d-inline-block">
             <div class="HeaderNavlink px-0 py-2 m-0">
-              <a class="text-bold text-white no-underline" href="/login?return_to=%2Flimix%2Fsetup%2Fblob%2Fmaster%2Fconftest.py" data-ga-click="(Logged out) Header, clicked Sign in, text:sign-in">Sign in</a>
+              <a class="text-bold text-white no-underline" href="/login?return_to=%2Flimix%2Fsetup%2Fblob%2Fmaster%2Ftestit.py" data-ga-click="(Logged out) Header, clicked Sign in, text:sign-in">Sign in</a>
                 <span class="text-gray">or</span>
                 <a class="text-bold text-white no-underline" href="/join?source=header-repo" data-ga-click="(Logged out) Header, clicked Sign up, text:sign-up">Sign up</a>
             </div>
@@ -322,9 +322,9 @@
   <div class="repository-content">
 
     
-  <a href="/limix/setup/blob/625d5224571550f8f1d5b3a220743ea5bbccb34a/conftest.py" class="d-none js-permalink-shortcut" data-hotkey="y">Permalink</a>
+  <a href="/limix/setup/blob/98d85634fda0e22e41185e1d2549d77a62a03d06/testit.py" class="d-none js-permalink-shortcut" data-hotkey="y">Permalink</a>
 
-  <!-- blob contrib key: blob_contributors:v21:78da9f507ee3a8c3e8fb8785fa0266e9 -->
+  <!-- blob contrib key: blob_contributors:v21:4e6adaa0d663bb025df89450bf98565d -->
 
   <div class="file-navigation js-zeroclipboard-container">
     
@@ -366,7 +366,7 @@
 
 
             <a class="select-menu-item js-navigation-item js-navigation-open selected"
-               href="/limix/setup/blob/master/conftest.py"
+               href="/limix/setup/blob/master/testit.py"
                data-name="master"
                data-skip-pjax="true"
                rel="nofollow">
@@ -403,12 +403,12 @@
       <button aria-label="Copy file path to clipboard" class="js-zeroclipboard btn btn-sm BtnGroup-item tooltipped tooltipped-s" data-copied-hint="Copied!" type="button">Copy path</button>
     </div>
     <div class="breadcrumb js-zeroclipboard-target">
-      <span class="repo-root js-repo-root"><span class="js-path-segment"><a href="/limix/setup"><span>setup</span></a></span></span><span class="separator">/</span><strong class="final-path">conftest.py</strong>
+      <span class="repo-root js-repo-root"><span class="js-path-segment"><a href="/limix/setup"><span>setup</span></a></span></span><span class="separator">/</span><strong class="final-path">testit.py</strong>
     </div>
   </div>
 
 
-  <include-fragment class="commit-tease" src="/limix/setup/contributors/master/conftest.py">
+  <include-fragment class="commit-tease" src="/limix/setup/contributors/master/testit.py">
     <div>
       Fetching contributors&hellip;
     </div>
@@ -424,9 +424,9 @@
   <div class="file-actions">
 
     <div class="BtnGroup">
-      <a href="/limix/setup/raw/master/conftest.py" class="btn btn-sm BtnGroup-item" id="raw-url">Raw</a>
-        <a href="/limix/setup/blame/master/conftest.py" class="btn btn-sm js-update-url-with-hash BtnGroup-item" data-hotkey="b">Blame</a>
-      <a href="/limix/setup/commits/master/conftest.py" class="btn btn-sm BtnGroup-item" rel="nofollow">History</a>
+      <a href="/limix/setup/raw/master/testit.py" class="btn btn-sm BtnGroup-item" id="raw-url">Raw</a>
+        <a href="/limix/setup/blame/master/testit.py" class="btn btn-sm js-update-url-with-hash BtnGroup-item" data-hotkey="b">Blame</a>
+      <a href="/limix/setup/commits/master/testit.py" class="btn btn-sm BtnGroup-item" rel="nofollow">History</a>
     </div>
 
 
@@ -441,9 +441,9 @@
   </div>
 
   <div class="file-info">
-      7 lines (4 sloc)
+      35 lines (25 sloc)
       <span class="file-info-divider"></span>
-    155 Bytes
+    749 Bytes
   </div>
 </div>
 
@@ -453,11 +453,11 @@
       <table class="highlight tab-size js-file-line-container" data-tab-size="8">
       <tr>
         <td id="L1" class="blob-num js-line-number" data-line-number="1"></td>
-        <td id="LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-k">def</span> <span class="pl-en">get_pkg_name</span>():</td>
+        <td id="LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-k">from</span> os <span class="pl-k">import</span> chdir, getcwd</td>
       </tr>
       <tr>
         <td id="L2" class="blob-num js-line-number" data-line-number="2"></td>
-        <td id="LC2" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">from</span> setuptools <span class="pl-k">import</span> find_packages</td>
+        <td id="LC2" class="blob-code blob-code-inner js-file-line"><span class="pl-k">from</span> os.path <span class="pl-k">import</span> abspath, basename, dirname, realpath</td>
       </tr>
       <tr>
         <td id="L3" class="blob-num js-line-number" data-line-number="3"></td>
@@ -466,16 +466,133 @@
       </tr>
       <tr>
         <td id="L4" class="blob-num js-line-number" data-line-number="4"></td>
-        <td id="LC4" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">return</span> find_packages()[<span class="pl-c1">0</span>]</td>
-      </tr>
-      <tr>
-        <td id="L5" class="blob-num js-line-number" data-line-number="5"></td>
-        <td id="LC5" class="blob-code blob-code-inner js-file-line">
+        <td id="LC4" class="blob-code blob-code-inner js-file-line">
 </td>
       </tr>
       <tr>
+        <td id="L5" class="blob-num js-line-number" data-line-number="5"></td>
+        <td id="LC5" class="blob-code blob-code-inner js-file-line"><span class="pl-k">def</span> <span class="pl-en">test</span>(<span class="pl-smi">verbose</span><span class="pl-k">=</span><span class="pl-c1">True</span>):</td>
+      </tr>
+      <tr>
         <td id="L6" class="blob-num js-line-number" data-line-number="6"></td>
-        <td id="LC6" class="blob-code blob-code-inner js-file-line">collect_ignore <span class="pl-k">=</span> [<span class="pl-s"><span class="pl-pds">&quot;</span>setup.py<span class="pl-pds">&quot;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span><span class="pl-c1">%s</span>/_test.py<span class="pl-pds">&quot;</span></span> <span class="pl-k">%</span> get_pkg_name()]</td>
+        <td id="LC6" class="blob-code blob-code-inner js-file-line">    <span class="pl-s"><span class="pl-k">r</span><span class="pl-pds">&quot;&quot;&quot;</span>Run tests to verify this package&#39;s integrity.</span></td>
+      </tr>
+      <tr>
+        <td id="L7" class="blob-num js-line-number" data-line-number="7"></td>
+        <td id="LC7" class="blob-code blob-code-inner js-file-line"><span class="pl-s"></span></td>
+      </tr>
+      <tr>
+        <td id="L8" class="blob-num js-line-number" data-line-number="8"></td>
+        <td id="LC8" class="blob-code blob-code-inner js-file-line"><span class="pl-s">    Parameters</span></td>
+      </tr>
+      <tr>
+        <td id="L9" class="blob-num js-line-number" data-line-number="9"></td>
+        <td id="LC9" class="blob-code blob-code-inner js-file-line"><span class="pl-s">    ----------</span></td>
+      </tr>
+      <tr>
+        <td id="L10" class="blob-num js-line-number" data-line-number="10"></td>
+        <td id="LC10" class="blob-code blob-code-inner js-file-line"><span class="pl-s">    verbose : bool</span></td>
+      </tr>
+      <tr>
+        <td id="L11" class="blob-num js-line-number" data-line-number="11"></td>
+        <td id="LC11" class="blob-code blob-code-inner js-file-line"><span class="pl-s">        ``True`` to show diagnostic. Defaults to ``True``.</span></td>
+      </tr>
+      <tr>
+        <td id="L12" class="blob-num js-line-number" data-line-number="12"></td>
+        <td id="LC12" class="blob-code blob-code-inner js-file-line"><span class="pl-s"></span></td>
+      </tr>
+      <tr>
+        <td id="L13" class="blob-num js-line-number" data-line-number="13"></td>
+        <td id="LC13" class="blob-code blob-code-inner js-file-line"><span class="pl-s">    Returns</span></td>
+      </tr>
+      <tr>
+        <td id="L14" class="blob-num js-line-number" data-line-number="14"></td>
+        <td id="LC14" class="blob-code blob-code-inner js-file-line"><span class="pl-s">    -------</span></td>
+      </tr>
+      <tr>
+        <td id="L15" class="blob-num js-line-number" data-line-number="15"></td>
+        <td id="LC15" class="blob-code blob-code-inner js-file-line"><span class="pl-s">    int</span></td>
+      </tr>
+      <tr>
+        <td id="L16" class="blob-num js-line-number" data-line-number="16"></td>
+        <td id="LC16" class="blob-code blob-code-inner js-file-line"><span class="pl-s">        Exit code: ``0`` for success.</span></td>
+      </tr>
+      <tr>
+        <td id="L17" class="blob-num js-line-number" data-line-number="17"></td>
+        <td id="LC17" class="blob-code blob-code-inner js-file-line"><span class="pl-s">    <span class="pl-pds">&quot;&quot;&quot;</span></span></td>
+      </tr>
+      <tr>
+        <td id="L18" class="blob-num js-line-number" data-line-number="18"></td>
+        <td id="LC18" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="L19" class="blob-num js-line-number" data-line-number="19"></td>
+        <td id="LC19" class="blob-code blob-code-inner js-file-line">    pkgname <span class="pl-k">=</span> basename(dirname(realpath(<span class="pl-c1">__file__</span>)))</td>
+      </tr>
+      <tr>
+        <td id="L20" class="blob-num js-line-number" data-line-number="20"></td>
+        <td id="LC20" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="L21" class="blob-num js-line-number" data-line-number="21"></td>
+        <td id="LC21" class="blob-code blob-code-inner js-file-line">    p <span class="pl-k">=</span> <span class="pl-c1">__import__</span>(pkgname).<span class="pl-c1">__path__</span>[<span class="pl-c1">0</span>]</td>
+      </tr>
+      <tr>
+        <td id="L22" class="blob-num js-line-number" data-line-number="22"></td>
+        <td id="LC22" class="blob-code blob-code-inner js-file-line">    src_path <span class="pl-k">=</span> abspath(p)</td>
+      </tr>
+      <tr>
+        <td id="L23" class="blob-num js-line-number" data-line-number="23"></td>
+        <td id="LC23" class="blob-code blob-code-inner js-file-line">    old_path <span class="pl-k">=</span> getcwd()</td>
+      </tr>
+      <tr>
+        <td id="L24" class="blob-num js-line-number" data-line-number="24"></td>
+        <td id="LC24" class="blob-code blob-code-inner js-file-line">    chdir(src_path)</td>
+      </tr>
+      <tr>
+        <td id="L25" class="blob-num js-line-number" data-line-number="25"></td>
+        <td id="LC25" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="L26" class="blob-num js-line-number" data-line-number="26"></td>
+        <td id="LC26" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">try</span>:</td>
+      </tr>
+      <tr>
+        <td id="L27" class="blob-num js-line-number" data-line-number="27"></td>
+        <td id="LC27" class="blob-code blob-code-inner js-file-line">        return_code <span class="pl-k">=</span> <span class="pl-c1">__import__</span>(<span class="pl-s"><span class="pl-pds">&#39;</span>pytest<span class="pl-pds">&#39;</span></span>).main([<span class="pl-s"><span class="pl-pds">&#39;</span>-q<span class="pl-pds">&#39;</span></span>, <span class="pl-s"><span class="pl-pds">&#39;</span>--doctest-modules<span class="pl-pds">&#39;</span></span>])</td>
+      </tr>
+      <tr>
+        <td id="L28" class="blob-num js-line-number" data-line-number="28"></td>
+        <td id="LC28" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">finally</span>:</td>
+      </tr>
+      <tr>
+        <td id="L29" class="blob-num js-line-number" data-line-number="29"></td>
+        <td id="LC29" class="blob-code blob-code-inner js-file-line">        chdir(old_path)</td>
+      </tr>
+      <tr>
+        <td id="L30" class="blob-num js-line-number" data-line-number="30"></td>
+        <td id="LC30" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="L31" class="blob-num js-line-number" data-line-number="31"></td>
+        <td id="LC31" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">if</span> return_code <span class="pl-k">==</span> <span class="pl-c1">0</span>:</td>
+      </tr>
+      <tr>
+        <td id="L32" class="blob-num js-line-number" data-line-number="32"></td>
+        <td id="LC32" class="blob-code blob-code-inner js-file-line">        <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>Congratulations. All tests have passed!<span class="pl-pds">&quot;</span></span>)</td>
+      </tr>
+      <tr>
+        <td id="L33" class="blob-num js-line-number" data-line-number="33"></td>
+        <td id="LC33" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="L34" class="blob-num js-line-number" data-line-number="34"></td>
+        <td id="LC34" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">return</span> return_code</td>
       </tr>
 </table>
 
@@ -493,7 +610,7 @@
       <ul class="BlobToolbar-dropdown dropdown-menu dropdown-menu-se mt-2">
         <li><a class="js-zeroclipboard dropdown-item" style="cursor:pointer;" id="js-copy-lines" data-original-text="Copy lines">Copy lines</a></li>
         <li><a class="js-zeroclipboard dropdown-item" id= "js-copy-permalink" style="cursor:pointer;" data-original-text="Copy permalink">Copy permalink</a></li>
-        <li><a href="/limix/setup/blame/625d5224571550f8f1d5b3a220743ea5bbccb34a/conftest.py" class="dropdown-item js-update-url-with-hash" id="js-view-git-blame">View git blame</a></li>
+        <li><a href="/limix/setup/blame/98d85634fda0e22e41185e1d2549d77a62a03d06/testit.py" class="dropdown-item js-update-url-with-hash" id="js-view-git-blame">View git blame</a></li>
           <li><a href="/limix/setup/issues/new" class="dropdown-item" id="js-new-issue">Open new issue</a></li>
       </ul>
     </div>
@@ -523,7 +640,7 @@
 <div class="footer container-lg px-3" role="contentinfo">
   <div class="position-relative d-flex flex-justify-between py-6 mt-6 f6 text-gray border-top border-gray-light ">
     <ul class="list-style-none d-flex flex-wrap ">
-      <li class="mr-3">&copy; 2017 <span title="0.13468s from unicorn-1767319202-21hc8">GitHub</span>, Inc.</li>
+      <li class="mr-3">&copy; 2017 <span title="0.09502s from unicorn-3254003362-0jlgh">GitHub</span>, Inc.</li>
         <li class="mr-3"><a href="https://github.com/site/terms" data-ga-click="Footer, go to terms, text:terms">Terms</a></li>
         <li class="mr-3"><a href="https://github.com/site/privacy" data-ga-click="Footer, go to privacy, text:privacy">Privacy</a></li>
         <li class="mr-3"><a href="https://github.com/security" data-ga-click="Footer, go to security, text:security">Security</a></li>

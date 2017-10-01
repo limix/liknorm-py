@@ -2,8 +2,8 @@ from __future__ import absolute_import as _
 
 import _cffi_backend as _
 
-from ._test import test
 from .machine import LikNormMachine
+from .testit import test
 
 __name__ = "liknorm"
 __version__ = "1.0.7"
