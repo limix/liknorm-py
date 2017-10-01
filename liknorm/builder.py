@@ -4,6 +4,7 @@ from sysconfig import get_config_var
 from cffi import FFI
 
 ffibuilder = FFI()
+ffibuilder.set_unicode(False)
 
 ffibuilder.cdef(r"""
     typedef struct LikNormMachine LikNormMachine;
@@ -25,7 +26,7 @@ ffibuilder.cdef(r"""
 """)
 
 ffibuilder.set_source(
-    "liknorm._ffi",
+    "liknorm.machine",
     r"""
     #include "liknorm/liknorm.h"
 

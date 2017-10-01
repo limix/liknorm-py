@@ -1,11 +1,11 @@
 from numpy import all as npall
 from numpy import asarray, isfinite
 
-from ._ffi.lib import apply1d, apply2d, create_machine, destroy_machine
+from .machine import ffi
+from .machine.lib import apply1d, apply2d, create_machine, destroy_machine
 
 
 def ptr(a):
-    from ._ffi import ffi
     return ffi.cast("double *", a.ctypes.data)
 
 
