@@ -27,7 +27,7 @@ ffibuilder.cdef(r"""
 
 ffibuilder.set_source(
     "liknorm.machine_ffi",
-    "",
+    r"#include \"liknorm/liknorm.h\"",
     sources=[join('liknorm', '_machine_ffi.c')],
     libraries=['liknorm'],
     library_dirs=[join(get_config_var('prefix'), 'lib')],

@@ -1,5 +1,3 @@
-#include "liknorm/liknorm.h"
-
 enum Lik { BERNOULLI, BINOMIAL, POISSON, EXPONENTIAL, GAMMA, GEOMETRIC };
 
 LikNormMachine *create_machine(int n) { return liknorm_create_machine(n); }
