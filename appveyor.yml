@@ -1,0 +1,64 @@
+# AppVeyor.com is a Continuous Integration service to build and run tests under Windows
+# This yml file was made in part by looking at the yml files for conda and astropy.
+
+# This is not a .NET project, so we build SpiceyPy in the install step.
+build: off
+
+environment:
+  global:
+      WITH_COMPILER: "cmd /E:ON /V:ON /C .\\appveyor\\windows_sdk.cmd"
+
+  matrix:
+      - PYTHON: "C:\\Python27-x64"
+        CONDA: "C:\\Miniconda-x64"
+        CONDA_BUILDS: C:\\Miniconda-x64\conda-bld\win-64
+        PYTHON_VERSION: "2.7.x"
+        ARCH: "64"
+        PLAT_NAME: "win-amd64"
+        PY_TAG: "cp27"
+
+      - PYTHON: "C:\\Python36-x64"
+        CONDA: "C:\\Miniconda36-x64"
+        CONDA_BUILDS: C:\\Miniconda36-x64\conda-bld\win-64
+        PYTHON_VERSION: "3.6.x"
+        ARCH: "64"
+        WINDOWS_SDK_VERSION: "v7.1"
+        PLAT_NAME: "win-amd64"
+        PY_TAG: "cp36"
+
+platform:
+  - x64
+
+install:
+  # Log out the python version just so we know it
+  - ECHO "%PYTHON_VERSION%"
+
+  # update path to use installed pip
+  - set PATH=%PYTHON%\\scripts;%PATH%
+
+  # Download things we absolutly need
+  - pip install wheel twine six pytest
+  # coveralls and or coverage fail to install for 3.4 64bit python builds so don't bother for now.
+
+  # Check for numpy wheel, compile if absent
+  - "powershell appveyor\\install_numpy.ps1"
+
+  # Now install numpy from pre-built wheel. This may be fragile.
+  - "%WITH_COMPILER% pip install --use-wheel --no-index --find-links=c:\\Users\\appveyor\\Downloads numpy"
+
+  # Download CSPICE so we can build outside of python
+  - "%PYTHON%/python getspice.py"
+
+  # Make a backup of the PATH just in case.
+  - set BK_PATH=%PATH%
+
+  # Now install spiceypy
+  - IF "%ARCH%"=="32" (call "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat" x86) ELSE (ECHO "probably a 64bit build")
+  - IF "%ARCH%"=="64" (call "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat" amd64) ELSE (ECHO "probably a 32bit build")
+  - "%PYTHON%/python setup.py install"
+
+  # restore PATH
+  - set PATH=%BK_PATH%
+
+test_script:
+  - "%PYTHON%/python setup.py test"
