@@ -1,8 +1,13 @@
 from numpy import asarray, empty, float64
 from numpy.random import RandomState
-from numpy.testing import assert_allclose
+from numpy.testing import assert_allclose, assert_equal
 
 from liknorm import LikNormMachine
+
+
+def test_sizeof_double():
+    from liknorm.machine_ffi import ffi
+    assert_equal(ffi.sizeof("double"), 8)
 
 
 def test_liknormmachine():
