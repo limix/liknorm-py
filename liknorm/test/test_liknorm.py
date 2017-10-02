@@ -1,4 +1,4 @@
-from numpy import asarray, empty
+from numpy import asarray, empty, float64
 from numpy.random import RandomState
 from numpy.testing import assert_allclose
 
@@ -19,9 +19,9 @@ def test_liknormmachine():
     ceta = random.rand(5)
     ctau = random.randn(5) * ceta
 
-    lmom0 = empty(5)
-    hmu = empty(5)
-    hvar = empty(5)
+    lmom0 = empty(5, dtype=float64)
+    hmu = empty(5, dtype=float64)
+    hvar = empty(5, dtype=float64)
 
     machine.moments(y, ceta, ctau,
                     {'log_zeroth': lmom0,

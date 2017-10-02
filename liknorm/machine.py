@@ -1,5 +1,5 @@
 from numpy import all as npall
-from numpy import asarray, isfinite
+from numpy import asarray, float64, isfinite
 
 from .machine_ffi import ffi, lib
 from .machine_ffi.lib import apply1d, apply2d, create_machine, destroy_machine
@@ -17,7 +17,7 @@ class LikNormMachine(object):
 
     .. doctest::
 
-        >>> from numpy import empty
+        >>> from numpy import empty, float64
         >>> from numpy.random import RandomState
         >>> from liknorm import LikNormMachine
         >>>
@@ -27,9 +27,9 @@ class LikNormMachine(object):
         >>> tau = random.rand(5)
         >>> eta = random.randn(5) * tau
         >>>
-        >>> log_zeroth = empty(5)
-        >>> mean = empty(5)
-        >>> variance = empty(5)
+        >>> log_zeroth = empty(5, dtype=float64)
+        >>> mean = empty(5, dtype=float64)
+        >>> variance = empty(5, dtype=float64)
         >>>
         >>> moments = {'log_zeroth': log_zeroth, 'mean': mean,
         ...            'variance': variance}
@@ -66,7 +66,9 @@ class LikNormMachine(object):
         if not isinstance(y, (list, tuple)):
             y = (y, )
 
-        y = tuple(asarray(yi, float) for yi in y)
+        y = tuple(asarray(yi, float64) for yi in y)
+        tau = asarray(tau, float64)
+        eta = asarray(eta, float64)
 
         args = y + (tau, eta, moments['log_zeroth'], moments['mean'],
                     moments['variance'])
