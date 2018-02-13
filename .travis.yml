@@ -1,45 +1,22 @@
+os: linux
 language: python
-sudo: required
-services: docker
-git:
-  depth: 5
-matrix:
-  include:
-  - python: 2.7
-  - python: 3.6
-  - os: osx
-    language: generic
-    env: PYENV=py27
-  - os: osx
-    language: generic
-    env: PYENV=py36
-before_install:
-- travis_retry bash <(curl -s https://raw.githubusercontent.com/limix/travis-tools/master/get-travis-tools.sh)
-- travis_retry travis/before-install.sh
+sudo: false
+python: 3.6
+env:
+  - PKG_NAME=liknorm
+addons:
+  apt:
+    packages:
+        - pandoc
+        - libffi-dev
+        - libffi6
 install:
-- travis_retry travis/install.sh
+    - bash <(curl -fsSL https://raw.githubusercontent.com/limix/hcephes/master/install)
 script:
-- travis_retry travis/script.sh
-after_success:
-- travis_retry travis/after-success.sh
+    - bash <(curl -fsSL https://raw.githubusercontent.com/horta/ci/master/travis.sh)
 notifications:
   email:
     recipients:
-      - danilo.horta@gmail.com
-    on_success: change
+    - danilo.horta@gmail.com
+    on_success: never
     on_failure: always
-env:
-  global:
-    - secure: usXItuqGNY02VtJTz8i7OtpC48oxtMUSPE4u/3GUwW3S9owpcvK3oMbw4EPASroixb63Jm2hJJfYLOLyLmMUqk5I4kasi23Jx2tXvJYp5/NgfEQgqNgib9vopIKp/EEezvcpFPgBUwSMaedHcGKrVUcJxHA/CgfkJFhv+hBn8MtM10JDc83QS9fhNPtLbeqfsSuWmCupXQ2PuUj9mve7/E20zMcOxxNF4Og5I7E8DqvND9jp5R7yyL6IXV8oOsufawQHw1cKW64Fh9DIVXn/cYJLEcMnt4l0UdXIucw9O6L6NHx9XPlFdW8LBZurk/50MCuUku6W1m/aDE9einZNVMMHGqRkOF1mMmzbDBEx7tMN8ZE+JQ91/BdwuSzvQhOMvXUkAFRpLcn7gT1VcfcM/n7ArJBOME/ggel5QKYzw9CTT9ZJ8CALzNAunTWUWi3qMi3nWk6qHjvJiyaL3CT0MLhccAme52MDJk/cCfKd+kSEIwIXSj/eBZJ915xlOCDy1vKB1ENTWvgd4vIbtTfxREpc0QpKefC2bdgNKJaWR/faeSrXGxxX9x73PpTSJdWSZtNfna7UwkcOxO/Tdw4YW7/42yt5ac7bd3gvxS6Sf395lyjptSEWGjqXyXaxDuzZJQAyqCCrxMYYe8nIaOZl3fiR9CpH2IUjFMPLz9Ap6LA=
-    - PKG_NAME=liknorm
-    - PRJ_NAME=liknorm_py
-    - LIKNORM=true
-deploy:
-  provider: pypi
-  user: dhorta
-  password:
-    secure: rl+kj/HyOX6ApfdiYe6bSuSx1/0R8CEFouhtp0W1UTfjEsJfScAoq0o/bPl2eSuMrSg00d2scKtnrp8o/jv1FyUbE5f2E1DsKm/QhpHuvW1WiaSbvw8P8OByZNFxVqe4Y8Z8X6zHrLTSF9v+Qrg1EBKNlJ/fAefa0TAokvfSwzszd0AR/VXpPbHWmljG739kp2tI0h5actTc1OHlI6icVL4veRvhFHx1CQTuE9kAyZ9+Sr3lQeiTPGKLaXjZJFyzvMGc+B1gOCRB5cdZCMueYLO1vu/SCpsmlniyfOX10PuIDd/vrgIzZU5CoiZxqXh2pSF95yLkuOL1CZiTD2LYwLz16GAsIg3WR/KB4xoYoOVQX5dyb1J3cFSMVcUXTMJlvgPyjJq3NtDIFLnqg52t14R9gi6hxECfOGnoOfUhReL4weX911dhRd2ae4PWOhG8HRMS1IO/Yhi4XljDVXjEuuW6Y77r7k2vtgvhuwjJ5Ok3MO/BVJNkWygpca/Qmoahw3X8c93xwOqvrsXqYDIorBX+CTVJchmg7kdlsfucgK35Lojjru2GMIpf8Y1vV/TfQvrebxWQDCDt1GsKX6Ou0itp2jgqVvAYWIPIi6ojxpKr2gyMPRYBHaXE7mp2ov9VsSSmuVaZbh6EZVUbnxWKxr6WM348oKwI4HayEbyBACw=
-  on:
-    tags: true
-    repo: limix/liknorm-py
-    branch: master
