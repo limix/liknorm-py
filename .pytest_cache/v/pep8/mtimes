@@ -1,0 +1,51 @@
+{
+  "/Users/horta/github/liknorm-py/build_ext.py": [
+    1518531247.4897976,
+    [
+      "E402",
+      "E501"
+    ]
+  ],
+  "/Users/horta/github/liknorm-py/liknorm/__init__.py": [
+    1518531315.6208315,
+    [
+      "E402",
+      "E501"
+    ]
+  ],
+  "/Users/horta/github/liknorm-py/liknorm/machine.py": [
+    1518528676.5511525,
+    [
+      "E402",
+      "E501"
+    ]
+  ],
+  "/Users/horta/github/liknorm-py/liknorm/test/__init__.py": [
+    1518527188.2277017,
+    [
+      "E402",
+      "E501"
+    ]
+  ],
+  "/Users/horta/github/liknorm-py/liknorm/test/test_liknorm.py": [
+    1518528674.6127255,
+    [
+      "E402",
+      "E501"
+    ]
+  ],
+  "/Users/horta/github/liknorm-py/liknorm/testit.py": [
+    1518528678.2579825,
+    [
+      "E402",
+      "E501"
+    ]
+  ],
+  "/Users/horta/github/liknorm-py/version.py": [
+    1518528399.3970797,
+    [
+      "E402",
+      "E501"
+    ]
+  ]
+}
