@@ -25,9 +25,8 @@ def windows_include_dirs():
         include_dirs += [os.environ['INCLUDE']]
     if 'LIBRARY_INC' in os.environ:
         include_dirs += [os.environ['LIBRARY_INC']]
-    include_dirs += windows_dirs('include', 'bgen')
-    include_dirs += windows_dirs('include', 'zlib')
-    include_dirs += windows_dirs('include', 'zstd')
+    include_dirs += windows_dirs('include', 'hcephes')
+    include_dirs += windows_dirs('include', 'liknorm')
     return include_dirs
 
 
@@ -35,9 +34,8 @@ def windows_library_dirs():
     library_dirs = []
     if 'LIBRARY_LIB' in os.environ:
         library_dirs += [os.environ['LIBRARY_LIB']]
-    library_dirs += windows_dirs('lib', 'bgen')
-    library_dirs += windows_dirs('lib', 'zlib')
-    library_dirs += windows_dirs('lib', 'zstd')
+    library_dirs += windows_dirs('lib', 'hcephes')
+    library_dirs += windows_dirs('lib', 'liknorm')
     return library_dirs
 
 
