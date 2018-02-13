@@ -1,8 +1,7 @@
+from liknorm import LikNormMachine
 from numpy import asarray, empty, float64
 from numpy.random import RandomState
 from numpy.testing import assert_allclose, assert_equal
-
-from liknorm import LikNormMachine
 
 
 def test_sizeof_double():
@@ -33,10 +32,11 @@ def test_liknormmachine():
     hmu = empty(5, dtype=float64)
     hvar = empty(5, dtype=float64)
 
-    machine.moments(y, ceta, ctau,
-                    {'log_zeroth': lmom0,
-                     'mean': hmu,
-                     'variance': hvar})
+    machine.moments(y, ceta, ctau, {
+        'log_zeroth': lmom0,
+        'mean': hmu,
+        'variance': hvar
+    })
 
     assert_allclose(
         lmom0, [
