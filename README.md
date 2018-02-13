@@ -1,5 +1,7 @@
 # liknorm-py
 
+[![Travis](https://img.shields.io/travis/limix/liknorm-py.svg?style=flat-square&label=linux%20%2F%20macos%20build)](https://travis-ci.org/limix/liknorm-py) [![AppVeyor](https://img.shields.io/appveyor/ci/Horta/liknorm-py.svg?style=flat-square&label=windows%20build)](https://ci.appveyor.com/project/Horta/liknorm-py)
+
 Liknorm Python wrapper.
 
 ## Install
