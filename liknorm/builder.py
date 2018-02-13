@@ -30,7 +30,7 @@ ffibuilder.cdef(header)
 ffibuilder.set_source(
     "liknorm.machine_ffi",
     header + r"""
-#include "liknorm/liknorm.h"
+#include "liknorm.h"
 
 LikNormMachine *create_machine(int n) { return liknorm_create_machine(n); }
 void destroy_machine(LikNormMachine *machine) {
