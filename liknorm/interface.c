@@ -1,6 +1,6 @@
 #include "liknorm.h"
 
-enum Lik { BERNOULLI, BINOMIAL, POISSON, EXPONENTIAL, GAMMA, GEOMETRIC };
+enum Lik { BERNOULLI, BINOMIAL, POISSON, EXPONENTIAL, GAMMA, GEOMETRIC, BERNOULLI_PROBIT };
 
 LikNormMachine *create_machine(int n) { return liknorm_create_machine(n); }
 void destroy_machine(LikNormMachine *machine) {
@@ -12,7 +12,8 @@ typedef void lik2d(LikNormMachine *, double, double);
 
 void *set_lik[] = {liknorm_set_bernoulli, liknorm_set_binomial,
                    liknorm_set_poisson,   liknorm_set_exponential,
-                   liknorm_set_gamma,     liknorm_set_geometric};
+                   liknorm_set_gamma,     liknorm_set_geometric,
+                   liknorm_set_bernoulli_probit};
 
 void apply1d(LikNormMachine *machine, enum Lik lik, size_t size, double *x,
              double *tau, double *eta, double *log_zeroth, double *mean,

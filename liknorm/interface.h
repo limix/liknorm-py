@@ -1,5 +1,5 @@
 typedef struct LikNormMachine LikNormMachine;
-enum Lik { BERNOULLI, BINOMIAL, POISSON, EXPONENTIAL, GAMMA, GEOMETRIC };
+enum Lik { BERNOULLI, BINOMIAL, POISSON, EXPONENTIAL, GAMMA, GEOMETRIC, BERNOULLI_PROBIT };
 
 LikNormMachine *create_machine(int);
 void apply1d(LikNormMachine *, enum Lik, size_t, double *, double *, double *,
