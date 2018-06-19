@@ -1,9 +1,18 @@
-typedef struct LikNormMachine LikNormMachine;
-enum Lik { BERNOULLI, BINOMIAL, POISSON, EXPONENTIAL, GAMMA, GEOMETRIC, BERNOULLI_PROBIT };
+struct LikNormMachine;
 
-LikNormMachine *create_machine(int);
-void apply1d(LikNormMachine *, enum Lik, size_t, double *, double *, double *,
-             double *, double *, double *);
-void apply2d(LikNormMachine *, enum Lik, size_t, double *, double *, double *,
+enum Lik {
+    BERNOULLI,
+    BINOMIAL,
+    POISSON,
+    EXPONENTIAL,
+    GAMMA,
+    GEOMETRIC,
+    PROBIT
+};
+
+struct LikNormMachine *create_machine(int);
+void apply1d(struct LikNormMachine *, enum Lik, int, double *, double *,
              double *, double *, double *, double *);
-void destroy_machine(LikNormMachine *);
+void apply2d(struct LikNormMachine *, enum Lik, int, double *, double *,
+             double *, double *, double *, double *, double *);
+void destroy_machine(struct LikNormMachine *);
