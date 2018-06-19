@@ -20,10 +20,10 @@ void destroy_machine(struct LikNormMachine *machine) {
 typedef void lik1d(struct LikNormMachine *, double);
 typedef void lik2d(struct LikNormMachine *, double, double);
 
-void *set_lik[] = {liknorm_set_bernoulli,       liknorm_set_binomial,
-                   liknorm_set_poisson,         liknorm_set_exponential,
-                   liknorm_set_gamma,           liknorm_set_geometric,
-                   liknorm_set_bernoulli_probit};
+void *set_lik[] = {liknorm_set_bernoulli, liknorm_set_binomial,
+                   liknorm_set_poisson,   liknorm_set_exponential,
+                   liknorm_set_gamma,     liknorm_set_geometric,
+                   liknorm_set_probit};
 
 void apply1d(struct LikNormMachine *machine, enum Lik lik, int size, double *x,
              double *tau, double *eta, double *log_zeroth, double *mean,
