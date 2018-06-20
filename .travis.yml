@@ -16,7 +16,9 @@ matrix:
       before_install:
         - brew update
         - brew outdated python || brew upgrade python
-        - python -m pip install -U pip
+        - brew unlink python && brew link python
+        - hash -r
+        - pip install --upgrade pip setuptools wheel
 addons:
   apt:
     packages:
