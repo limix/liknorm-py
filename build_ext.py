@@ -25,7 +25,6 @@ def windows_include_dirs():
         include_dirs += [os.environ['INCLUDE']]
     if 'LIBRARY_INC' in os.environ:
         include_dirs += [os.environ['LIBRARY_INC']]
-    include_dirs += windows_dirs('include', 'hcephes')
     include_dirs += windows_dirs('include', 'liknorm')
     return include_dirs
 
@@ -34,7 +33,6 @@ def windows_library_dirs():
     library_dirs = []
     if 'LIBRARY_LIB' in os.environ:
         library_dirs += [os.environ['LIBRARY_LIB']]
-    library_dirs += windows_dirs('lib', 'hcephes')
     library_dirs += windows_dirs('lib', 'liknorm')
     return library_dirs
 
@@ -83,12 +81,11 @@ if platform.system() == 'Windows':
     include_dirs += windows_include_dirs()
     library_dirs += windows_library_dirs()
     libraries = [
-        windows_find_libname('hcephes', library_dirs),
         windows_find_libname('liknorm', library_dirs)
     ]
 
 else:
-    libraries = ['hcephes', 'liknorm']
+    libraries = ['liknorm']
     include_dirs += ['/usr/include', '/usr/local/include']
     library_dirs += ['/usr/lib', '/usr/local/lib']
 
