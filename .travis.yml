@@ -22,8 +22,12 @@ addons:
     - libffi6
 install:
 - bash <(curl -fsSL https://raw.githubusercontent.com/limix/liknorm/master/install)
+- ls /
+- ls /usr
+- ls /usr/include
+- ls /usr/local
+- ls /usr/local/include
 script:
-- bash <(curl -fsSL https://raw.githubusercontent.com/limix/liknorm/master/install)
 - bash <(curl -fsSL https://raw.githubusercontent.com/horta/ci/master/travis.sh)
 - $PIP install cibuildwheel==0.9.1
 - cibuildwheel --output-dir wheelhouse
