@@ -7,6 +7,8 @@ environment:
     PKG_NAME: liknorm
     PYTHON: "C:\\Python36-x64"
     ARCH: x64
+    CIBW_SKIP: cp27-* cp34-* cp35-*
+    CIBW_BEFORE_BUILD_WINDOWS: powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/limix/liknorm/master/install.bat', 'install-liknorm.bat')" && install-liknorm.bat
 
 install:
     - powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/limix/liknorm/master/install.bat', 'install-liknorm.bat')" && install-liknorm.bat
@@ -17,3 +19,11 @@ install:
 build_script:
     - cd %APPVEYOR_BUILD_FOLDER%
     - powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/horta/ci/master/appveyor.bat', 'appveyor.bat')" && appveyor.bat
+    - pip install cibuildwheel>=0.9.1
+    - cibuildwheel --output-dir wheelhouse
+    - pip install twine
+    - python -m twine upload --skip-existing wheelhouse/*
+
+artifacts:
+  - path: "wheelhouse\\*.whl"
+    name: Wheels
