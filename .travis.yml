@@ -4,10 +4,9 @@ env:
   global:
   - PKG_NAME=liknorm
   - CIBW_SKIP="cp27-* cp34-* cp35-*"
-  - CIBW_MANYLINUX1_X86_64_IMAGE="yum install -y libffi libffi-devel && curl -O https://cmake.org/files/v3.4/cmake-3.4.3-Linux-x86_64.sh && bash cmake-3.4.3-Linux-x86_64.sh --skip-license --prefix=/ && curl -O https://raw.githubusercontent.com/limix/liknorm/master/install && bash install-tmp"
-  - CIBW_MANYLINUX1_I686_IMAGE="yum install -y libffi libffi-devel && curl -O https://cmake.org/files/v3.4/cmake-3.4.3-Linux-i386.sh && bash cmake-3.4.3-Linux-i386.sh --skip-license --prefix=/ && curl -O https://raw.githubusercontent.com/limix/liknorm/master/install && bash install-tmp"
+  - CIBW_BEFORE_BUILD_LINUX="if [ $(uname -m) == 'x86_64' ]; then TAG='x86_64'; else TAG='i386'; fi && yum install -y libffi libffi-devel && curl -O https://cmake.org/files/v3.4/cmake-3.4.3-Linux-$TAG.sh && bash cmake-3.4.3-Linux-$TAG.sh --skip-license --prefix=/ && curl -O https://raw.githubusercontent.com/limix/liknorm/master/install && bash install-tmp"
   - CIBW_BEFORE_BUILD_MACOS="brew install libffi cmake -y && curl -O https://raw.githubusercontent.com/limix/liknorm/master/install && bash install-tmp"
-matrix:
+  matrix:
   include:
     - sudo: required
       services:
