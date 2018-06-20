@@ -32,18 +32,13 @@ script:
 - pip install cibuildwheel>=0.9.1
 - cibuildwheel --output-dir wheelhouse
 # - if [ "${TRAVIS_TAG:-}" != "" ]; then
-- pwd
-- ls /usr || true
-- ls /usr/local || true
-- ls /usr/local/opt || true
-- ls /usr/local/opt/python || true
-- ls /usr/local/opt/python/libexec || true
-- ls /usr/local/opt/python/libexec/bin || true
 - |
   if [ "${TRAVIS_OS_NAME}" == "osx" ]; then
-    ls /usr/local/opt/python/libexec/bin || true
+    echo $PATH
     export PATH="/usr/local/opt/python/libexec/bin:$PATH"
     hash -r
+    sudo mkdir -p /usr/local/man
+    sudo chown -R "${USER}:admin" /usr/local/man
   fi
 - pip install twine
 - python -m twine upload --skip-existing wheelhouse/*
