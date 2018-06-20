@@ -1,28 +1,34 @@
 build: off
 clone_depth: 5
-platform: x64
 configuration: Release
 
 environment:
-    PKG_NAME: liknorm
-    PYTHON: "C:\\Python36-x64"
-    ARCH: x64
-    CIBW_SKIP: cp27-* cp34-* cp35-*
-    CIBW_BEFORE_BUILD_WINDOWS: powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/limix/liknorm/master/install.bat', 'install-liknorm.bat')" && install-liknorm.bat
+  matrix:
+    - platform: x64
+      ARCH: x64
+      PYTHON: "C:\\Python36-x64"
+    - platform: x86
+      ARCH: x86
+      PYTHON: "C:\\Python36-x86"
+
+environment:
+  PKG_NAME: liknorm
+  CIBW_SKIP: cp27-* cp33-* cp34-* cp35-*
+  CIBW_BEFORE_BUILD_WINDOWS: powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/limix/liknorm/master/install.bat', 'install-liknorm.bat')" && install-liknorm.bat
 
 install:
-    - powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/limix/liknorm/master/install.bat', 'install-liknorm.bat')" && install-liknorm.bat
-    - set PATH=%programfiles%\liknorm\bin;%PATH%
-    - set LIBRARY_INC=%programfiles%\liknorm\include;%LIBRARY_INC%
-    - set LIBRARY_LIB=%programfiles%\liknorm\lib;%LIBRARY_LIB%
+  - powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/limix/liknorm/master/install.bat', 'install-liknorm.bat')" && install-liknorm.bat
+  - set PATH=%programfiles%\liknorm\bin;%PATH%
+  - set LIBRARY_INC=%programfiles%\liknorm\include;%LIBRARY_INC%
+  - set LIBRARY_LIB=%programfiles%\liknorm\lib;%LIBRARY_LIB%
 
 build_script:
-    - cd %APPVEYOR_BUILD_FOLDER%
-    - powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/horta/ci/master/appveyor.bat', 'appveyor.bat')" && appveyor.bat
-    - pip install cibuildwheel>=0.9.1
-    - cibuildwheel --output-dir wheelhouse
-    - pip install twine
-    - python -m twine upload --skip-existing wheelhouse/*
+  - cd %APPVEYOR_BUILD_FOLDER%
+  - powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/horta/ci/master/appveyor.bat', 'appveyor.bat')" && appveyor.bat
+  - '%PYTHON%\Scripts\pip install cibuildwheel>=0.9.1'
+  - cibuildwheel --output-dir wheelhouse
+  - '%PYTHON%\Scripts\pip install twine'
+  - '%PYTHON%\Scripts\python -m twine upload --skip-existing wheelhouse/*'
 
 artifacts:
   - path: "wheelhouse\\*.whl"
