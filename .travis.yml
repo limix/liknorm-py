@@ -32,8 +32,15 @@ script:
 - pip install cibuildwheel>=0.9.1
 - cibuildwheel --output-dir wheelhouse
 # - if [ "${TRAVIS_TAG:-}" != "" ]; then
+- pwd
+- ls /usr || true
+- ls /usr/local || true
+- ls /usr/local/opt || true
+- ls /usr/local/opt/python || true
+- ls /usr/local/opt/python/libexec || true
+- ls /usr/local/opt/python/libexec/bin || true
 - if [ "${TRAVIS_OS_NAME}" == "osx" ]; then
-    ls /usr/local/opt/python/libexec/bin
+    ls /usr/local/opt/python/libexec/bin || true
     export PATH="/usr/local/opt/python/libexec/bin:$PATH"
     hash -r
   fi
