@@ -11,17 +11,12 @@ matrix:
     - sudo: required
       services:
         - docker
-      env:
-        - PYTHON=python
-        - PIP=pip
     - os: osx
       language: generic
-      env:
-        - PYTHON=python3
-        - PIP=pip2
       before_install:
         - brew update
         - brew outdated python || brew upgrade python
+        - python -m pip install -U pip
 addons:
   apt:
     packages:
@@ -31,11 +26,11 @@ install:
 - bash <(curl -fsSL https://raw.githubusercontent.com/limix/liknorm/master/install)
 script:
 - bash <(curl -fsSL https://raw.githubusercontent.com/horta/ci/master/travis.sh)
-- $PIP install cibuildwheel>=0.9.1
+- pip install cibuildwheel>=0.9.1
 - cibuildwheel --output-dir wheelhouse
 # - if [ "${TRAVIS_TAG:-}" != "" ]; then
-- $PIP install twine
-- $PYTHON -m twine upload --skip-existing wheelhouse/*
+- pip install twine
+- python -m twine upload --skip-existing wheelhouse/*
   # fi
 notifications:
   email:
