@@ -1,9 +1,8 @@
-cffi>=1.11.4
-numpy>=1.14.0
-pypandoc>=1.4
+cffi>=1.11.5
+numpy>=1.14.5
 pytest-pep8>=1.0.6
-pytest-runner>=3.0
-pytest>=3.3.2
-setuptools>=38.4.0
-sphinx_rtd_theme>=0.2.4
-sphinx>=1.6.6
+pytest-runner>=4.2
+pytest>=3.6.1
+setuptools>=39.2.0
+sphinx_rtd_theme>=0.4.0
+sphinx>=1.7.5
