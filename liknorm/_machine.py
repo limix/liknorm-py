@@ -54,12 +54,18 @@ class LikNormMachine(object):
     def moments(self, y, eta, tau, moments):
         r"""First three moments of ExpFam times Normal distribution.
 
-        Args:
-            likname (string): likelihood name.
-            y (array_like): outcome.
-            eta (array_like): inverse of the variance (1/variance).
-            tau (array_like): mean times eta.
-            moments (dict): log_zeroth, mean, and variance result.
+        Parameters
+        ----------
+        likname : string
+            Likelihood name.
+        y : array_like
+            Outcome.
+        eta : array_like
+            Inverse of the variance (1/variance).
+        tau : array_like
+            Mean times eta.
+        moments : dict
+            Log_zeroth, mean, and variance result.
         """
 
         size = len(moments['log_zeroth'])
