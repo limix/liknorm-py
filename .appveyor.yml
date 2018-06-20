@@ -23,10 +23,10 @@ install:
 build_script:
   - cd %APPVEYOR_BUILD_FOLDER%
   - powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/horta/ci/master/appveyor.bat', 'appveyor.bat')" && appveyor.bat
-  - '%PYTHON%\Scripts\pip install cibuildwheel>=0.9.1'
+  - "%PYTHON%\\python.exe -m pip install cibuildwheel>=0.9.1"
   - cibuildwheel --output-dir wheelhouse
-  - '%PYTHON%\Scripts\pip install twine'
-  - '%PYTHON%\Scripts\python -m twine upload --skip-existing wheelhouse/*'
+  - "%PYTHON%\\python.exe -m pip install twine"
+  - "%PYTHON%\\python.exe -m twine upload --skip-existing wheelhouse/*"
 
 artifacts:
   - path: "wheelhouse\\*.whl"
