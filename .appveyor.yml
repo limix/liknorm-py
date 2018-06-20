@@ -11,7 +11,7 @@ environment:
       ARCH: x64
       PYTHON: "C:\\Python36-x64"
     - platform: x86
-      ARCH: x86
+      ARCH: ""
       PYTHON: "C:\\Python36-x86"
 
 install:
