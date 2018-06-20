@@ -17,6 +17,8 @@ matrix:
         - brew update
         - brew outdated python || brew upgrade python
         - brew unlink python && brew link python
+        - ls /usr/local/opt/python/libexec/bin
+        - export PATH="/usr/local/opt/python/libexec/bin:$PATH"
         - hash -r
         - pip install --upgrade pip setuptools wheel
 addons:
