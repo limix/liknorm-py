@@ -1,6 +1,9 @@
 language: python
 python: 3.6
-
+env:
+  global:
+  - PKG_NAME=liknorm
+  - CIBW_SKIP="cp27-* cp34-* cp35-*"
 matrix:
   include:
     - sudo: required
@@ -8,12 +11,10 @@ matrix:
         - docker
       env:
         - PIP=pip
-        - PKG_NAME=liknorm
     - os: osx
       language: generic
       env:
         - PIP=pip2
-        - PKG_NAME=liknorm
 addons:
   apt:
     packages:
@@ -22,6 +23,7 @@ addons:
 install:
 - bash <(curl -fsSL https://raw.githubusercontent.com/limix/liknorm/master/install)
 script:
+- bash <(curl -fsSL https://raw.githubusercontent.com/limix/liknorm/master/install)
 - bash <(curl -fsSL https://raw.githubusercontent.com/horta/ci/master/travis.sh)
 - $PIP install cibuildwheel==0.9.1
 - cibuildwheel --output-dir wheelhouse
