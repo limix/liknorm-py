@@ -3,6 +3,9 @@ clone_depth: 5
 configuration: Release
 
 environment:
+  PKG_NAME: liknorm
+  CIBW_SKIP: cp27-* cp33-* cp34-* cp35-*
+  CIBW_BEFORE_BUILD_WINDOWS: powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/limix/liknorm/master/install.bat', 'install-liknorm.bat')" && install-liknorm.bat
   matrix:
     - platform: x64
       ARCH: x64
@@ -10,11 +13,6 @@ environment:
     - platform: x86
       ARCH: x86
       PYTHON: "C:\\Python36-x86"
-
-environment:
-  PKG_NAME: liknorm
-  CIBW_SKIP: cp27-* cp33-* cp34-* cp35-*
-  CIBW_BEFORE_BUILD_WINDOWS: powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/limix/liknorm/master/install.bat', 'install-liknorm.bat')" && install-liknorm.bat
 
 install:
   - powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/limix/liknorm/master/install.bat', 'install-liknorm.bat')" && install-liknorm.bat
