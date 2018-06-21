@@ -13,6 +13,6 @@ from __future__ import absolute_import as _
 from ._machine import LikNormMachine
 from ._testit import test
 
-__version__ = "1.1.4"
+__version__ = "1.1.5"
 
 __all__ = ["__version__", "test", "LikNormMachine"]

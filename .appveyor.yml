@@ -27,11 +27,7 @@ build_script:
   - cd %APPVEYOR_BUILD_FOLDER%
   - powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/horta/ci/master/appveyor.bat', 'appveyor.bat')" && appveyor.bat
   - "%PYTHON%\\python.exe -m cibuildwheel --output-dir wheelhouse"
-  - ps: >-
-      if ($env:APPVEYOR_REPO_TAG -eq "true") {
-        Invoke-Expression "%PYTHON%\\python.exe -m pip install twine"
-        Invoke-Expression "%PYTHON%\\python.exe -m twine upload --skip-existing wheelhouse/*"
-      }
+  - if [%APPVEYOR_REPO_TAG%]==[true] ("%PYTHON%\\python.exe -m pip install twine" && "%PYTHON%\\python.exe -m twine upload --skip-existing wheelhouse/*")
 
 artifacts:
   - path: "wheelhouse\\*.whl"
