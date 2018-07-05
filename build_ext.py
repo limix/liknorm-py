@@ -45,7 +45,7 @@ def windows_find_libname(lib, library_dirs):
             if os.path.exists(join(f, n)):
                 return n[:-4]
 
-    raise RuntimeError("{} library not found.")
+    raise RuntimeError("{} library not found.".format(lib))
 
 
 ffibuilder = FFI()
