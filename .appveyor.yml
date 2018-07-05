@@ -33,7 +33,6 @@ build_script:
   # - python -c "import ctypes; ctypes.CDLL('liknodqwdqwrm.dll')"
   - where pytest*
   - python -m pip install -U cffi pytest pytest-runner numpy -q
-  - python -m pytest
   - python setup.py test
   # - powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/horta/ci/master/appveyor.bat', 'appveyor.bat')" && appveyor.bat
   # - "%PYTHON%\\python.exe -m cibuildwheel --output-dir wheelhouse"
