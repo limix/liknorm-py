@@ -1,8 +1,15 @@
 from numpy import all as npall
 from numpy import asarray, float64, isfinite
 
-from .machine_ffi import ffi, lib
-from .machine_ffi.lib import apply1d, apply2d, create_machine, destroy_machine
+try:
+    from .machine_ffi import ffi, lib
+    from .machine_ffi.lib import apply1d, apply2d, create_machine, destroy_machine
+except Exception as e:
+    msg = "\nIt is likely caused by a broken installation of this package."
+    msg += "\nPlease, make sure you have a C compiler and try to uninstall"
+    msg += "\nand reinstall the package again."
+    e.msg = e.msg + msg
+    raise e
 
 
 def ptr(a):
@@ -43,7 +50,7 @@ class LikNormMachine(object):
         self._likname = likname
         self._machine = create_machine(npoints)
         self._lik = getattr(lib, likname.upper())
-        if likname.lower() == 'binomial':
+        if likname.lower() == "binomial":
             self._apply = apply2d
         else:
             self._apply = apply1d
@@ -68,24 +75,29 @@ class LikNormMachine(object):
             Log_zeroth, mean, and variance result.
         """
 
-        size = len(moments['log_zeroth'])
+        size = len(moments["log_zeroth"])
         if not isinstance(y, (list, tuple)):
-            y = (y, )
+            y = (y,)
 
         y = tuple(asarray(yi, float64) for yi in y)
         tau = asarray(tau, float64)
         eta = asarray(eta, float64)
 
-        args = y + (tau, eta, moments['log_zeroth'], moments['mean'],
-                    moments['variance'])
+        args = y + (
+            tau,
+            eta,
+            moments["log_zeroth"],
+            moments["mean"],
+            moments["variance"],
+        )
 
         self._apply(self._machine, self._lik, size, *(ptr(a) for a in args))
 
-        if not npall(isfinite(moments['log_zeroth'])):
+        if not npall(isfinite(moments["log_zeroth"])):
             raise ValueError("Non-finite value found in _log_zeroth_.")
 
-        if not npall(isfinite(moments['mean'])):
+        if not npall(isfinite(moments["mean"])):
             raise ValueError("Non-finite value found in _mean_.")
 
-        if not npall(isfinite(moments['variance'])):
+        if not npall(isfinite(moments["variance"])):
             raise ValueError("Non-finite value found in _variance_.")
