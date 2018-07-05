@@ -1,6 +1,10 @@
 from numpy import all as npall
 from numpy import asarray, float64, isfinite
 
+import ctypes
+
+ctypes.CDLL("liknorm.dll")
+
 try:
     from .machine_ffi import ffi, lib
     from .machine_ffi.lib import apply1d, apply2d, create_machine, destroy_machine
