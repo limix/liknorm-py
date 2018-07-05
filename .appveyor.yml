@@ -19,6 +19,7 @@ install:
   - set PATH=%PYTHON%;%PYTHON%\Scripts;%PATH%
   - powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/limix/liknorm/master/install.bat', 'install-liknorm.bat')" && install-liknorm.bat
   - set PATH=%programfiles%\liknorm\bin;%PATH%
+  - python -c "import ctypes; ctypes.CDLL('liknorm.dll')"
   - set LIBRARY_INC=%programfiles%\liknorm\include;%LIBRARY_INC%
   - set LIBRARY_LIB=%programfiles%\liknorm\lib;%LIBRARY_LIB%
   - "%PYTHON%\\python.exe -m pip install cibuildwheel>=0.9.1"
