@@ -26,7 +26,11 @@ build_script:
   - powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/horta/ci/master/appveyor.bat', 'appveyor.bat')" && appveyor.bat
   - copy "%programfiles%\\liknorm\\bin\\liknorm.dll" liknorm\
   - "%PYTHON%\\python.exe -m cibuildwheel --output-dir wheelhouse"
-  - dir wheelhouse
+  - FOR %%F IN (wheelhouse\*.whl) DO set filename=%%F
+  - "%PYTHON%\\python.exe -m pip install %filename%"
+  - pushd . && cd ..
+  - "%PYTHON%\\python.exe -c \"import liknorm; import sys; sys.exit(liknorm.test())\""
+  - popd
   - if [%APPVEYOR_REPO_TAG%]==[true] (%PYTHON%\python.exe -m pip install twine && %PYTHON%\python.exe -m twine upload --skip-existing wheelhouse/*)
 
 artifacts:
