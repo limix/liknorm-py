@@ -1,5 +1,6 @@
 include build_ext.py
 include LICENSE.md
+include liknorm/liknorm.dll
 include liknorm/interface.c
 include liknorm/interface.h
 include README.md
