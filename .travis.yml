@@ -4,7 +4,7 @@ env:
   global:
   - PKG_NAME=liknorm
   - CIBW_SKIP="cp27-* cp34-* cp35-*"
-  - CIBW_BEFORE_BUILD_LINUX="./before-build-linux"
+  - CIBW_BEFORE_BUILD_LINUX="curl -O https://raw.githubusercontent.com/limix/liknorm/master/install && bash install"
   - CIBW_BEFORE_BUILD_MACOS="curl -O https://raw.githubusercontent.com/limix/liknorm/master/install && bash install"
 matrix:
   include:
@@ -49,7 +49,6 @@ script:
     rm -f /usr/local/lib/libliknorm.dylib
     rm -f /usr/local/lib/libliknorm_static.a
   fi
-- dir2pi wheelhouse/
 - cd .. && python -c "import $PKG_NAME; import sys; sys.exit($PKG_NAME.test())"
 - cd $TRAVIS_BUILD_DIR
 - |
