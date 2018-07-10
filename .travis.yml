@@ -40,15 +40,15 @@ script:
 - python -m pip uninstall $PKG_NAME -q || true
 - |
   if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-    rm /usr/local/include/liknorm.h
-    rm /usr/local/lib/libliknorm.so
-    rm /usr/local/lib/libliknorm_static.a
+    rm -f /usr/local/include/liknorm.h
+    rm -f /usr/local/lib/libliknorm.so
+    rm -f /usr/local/lib/libliknorm_static.a
   fi
 - |
   if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-    rm /usr/local/include/liknorm.h
-    rm /usr/local/lib/libliknorm.dylib
-    rm /usr/local/lib/libliknorm_static.a
+    rm -f /usr/local/include/liknorm.h
+    rm -f /usr/local/lib/libliknorm.dylib
+    rm -f /usr/local/lib/libliknorm_static.a
   fi
 - files=( wheelhouse/*.whl )
 - python -m pip install "${files[0]}"
