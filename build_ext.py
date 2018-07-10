@@ -77,7 +77,6 @@ if platform.system() == "Darwin":
         library_dirs = library_dirs
         extra_link_args += ["-Wl,-rpath," + ",-rpath,".join(library_dirs)]
 
-print(extra_link_args)
 
 ffibuilder.set_source(
     "liknorm.machine_ffi",
