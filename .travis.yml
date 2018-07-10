@@ -39,18 +39,6 @@ script:
 - python -m pip install cibuildwheel>=0.9.2
 - cibuildwheel --output-dir wheelhouse
 - |
-  if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-    sudo rm -f /usr/local/include/liknorm.h
-    sudo rm -f /usr/local/lib/libliknorm.so
-    sudo rm -f /usr/local/lib/libliknorm_static.a
-  fi
-- |
-  if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-    rm -f /usr/local/include/liknorm.h
-    rm -f /usr/local/lib/libliknorm.dylib
-    rm -f /usr/local/lib/libliknorm_static.a
-  fi
-- |
   if [ "${TRAVIS_TAG:-}" != "" ]; then
     python -m pip install twine
     python -m twine upload --skip-existing wheelhouse/*
