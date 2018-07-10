@@ -71,12 +71,18 @@ else:
     include_dirs += ["/usr/include", "/usr/local/include"]
     library_dirs += ["/usr/lib", "/usr/local/lib"]
 
+if platform.system() == "Darwin":
+    extra_link_args = ["-Wl,-rpath," + ";".join(library_dirs)]
+else:
+    extra_link_args = []
+
 ffibuilder.set_source(
     "liknorm.machine_ffi",
     interface_content,
     libraries=libraries,
     library_dirs=library_dirs,
     include_dirs=include_dirs,
+    extra_link_args=extra_link_args,
     language="c",
 )
 
