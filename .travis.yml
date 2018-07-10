@@ -19,12 +19,13 @@ matrix:
         - brew unlink python && brew link python
         - export PATH="/usr/local/opt/python/libexec/bin:$PATH"
         - hash -r
-        - pip install --upgrade pip setuptools wheel
+        - python -m pip install --upgrade pip setuptools wheel
 addons:
   apt:
     packages:
     - libffi-dev
     - libffi6
+    - cmake
 install:
 - bash <(curl -fsSL https://raw.githubusercontent.com/limix/liknorm/master/install)
 script:
@@ -34,11 +35,28 @@ script:
     sudo chown -R "${USER}:admin" /usr/local/man
   fi
 - bash <(curl -fsSL https://raw.githubusercontent.com/horta/ci/master/travis.sh)
+- python -m pip install cibuildwheel>=0.9.2
+- cibuildwheel --output-dir wheelhouse
+- python -m pip uninstall $PKG_NAME -q || true
+- |
+  if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+    rm /usr/local/include/liknorm.h
+    rm /usr/local/lib/libliknorm.so
+    rm /usr/local/lib/libliknorm_static.a
+  fi
+- |
+  if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
+    rm /usr/local/include/liknorm.h
+    rm /usr/local/lib/libliknorm.dylib
+    rm /usr/local/lib/libliknorm_static.a
+  fi
+- files=( wheelhouse/*.whl )
+- python -m pip install "${files[0]}"
+- cd .. && python -c "import $PKG_NAME; import sys; sys.exit($PKG_NAME.test())"
+- cd $TRAVIS_BUILD_DIR
 - |
   if [ "${TRAVIS_TAG:-}" != "" ]; then
-    pip install cibuildwheel>=0.9.1
-    cibuildwheel --output-dir wheelhouse
-    pip install twine
+    python -m pip install twine
     python -m twine upload --skip-existing wheelhouse/*
   fi
 notifications:
