@@ -16,7 +16,7 @@ An alternative way would be via [pip](https://pypi.python.org/pypi/pip).
 First you need to install [liknorm](http://liknorm.readthedocs.io/) library and then
 
 ```bash
-pip install liknorm-py
+pip install liknorm
 ```
 
 ## Running the tests
