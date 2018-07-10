@@ -35,9 +35,11 @@ script:
     sudo chown -R "${USER}:admin" /usr/local/man
   fi
 - bash <(curl -fsSL https://raw.githubusercontent.com/horta/ci/master/travis.sh)
-- python -m pip install cibuildwheel>=0.9.2
+- python -m pip install cibuildwheel>=0.9.2 pip2pi
 - cibuildwheel --output-dir wheelhouse
 - python -m pip uninstall $PKG_NAME -q || true
+- ls /usr/local/lib
+- ls /usr/lib
 - |
   if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
     rm -f /usr/local/include/liknorm.h
@@ -50,8 +52,8 @@ script:
     rm -f /usr/local/lib/libliknorm.dylib
     rm -f /usr/local/lib/libliknorm_static.a
   fi
-- files=( wheelhouse/*.whl )
-- python -m pip install "${files[0]}"
+- dir2pi wheelhouse/
+- python -m pip install $PKG_NAME --no-index --find-links file://wheelhouse
 - cd .. && python -c "import $PKG_NAME; import sys; sys.exit($PKG_NAME.test())"
 - cd $TRAVIS_BUILD_DIR
 - |
