@@ -5,12 +5,11 @@ from numpy import asarray, float64, isfinite
 try:
     from .machine_ffi import ffi, lib
     from .machine_ffi.lib import apply1d, apply2d, create_machine, destroy_machine
-except Exception as e:
+except ImportError as e:
     msg = "\nIt is likely caused by a broken installation of this package."
     msg += "\nPlease, make sure you have a C compiler and try to uninstall"
     msg += "\nand reinstall the package again."
-    e.msg = e.msg + msg
-    raise e
+    raise ImportError(str(e) + msg)
 
 
 def ptr(a):
