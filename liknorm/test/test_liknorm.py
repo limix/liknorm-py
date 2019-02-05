@@ -1,7 +1,8 @@
-from liknorm import LikNormMachine
 from numpy import asarray, empty, float64
 from numpy.random import RandomState
 from numpy.testing import assert_allclose, assert_equal
+
+from liknorm import LikNormMachine
 
 
 def test_sizeof_double():
@@ -38,19 +39,36 @@ def test_liknormmachine():
 
     assert_allclose(
         lmom0,
-        [-3.4782483463503002, -6.179203e00, -4.473831e00, -5413594.18975537, -7.042068e00],
+        [
+            -3.4782483463503002,
+            -6.179203e00,
+            -4.473831e00,
+            -5413594.18975537,
+            -7.042068e00,
+        ],
         atol=1e-7,
     )
     assert_allclose(
         hmu,
-        [1.9525410876129807, -1.3518369482936494, -0.6763550778266894, 0.1536059386302032, -1.4381119148114612],
+        [
+            1.9525410876129807,
+            -1.3518369482936494,
+            -0.6763550778266894,
+            0.1536059386302032,
+            -1.4381119148114612,
+        ],
         rtol=1e-5,
         atol=1e-5,
     )
-    print(hvar[0], hvar[1], hvar[2], hvar[3], hvar[4])
     assert_allclose(
         hvar,
-        [0.20087012833902396, 0.12571722809509622, 0.06619332060373984, 0.06004980146234101, 0.09355299409238738],
+        [
+            0.20087012833902396,
+            0.12571722809509622,
+            0.06619332060373984,
+            0.06004980146234101,
+            0.09355299409238738,
+        ],
         atol=1e-7,
     )
 
