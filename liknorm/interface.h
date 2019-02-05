@@ -7,7 +7,8 @@ enum Lik {
     EXPONENTIAL,
     GAMMA,
     GEOMETRIC,
-    PROBIT
+    PROBIT,
+    NBINOMIAL
 };
 
 struct LikNormMachine *create_machine(int);

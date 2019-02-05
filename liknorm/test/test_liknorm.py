@@ -18,9 +18,25 @@ def test_alignof_double():
 
 
 def test_nbinomial():
-    breakpoint()
     machine = LikNormMachine("nbinomial", 500)
     random = RandomState(0)
+
+    nfails = random.randint(1, 100, 5)
+    nsuc = random.randint(1, 100, 5)
+
+    nfails = asarray(nfails)
+    nsuc = asarray(nsuc)
+
+    y = (nsuc, nfails)
+    ceta = random.rand(5)
+    ctau = random.randn(5) * ceta
+
+    lmom0 = empty(5, dtype=float64)
+    hmu = empty(5, dtype=float64)
+    hvar = empty(5, dtype=float64)
+
+    machine.moments(y, ceta, ctau, {"log_zeroth": lmom0, "mean": hmu, "variance": hvar})
+
 
 
 def test_liknormmachine():
