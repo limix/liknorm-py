@@ -17,6 +17,12 @@ def test_alignof_double():
     assert_equal(ffi.alignof("double"), 8)
 
 
+def test_nbinomial():
+    breakpoint()
+    machine = LikNormMachine("nbinomial", 500)
+    random = RandomState(0)
+
+
 def test_liknormmachine():
     machine = LikNormMachine("binomial", 500)
     random = RandomState(0)

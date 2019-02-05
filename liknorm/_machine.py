@@ -52,6 +52,8 @@ class LikNormMachine(object):
         self._lik = getattr(lib, likname.upper())
         if likname.lower() == "binomial":
             self._apply = apply2d
+        elif likname.lower() == "nbinomial":
+            self._apply = apply2d
         else:
             self._apply = apply1d
 

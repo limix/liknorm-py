@@ -7,7 +7,8 @@ enum Lik {
     EXPONENTIAL,
     GAMMA,
     GEOMETRIC,
-    PROBIT
+    PROBIT,
+    NBINOMIAL
 };
 
 struct LikNormMachine *create_machine(int n) {
@@ -23,7 +24,7 @@ typedef void lik2d(struct LikNormMachine *, double, double);
 void *set_lik[] = {liknorm_set_bernoulli, liknorm_set_binomial,
                    liknorm_set_poisson,   liknorm_set_exponential,
                    liknorm_set_gamma,     liknorm_set_geometric,
-                   liknorm_set_probit};
+                   liknorm_set_probit,    liknorm_set_nbinomial};
 
 void apply1d(struct LikNormMachine *machine, enum Lik lik, int size, double *x,
              double *tau, double *eta, double *log_zeroth, double *mean,
