@@ -1,7 +1,3 @@
-from numpy import all as npall
-from numpy import asarray, float64, isfinite
-
-
 try:
     from .machine_ffi import ffi, lib
     from .machine_ffi.lib import apply1d, apply2d, create_machine, destroy_machine
@@ -76,6 +72,8 @@ class LikNormMachine(object):
         moments : dict
             Log_zeroth, mean, and variance result.
         """
+        from numpy import all as npall
+        from numpy import asarray, float64, isfinite
 
         size = len(moments["log_zeroth"])
         if not isinstance(y, (list, tuple)):
