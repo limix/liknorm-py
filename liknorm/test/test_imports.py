@@ -12,7 +12,7 @@ def _get_import_names():
 
 
 def _clean_up_import_names(names):
-    to_ignore = set(["builtins", "types", "_pytest"])
+    to_ignore = set(["builtins", "types", "_pytest", "__builtin__"])
     return [n for n in names if n.split(".")[0] not in to_ignore]
 
 
