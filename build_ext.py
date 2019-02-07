@@ -5,10 +5,10 @@ from sysconfig import get_config_var
 
 from cffi import FFI
 
-_ffibuilder = FFI()
+__all__ = ["ffibuilder"]
 
 
-def windows_dirs(prefix, lib):
+def _windows_dirs(prefix, lib):
     dirs = []
     if "PROGRAMW6432" in os.environ:
         fld = join(os.environ["PROGRAMW6432"], lib, prefix)
@@ -21,25 +21,25 @@ def windows_dirs(prefix, lib):
     return dirs
 
 
-def windows_include_dirs():
+def _windows_include_dirs():
     include_dirs = []
     if "INCLUDE" in os.environ:
         include_dirs += [os.environ["INCLUDE"]]
     if "LIBRARY_INC" in os.environ:
         include_dirs += [os.environ["LIBRARY_INC"]]
-    include_dirs += windows_dirs("include", "liknorm")
+    include_dirs += _windows_dirs("include", "liknorm")
     return include_dirs
 
 
-def windows_library_dirs():
+def _windows_library_dirs():
     library_dirs = []
     if "LIBRARY_LIB" in os.environ:
         library_dirs += [os.environ["LIBRARY_LIB"]]
-    library_dirs += windows_dirs("lib", "liknorm")
+    library_dirs += _windows_dirs("lib", "liknorm")
     return library_dirs
 
 
-def windows_find_libname(lib, library_dirs):
+def _windows_find_libname(lib, library_dirs):
     names = ["{}.lib".format(lib), "lib{}.lib".format(lib), "{}lib.lib".format(lib)]
     folders = [f for ldir in library_dirs for f in ldir.split(";")]
     for f in folders:
@@ -50,48 +50,70 @@ def windows_find_libname(lib, library_dirs):
     raise RuntimeError("{} library not found.".format(lib))
 
 
-def _compile():
-
-    _ffibuilder = FFI()
-
+def _get_interface_h():
     folder = os.path.dirname(os.path.abspath(__file__))
 
     with open(join(folder, "liknorm", "interface.h"), "r") as f:
-        _ffibuilder.cdef(f.read())
+        return f.read()
+
+
+def _get_interface_c():
+    folder = os.path.dirname(os.path.abspath(__file__))
 
     with open(join(folder, "liknorm", "interface.c"), "r") as f:
-        interface_content = f.read()
+        return f.read()
 
+
+def _get_include_dirs():
     include_dirs = [join(get_config_var("prefix"), "include")]
+
+    if platform.system() == "Windows":
+        include_dirs += _windows_include_dirs()
+    else:
+        include_dirs += ["/usr/include", "/usr/local/include"]
+
+    return include_dirs
+
+
+def _get_library_dirs():
     library_dirs = [join(get_config_var("prefix"), "lib")]
 
     if platform.system() == "Windows":
-        include_dirs += windows_include_dirs()
-        library_dirs += windows_library_dirs()
-        libraries = [windows_find_libname("liknorm", library_dirs)]
-
+        library_dirs += _windows_library_dirs()
     else:
-        libraries = ["liknorm"]
-        include_dirs += ["/usr/include", "/usr/local/include"]
         library_dirs += ["/usr/lib", "/usr/local/lib"]
 
-    extra_link_args = []
+    return library_dirs
+
+
+def _get_libraries():
+    if platform.system() == "Windows":
+        libraries = [_windows_find_libname("liknorm", _get_library_dirs())]
+    else:
+        libraries = ["liknorm"]
+    return libraries
+
+
+def _get_extra_link_args():
+    lib_dirs = _get_library_dirs()
     if platform.system() == "Darwin":
-        if len(library_dirs) > 0:
-            library_dirs = library_dirs
-            extra_link_args += ["-Wl,-rpath," + ",-rpath,".join(library_dirs)]
+        if len(lib_dirs) > 0:
+            return ["-Wl,-rpath," + ",-rpath,".join(lib_dirs)]
+    return []
 
-    _ffibuilder.set_source(
-        "liknorm.machine_ffi",
-        interface_content,
-        libraries=libraries,
-        library_dirs=library_dirs,
-        include_dirs=include_dirs,
-        extra_link_args=extra_link_args,
-        language="c",
-    )
-    _ffibuilder.compile(verbose=True)
 
+ffibuilder = FFI()
+ffibuilder.cdef(_get_interface_h())
+
+ffibuilder.set_source(
+    "liknorm.machine_ffi",
+    _get_interface_c(),
+    libraries=_get_libraries(),
+    library_dirs=_get_library_dirs(),
+    include_dirs=_get_include_dirs(),
+    extra_link_args=_get_extra_link_args(),
+    language="c",
+)
 
 if __name__ == "__main__":
-    _compile()
+    ffibuilder.compile(verbose=True)
