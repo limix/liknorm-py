@@ -5,6 +5,8 @@ from sysconfig import get_config_var
 
 from cffi import FFI
 
+_ffibuilder = FFI()
+
 
 def windows_dirs(prefix, lib):
     dirs = []
@@ -48,45 +50,48 @@ def windows_find_libname(lib, library_dirs):
     raise RuntimeError("{} library not found.".format(lib))
 
 
-ffibuilder = FFI()
+def _compile():
 
-folder = os.path.dirname(os.path.abspath(__file__))
+    _ffibuilder = FFI()
 
-with open(join(folder, "liknorm", "interface.h"), "r") as f:
-    ffibuilder.cdef(f.read())
+    folder = os.path.dirname(os.path.abspath(__file__))
 
-with open(join(folder, "liknorm", "interface.c"), "r") as f:
-    interface_content = f.read()
+    with open(join(folder, "liknorm", "interface.h"), "r") as f:
+        _ffibuilder.cdef(f.read())
 
-include_dirs = [join(get_config_var("prefix"), "include")]
-library_dirs = [join(get_config_var("prefix"), "lib")]
+    with open(join(folder, "liknorm", "interface.c"), "r") as f:
+        interface_content = f.read()
 
-if platform.system() == "Windows":
-    include_dirs += windows_include_dirs()
-    library_dirs += windows_library_dirs()
-    libraries = [windows_find_libname("liknorm", library_dirs)]
+    include_dirs = [join(get_config_var("prefix"), "include")]
+    library_dirs = [join(get_config_var("prefix"), "lib")]
 
-else:
-    libraries = ["liknorm"]
-    include_dirs += ["/usr/include", "/usr/local/include"]
-    library_dirs += ["/usr/lib", "/usr/local/lib"]
+    if platform.system() == "Windows":
+        include_dirs += windows_include_dirs()
+        library_dirs += windows_library_dirs()
+        libraries = [windows_find_libname("liknorm", library_dirs)]
 
-extra_link_args = []
-if platform.system() == "Darwin":
-    if len(library_dirs) > 0:
-        library_dirs = library_dirs
-        extra_link_args += ["-Wl,-rpath," + ",-rpath,".join(library_dirs)]
+    else:
+        libraries = ["liknorm"]
+        include_dirs += ["/usr/include", "/usr/local/include"]
+        library_dirs += ["/usr/lib", "/usr/local/lib"]
 
+    extra_link_args = []
+    if platform.system() == "Darwin":
+        if len(library_dirs) > 0:
+            library_dirs = library_dirs
+            extra_link_args += ["-Wl,-rpath," + ",-rpath,".join(library_dirs)]
 
-ffibuilder.set_source(
-    "liknorm.machine_ffi",
-    interface_content,
-    libraries=libraries,
-    library_dirs=library_dirs,
-    include_dirs=include_dirs,
-    extra_link_args=extra_link_args,
-    language="c",
-)
+    _ffibuilder.set_source(
+        "liknorm.machine_ffi",
+        interface_content,
+        libraries=libraries,
+        library_dirs=library_dirs,
+        include_dirs=include_dirs,
+        extra_link_args=extra_link_args,
+        language="c",
+    )
+    _ffibuilder.compile(verbose=True)
+
 
 if __name__ == "__main__":
-    ffibuilder.compile(verbose=True)
+    _compile()
