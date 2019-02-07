@@ -15,13 +15,15 @@ matrix:
     - os: osx
       language: generic
       before_install:
-        - brew update
-        - brew outdated python || brew upgrade python
-        - brew unlink python && brew link python
         - export PATH="/usr/local/opt/python/libexec/bin:$PATH"
         - hash -r
-        - python -m pip install --upgrade pip setuptools wheel
+        - python -m pip install --upgrade setuptools wheel
 addons:
+  homebrew:
+    packages:
+    - python
+    - pip
+    update: true
   apt:
     packages:
     - libffi-dev
