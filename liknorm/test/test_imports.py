@@ -19,7 +19,7 @@ def _clean_up_import_names(names):
 # Make sure `import liknorm` does not import other packages indirectly.
 def test_import_names():
     # Prevent the `unused name` warning
-    assert(hasattr(liknorm, "__version__"))
+    assert hasattr(liknorm, "__version__")
     names = _get_import_names()
     names = set(_clean_up_import_names(names))
     assert names == set(["liknorm"])
