@@ -15,9 +15,13 @@ matrix:
     - os: osx
       language: generic
       before_install:
-        - export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+        - HOMEBREW_NO_AUTO_UPDATE=1 brew unlink python2
+        - HOMEBREW_NO_AUTO_UPDATE=1 brew install python3
+        - export PATH=$(brew --prefix)/bin:$(brew --prefix)/sbin:$PATH
+        - ln -s $(brew --prefix)/bin/python3 $(brew --prefix)/bin/python
+        - ln -s $(brew --prefix)/bin/pip3 $(brew --prefix)/bin/pip
         - hash -r
-        - python -m pip install --upgrade setuptools wheel
+        - python -m pip install --upgrade pip setuptools wheel
 addons:
   homebrew:
     packages:
@@ -37,7 +41,7 @@ script:
     sudo mkdir -p /usr/local/man
     sudo chown -R "${USER}:admin" /usr/local/man
   fi
-- bash <(curl -fsSL https://raw.githubusercontent.com/horta/ci/master/travis.sh)
+- bash <(curl -fsSL https://raw.githubusercontent.com/horta/ci/master/travis.sh) || exit 1
 - python -m pip install cibuildwheel>=0.9.2
 - cibuildwheel --output-dir wheelhouse
 - |
@@ -48,7 +52,7 @@ script:
 notifications:
   email:
     recipients:
-    - danilo.horta@gmail.com
+    - danilo.horta@pm.me
     on_success: never
     on_failure: always
 deploy:
