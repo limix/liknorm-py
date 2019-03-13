@@ -60,4 +60,5 @@ as long as you have [pytest](http://docs.pytest.org/en/latest/).
 
 ## License
 
-This project is licensed under the [MIT License](https://raw.githubusercontent.com/limix/liknorm-py/master/LICENSE.md).
+This project is licensed under the
+[MIT License](https://raw.githubusercontent.com/limix/liknorm-py/master/LICENSE.md).
