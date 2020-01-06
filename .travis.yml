@@ -28,6 +28,8 @@ matrix:
         - choco install python --version 3.8.0
         - export PATH="/c/Python38:/c/Python38/Scripts:$PATH"
         - cp /c/Python38/python.exe /c/Python38/python3.exe
+        - export CMAKE_INSTALL_PREFIX="/c/Program Files"
+        - export CMAKE_PREFIX_PATH="/c/Program Files"
         - curl -fsSL https://git.io/JerYI | GITHUB_USER=horta GITHUB_PROJECT=logaddexp bash
         - curl -fsSL https://git.io/JerYI | GITHUB_USER=limix GITHUB_PROJECT=liknorm bash
 addons:
