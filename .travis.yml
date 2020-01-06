@@ -1,40 +1,44 @@
-language: python
 python: 3.7
 env:
   global:
     - PKG_NAME=liknorm
     - CIBW_SKIP="cp27-* cp34-* cp35-* *i686*"
-    - CIBW_BEFORE_BUILD_LINUX="bash before-build-linux"
-    - CIBW_BEFORE_BUILD_MACOS="bash before-build-macos"
+    - CIBW_BEFORE_BUILD_LINUX="bash ci/before-build-linux"
+    - CIBW_BEFORE_BUILD_MACOS="bash ci/before-build-macos"
+    - CIBW_BEFORE_BUILD_WINDOWS="bash ci/before-build-windows"
     - CIBW_TEST_COMMAND="python -c \"import $PKG_NAME; import sys; sys.exit($PKG_NAME.test())\""
 matrix:
   include:
-    - sudo: required
-      services:
-        - docker
+    - os: linux
+      sudo: required
+      services: docker
+      before_install: curl -fsSL https://git.io/JerYI | GITHUB_USER=limix GITHUB_PROJECT=liknorm DO_CMD=sudo bash
     - os: osx
-      language: generic
+      language: shell
       before_install:
-        - HOMEBREW_NO_AUTO_UPDATE=1 brew unlink python2
-        - HOMEBREW_NO_AUTO_UPDATE=1 brew install python3
-        - export PATH=$(brew --prefix)/bin:$(brew --prefix)/sbin:$PATH
         - ln -s $(brew --prefix)/bin/python3 $(brew --prefix)/bin/python
         - ln -s $(brew --prefix)/bin/pip3 $(brew --prefix)/bin/pip
         - hash -r
-        - python -m pip install --upgrade pip setuptools wheel
+        - python -m pip install --upgrade pip setuptools
+        - curl -fsSL https://git.io/JerYI | GITHUB_USER=limix GITHUB_PROJECT=liknorm DO_CMD=sudo bash
+    - os: windows
+      language: shell
+      before_install:
+        - choco install python --version 3.8.0
+        - export PATH="/c/Python38:/c/Python38/Scripts:$PATH"
+        - curl -fsSL https://git.io/JerYI | GITHUB_USER=limix GITHUB_PROJECT=liknorm bash
 addons:
-  homebrew:
-    packages:
-      - python
-      - pip
-    update: true
+  # homebrew:
+  #   packages:
+  #     - python
+  #     - pip
+  #   update: true
   apt:
     packages:
       - libffi-dev
       - libffi6
       - cmake
 install:
-  - curl -fsSL https://git.io/JerYI | GITHUB_USER=limix GITHUB_PROJECT=liknorm DO_CMD=sudo bash
   - curl -fsSL $URL/travis-check-readme.sh | bash
   - curl -fsSL $URL/travis-py-min-deps.sh | bash
   - curl -fsSL $URL/travis-py-check-style.sh | bash
