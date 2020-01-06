@@ -1,6 +1,6 @@
 try:
-    from .machine_ffi import ffi, lib
-    from .machine_ffi.lib import apply1d, apply2d, create_machine, destroy_machine
+    from ._ffi import ffi, lib
+    from ._ffi.lib import apply1d, apply2d, create_machine, destroy_machine
 except ImportError as e:
     msg = "\nIt is likely caused by a broken installation of this package."
     msg += "\nPlease, make sure you have a C compiler and try to uninstall"

@@ -6,13 +6,13 @@ from liknorm import LikNormMachine
 
 
 def test_sizeof_double():
-    from liknorm.machine_ffi import ffi
+    from liknorm._ffi import ffi
 
     assert_equal(ffi.sizeof("double"), 8)
 
 
 def test_alignof_double():
-    from liknorm.machine_ffi import ffi
+    from liknorm._ffi import ffi
 
     assert_equal(ffi.alignof("double"), 8)
 
