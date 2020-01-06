@@ -31,7 +31,7 @@ matrix:
         - export CMAKE_PREFIX_PATH="/c/Program Files"
         - curl -fsSL https://git.io/JerYI | GITHUB_USER=horta GITHUB_PROJECT=logaddexp INSTALL_PREFIX="$CMAKE_PREFIX_PATH/logaddexp" bash
         - curl -fsSL https://git.io/JerYI | GITHUB_USER=limix GITHUB_PROJECT=liknorm INSTALL_PREFIX="$CMAKE_PREFIX_PATH/liknorm" bash
-        - export PATH=$CMAKE_PREFIX_PATH/liknorm/bin:$PATH
+        - cp "$CMAKE_PREFIX_PATH/liknorm/bin/liknorm.dll" liknorm/
 addons:
   apt:
     packages:
