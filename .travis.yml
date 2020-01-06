@@ -6,12 +6,12 @@ env:
     - CIBW_BEFORE_BUILD_LINUX="bash ci/before-build-linux"
     - CIBW_BEFORE_BUILD_MACOS="bash ci/before-build-macos"
     - CIBW_BEFORE_BUILD_WINDOWS="bash ci/before-build-windows"
-    - CIBW_TEST_COMMAND="python -c \"import $PKG_NAME; import sys; sys.exit($PKG_NAME.test())\""
+    - CIBW_TEST_COMMAND="python3 -c \"import $PKG_NAME; import sys; sys.exit($PKG_NAME.test())\""
 matrix:
   include:
     - os: linux
       dist: bionic
-      language: python
+      # language: python
       # sudo: required
       services: docker
       before_install:
@@ -20,9 +20,7 @@ matrix:
     - os: osx
       language: shell
       before_install:
-        - which python
-        - which python3
-        - python -m pip install --upgrade pip setuptools
+        - python3 -m pip install --upgrade pip setuptools
         - curl -fsSL https://git.io/JerYI | GITHUB_USER=horta GITHUB_PROJECT=logaddexp DO_CMD=sudo bash
         - curl -fsSL https://git.io/JerYI | GITHUB_USER=limix GITHUB_PROJECT=liknorm DO_CMD=sudo bash
     - os: windows
@@ -48,12 +46,12 @@ install:
 script:
   - curl -fsSL $URL/travis-py-sdist-test.sh | bash
   - git clean -xdf
-  - python -m pip install cibuildwheel>=1.1.0
+  - python3 -m pip install cibuildwheel>=1.1.0
   - cibuildwheel --output-dir wheelhouse
   - |
     if [ "${TRAVIS_TAG:-}" != "" ]; then
-      python -m pip install twine
-      python -m twine upload --skip-existing wheelhouse/*
+      python3 -m pip install twine
+      python3 -m twine upload --skip-existing wheelhouse/*
     fi
   - git clean -xdf
 notifications:
@@ -71,4 +69,5 @@ deploy:
     tags: true
     repo: limix/liknorm-py
     branch: master
-    python: 3.6
+    # python: 3.6
+    skip_existing: true
