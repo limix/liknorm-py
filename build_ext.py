@@ -42,7 +42,7 @@ library_dirs = system.get_library_dirs()
 extra_link_args: List[str] = []
 if platform.system() != "Windows":
     if len(library_dirs) > 0:
-        extra_link_args += ["-Wl,-rpath," + ",-rpath,".join(library_dirs)]
+        extra_link_args += ["-Wl,-rpath,/usr/local/lib"]
 
 ffibuilder.set_source(
     "liknorm._ffi",
