@@ -40,7 +40,7 @@ else:
 
 library_dirs = system.get_library_dirs()
 extra_link_args: List[str] = []
-if platform.system() == "Darwin":
+if platform.system() != "Windows":
     if len(library_dirs) > 0:
         extra_link_args += ["-Wl,-rpath," + ",-rpath,".join(library_dirs)]
 
