@@ -10,7 +10,7 @@ else
 fi
 
 which cmake
-yum remove cmake
+yum remove -y cmake
 
 curl -O https://cmake.org/files/v3.5/cmake-3.5.1-Linux-$TAG.sh
 bash cmake-3.5.1-Linux-$TAG.sh --skip-license --prefix=/
