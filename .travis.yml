@@ -44,10 +44,10 @@ install:
   - curl -fsSL $URL/travis-py-check-style.sh | bash
   - curl -fsSL $URL/travis-py-dev-test.sh | bash
   - curl -fsSL $URL/travis-py-install-test.sh | bash
-script:
   - curl -fsSL $URL/travis-py-sdist-test.sh | bash
   - git clean -xdf
   - python3 -m pip install cibuildwheel>=1.1.0
+script:
   - cibuildwheel --output-dir wheelhouse
   - |
     if [ "${TRAVIS_TAG:-}" != "" ]; then

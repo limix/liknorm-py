@@ -4,4 +4,5 @@ include build_ext.py
 include libpath.py
 include liknorm/interface.c
 include liknorm/interface.h
+include liknorm/liknorm.dll
 include version.py
