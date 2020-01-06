@@ -20,6 +20,8 @@ matrix:
     - os: osx
       language: shell
       before_install:
+        - which python
+        - which python3
         - python -m pip install --upgrade pip setuptools
         - curl -fsSL https://git.io/JerYI | GITHUB_USER=horta GITHUB_PROJECT=logaddexp DO_CMD=sudo bash
         - curl -fsSL https://git.io/JerYI | GITHUB_USER=limix GITHUB_PROJECT=liknorm DO_CMD=sudo bash
