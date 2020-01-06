@@ -19,8 +19,9 @@ matrix:
     - os: osx
       language: shell
       before_install:
-        - ln -s $(brew --prefix)/bin/python3 $(brew --prefix)/bin/python
-        - ln -s $(brew --prefix)/bin/pip3 $(brew --prefix)/bin/pip
+        - python --version
+        # - ln -s $(brew --prefix)/bin/python4 $(brew --prefix)/bin/python
+        # - ln -s $(brew --prefix)/bin/pip3 $(brew --prefix)/bin/pip
         - hash -r
         - python -m pip install --upgrade pip setuptools
         - curl -fsSL https://git.io/JerYI | GITHUB_USER=horta GITHUB_PROJECT=logaddexp DO_CMD=sudo bash
