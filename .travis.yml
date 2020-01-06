@@ -12,7 +12,9 @@ matrix:
     - os: linux
       sudo: required
       services: docker
-      before_install: curl -fsSL https://git.io/JerYI | GITHUB_USER=limix GITHUB_PROJECT=liknorm DO_CMD=sudo bash
+      before_install:
+        - curl -fsSL https://git.io/JerYI | GITHUB_USER=horta GITHUB_PROJECT=logaddexp DO_CMD=sudo bash
+        - curl -fsSL https://git.io/JerYI | GITHUB_USER=limix GITHUB_PROJECT=liknorm DO_CMD=sudo bash
     - os: osx
       language: shell
       before_install:
@@ -20,19 +22,16 @@ matrix:
         - ln -s $(brew --prefix)/bin/pip3 $(brew --prefix)/bin/pip
         - hash -r
         - python -m pip install --upgrade pip setuptools
+        - curl -fsSL https://git.io/JerYI | GITHUB_USER=horta GITHUB_PROJECT=logaddexp DO_CMD=sudo bash
         - curl -fsSL https://git.io/JerYI | GITHUB_USER=limix GITHUB_PROJECT=liknorm DO_CMD=sudo bash
     - os: windows
       language: shell
       before_install:
         - choco install python --version 3.8.0
         - export PATH="/c/Python38:/c/Python38/Scripts:$PATH"
+        - curl -fsSL https://git.io/JerYI | GITHUB_USER=horta GITHUB_PROJECT=logaddexp bash
         - curl -fsSL https://git.io/JerYI | GITHUB_USER=limix GITHUB_PROJECT=liknorm bash
 addons:
-  # homebrew:
-  #   packages:
-  #     - python
-  #     - pip
-  #   update: true
   apt:
     packages:
       - libffi-dev
