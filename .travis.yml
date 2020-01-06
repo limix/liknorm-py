@@ -1,12 +1,12 @@
 language: python
-python: 3.6
+python: 3.7
 env:
   global:
-  - PKG_NAME=liknorm
-  - CIBW_SKIP="cp27-* cp34-* cp35-* *i686*"
-  - CIBW_BEFORE_BUILD_LINUX="bash before-build-linux"
-  - CIBW_BEFORE_BUILD_MACOS="curl -O https://raw.githubusercontent.com/limix/liknorm/master/install && bash install"
-  - CIBW_TEST_COMMAND="python -c \"import $PKG_NAME; import sys; sys.exit($PKG_NAME.test())\""
+    - PKG_NAME=liknorm
+    - CIBW_SKIP="cp27-* cp34-* cp35-* *i686*"
+    - CIBW_BEFORE_BUILD_LINUX="bash before-build-linux"
+    - CIBW_BEFORE_BUILD_MACOS="bash before-build-macos"
+    - CIBW_TEST_COMMAND="python -c \"import $PKG_NAME; import sys; sys.exit($PKG_NAME.test())\""
 matrix:
   include:
     - sudo: required
@@ -25,34 +25,37 @@ matrix:
 addons:
   homebrew:
     packages:
-    - python
-    - pip
+      - python
+      - pip
     update: true
   apt:
     packages:
-    - libffi-dev
-    - libffi6
-    - cmake
+      - libffi-dev
+      - libffi6
+      - cmake
 install:
-- bash <(curl -fsSL https://raw.githubusercontent.com/limix/liknorm/master/install)
+  - curl -fsSL https://git.io/JerYI | GITHUB_USER=limix GITHUB_PROJECT=liknorm DO_CMD=sudo bash
+  - curl -fsSL $URL/travis-check-readme.sh | bash
+  - curl -fsSL $URL/travis-py-min-deps.sh | bash
+  - curl -fsSL $URL/travis-py-check-style.sh | bash
+  - curl -fsSL $URL/travis-py-check-black.sh | bash
+  - curl -fsSL $URL/travis-py-dev-test.sh | bash
+  - curl -fsSL $URL/travis-py-install-test.sh | bash
 script:
-- |
-  if [ "${TRAVIS_OS_NAME}" == "osx" ]; then
-    sudo mkdir -p /usr/local/man
-    sudo chown -R "${USER}:admin" /usr/local/man
-  fi
-- bash <(curl -fsSL https://raw.githubusercontent.com/horta/ci/master/travis.sh) || exit 1
-- python -m pip install cibuildwheel>=0.9.2
-- cibuildwheel --output-dir wheelhouse
-- |
-  if [ "${TRAVIS_TAG:-}" != "" ]; then
-    python -m pip install twine
-    python -m twine upload --skip-existing wheelhouse/*
-  fi
+  - curl -fsSL $URL/travis-py-sdist-test.sh | bash
+  - git clean -xdf
+  - python -m pip install cibuildwheel>=1.1.0
+  - cibuildwheel --output-dir wheelhouse
+  - |
+    if [ "${TRAVIS_TAG:-}" != "" ]; then
+      python -m pip install twine
+      python -m twine upload --skip-existing wheelhouse/*
+    fi
+  - git clean -xdf
 notifications:
   email:
     recipients:
-    - danilo.horta@pm.me
+      - danilo.horta@pm.me
     on_success: never
     on_failure: always
 deploy:
