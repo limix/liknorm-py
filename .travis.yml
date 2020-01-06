@@ -10,6 +10,7 @@ env:
 matrix:
   include:
     - os: linux
+      language: python
       sudo: required
       services: docker
       before_install:
