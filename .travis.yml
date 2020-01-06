@@ -1,4 +1,3 @@
-python: 3.7
 env:
   global:
     - PKG_NAME=liknorm
@@ -10,8 +9,9 @@ env:
 matrix:
   include:
     - os: linux
+      dist: bionic
       language: python
-      sudo: required
+      # sudo: required
       services: docker
       before_install:
         - curl -fsSL https://git.io/JerYI | GITHUB_USER=horta GITHUB_PROJECT=logaddexp DO_CMD=sudo bash
@@ -19,10 +19,6 @@ matrix:
     - os: osx
       language: shell
       before_install:
-        - python --version
-        # - ln -s $(brew --prefix)/bin/python4 $(brew --prefix)/bin/python
-        # - ln -s $(brew --prefix)/bin/pip3 $(brew --prefix)/bin/pip
-        - hash -r
         - python -m pip install --upgrade pip setuptools
         - curl -fsSL https://git.io/JerYI | GITHUB_USER=horta GITHUB_PROJECT=logaddexp DO_CMD=sudo bash
         - curl -fsSL https://git.io/JerYI | GITHUB_USER=limix GITHUB_PROJECT=liknorm DO_CMD=sudo bash
