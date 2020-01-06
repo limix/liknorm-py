@@ -2,18 +2,19 @@
 
 yum install -y libffi libffi-devel
 
-if [ $(uname -m) == 'x86_64' ];
-then
-    TAG='x86_64';
-else
-    TAG='i386';
-fi
+# if [ $(uname -m) == 'x86_64' ];
+# then
+#     TAG='x86_64';
+# else
+#     TAG='i386';
+# fi
 
-which cmake
+# which cmake
 yum remove -y cmake
 
-curl -O https://cmake.org/files/v3.5/cmake-3.5.1-Linux-$TAG.sh
-bash cmake-3.5.1-Linux-$TAG.sh --skip-license --prefix=/
+pip install cmake
+# curl -O https://cmake.org/files/v3.5/cmake-3.5.1-Linux-$TAG.sh
+# bash cmake-3.5.1-Linux-$TAG.sh --skip-license --prefix=/
 
 curl -fsSL https://git.io/JerYI | GITHUB_USER=horta GITHUB_PROJECT=logaddexp bash
 curl -fsSL https://git.io/JerYI | GITHUB_USER=limix GITHUB_PROJECT=liknorm bash
