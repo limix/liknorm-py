@@ -1,6 +1,5 @@
 #!/bin/bash
 
-export CMAKE_INSTALL_PREFIX="/c/Program Files"
 export CMAKE_PREFIX_PATH="/c/Program Files"
-curl -fsSL https://git.io/JerYI | GITHUB_USER=horta GITHUB_PROJECT=logaddexp bash
-curl -fsSL https://git.io/JerYI | GITHUB_USER=limix GITHUB_PROJECT=liknorm bash
+curl -fsSL https://git.io/JerYI | GITHUB_USER=horta GITHUB_PROJECT=logaddexp INSTALL_PREFIX="/c/Program Files" bash
+curl -fsSL https://git.io/JerYI | GITHUB_USER=limix GITHUB_PROJECT=liknorm INSTALL_PREFIX="/c/Program Files" bash
