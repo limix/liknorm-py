@@ -46,7 +46,7 @@ if platform.system() == "Windows":
 else:
     sep = ":"
 
-extra_link_args = os.environ.get("LIKNORM_EXTRA_LINK_ARGS", "")
+extra_link_args = os.environ.get("LIKNORM_EXTRA_LINK_ARGS", "").split(sep)
 include_dirs = os.environ.get("LIKNORM_INCLUDE_DIRS", "").split(sep)
 library_dirs = os.environ.get("LIKNORM_LIBRARY_DIRS", "").split(sep)
 
