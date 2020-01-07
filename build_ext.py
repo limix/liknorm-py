@@ -1,5 +1,7 @@
 import os
 from os.path import join
+
+import platform
 from cffi import FFI
 
 
@@ -39,9 +41,14 @@ libs = ["liknorm"]
 #     if len(library_dirs) > 0:
 #         extra_link_args += ["-Wl,-rpath,/usr/local/lib"]
 
+if platform.system() == "Windows":
+    sep = ";"
+else:
+    sep = ":"
+
 extra_link_args = os.environ.get("LIKNORM_EXTRA_LINK_ARGS", "")
-include_dirs = os.environ.get("LIKNORM_INCLUDE_DIRS", "")
-library_dirs = os.environ.get("LIKNORM_LIBRARY_DIRS", "")
+include_dirs = os.environ.get("LIKNORM_INCLUDE_DIRS", "").split(sep)
+library_dirs = os.environ.get("LIKNORM_LIBRARY_DIRS", "").split(sep)
 
 
 ffibuilder.set_source(
