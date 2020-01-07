@@ -1,11 +1,13 @@
 import os
-import platform
+
+# import platform
 from os.path import join
-from typing import List
+
+# from typing import List
 
 from cffi import FFI
 
-from libpath import System, Unix, Windows
+# from libpath import System, Unix, Windows
 
 
 def _get_interface_h():
@@ -26,32 +28,37 @@ ffibuilder = FFI()
 ffibuilder.cdef(_get_interface_h())
 libs = ["liknorm"]
 
-if platform.system() == "Windows":
-    win = Windows()
-    progfiles = win.get_programfiles()
-    for lib in libs:
-        win.add_library_dir(join(progfiles, lib, "lib"))
-        win.add_include_dir(join(progfiles, lib, "include"))
+# if platform.system() == "Windows":
+#     win = Windows()
+#     progfiles = win.get_programfiles()
+#     for lib in libs:
+#         win.add_library_dir(join(progfiles, lib, "lib"))
+#         win.add_include_dir(join(progfiles, lib, "include"))
 
-    libs = [win.find_libname(lib) for lib in libs]
-    system: System = win
-else:
-    system = Unix()
+#     libs = [win.find_libname(lib) for lib in libs]
+#     system: System = win
+# else:
+#     system = Unix()
 
-library_dirs = system.get_library_dirs()
-extra_link_args: List[str] = []
-if platform.system() != "Windows":
-    if len(library_dirs) > 0:
-        extra_link_args += ["-Wl,-rpath,/usr/local/lib"]
+# library_dirs = system.get_library_dirs()
+# extra_link_args: List[str] = []
+# if platform.system() != "Windows":
+#     if len(library_dirs) > 0:
+#         extra_link_args += ["-Wl,-rpath,/usr/local/lib"]
+
+extra_link_args = os.environ.get("LIKNORM_EXTRA_LINK_ARGS", "")
+include_dirs = os.environ.get("LIKNORM_INCLUDE_DIRS", "")
+library_dirs = os.environ.get("LIKNORM_LIBRARY_DIRS", "")
+
 
 ffibuilder.set_source(
     "liknorm._ffi",
     _get_interface_c(),
+    extra_link_args=extra_link_args,
+    include_dirs=include_dirs,
+    language="c",
     libraries=libs,
     library_dirs=library_dirs,
-    include_dirs=system.get_include_dirs(),
-    extra_link_args=extra_link_args,
-    language="c",
 )
 
 if __name__ == "__main__":

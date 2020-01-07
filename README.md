@@ -1,6 +1,6 @@
 # liknorm-py
 
-[![Travis](https://img.shields.io/travis/com/limix/liknorm-py.svg?style=flat-square&label=linux%20%2F%20macos%20build)](https://travis-ci.com/limix/liknorm-py) [![AppVeyor](https://img.shields.io/appveyor/ci/Horta/liknorm-py.svg?style=flat-square&label=windows%20build)](https://ci.appveyor.com/project/Horta/liknorm-py)
+[![Travis](https://travis-ci.com/limix/liknorm-py.svg?branch=master)](https://travis-ci.com/limix/liknorm-py)
 
 Liknorm Python wrapper.
 
