@@ -39,6 +39,7 @@ libs = ["liknorm"]
 #     if len(library_dirs) > 0:
 #         extra_link_args += ["-Wl,-rpath,/usr/local/lib"]
 
+breakpoint()
 extra_link_args = os.environ.get("LIKNORM_EXTRA_LINK_ARGS", "")
 include_dirs = os.environ.get("LIKNORM_INCLUDE_DIRS", "")
 library_dirs = os.environ.get("LIKNORM_LIBRARY_DIRS", "")

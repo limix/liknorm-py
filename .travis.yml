@@ -13,21 +13,19 @@ matrix:
       dist: bionic
       language: python
       services: docker
-      before_install:
-        - curl -fsSL https://git.io/JerYI | GITHUB_USER=horta GITHUB_PROJECT=logaddexp bash
-        - curl -fsSL https://git.io/JerYI | GITHUB_USER=limix GITHUB_PROJECT=liknorm bash
+      env:
         - LIKNORM_INCLUDE_DIRS=/usr/local/include
         - LIKNORM_LIBRARY_DIRS=/usr/local/lib
         - LIKNORM_EXTRA_LINK_ARGS="-Wl,-rpath,/usr/local/lib"
+      before_install:
+        - curl -fsSL https://git.io/JerYI | GITHUB_USER=horta GITHUB_PROJECT=logaddexp bash
+        - curl -fsSL https://git.io/JerYI | GITHUB_USER=limix GITHUB_PROJECT=liknorm bash
     - os: osx
       language: shell
       before_install:
         - python3 -m pip install --upgrade pip setuptools
         - curl -fsSL https://git.io/JerYI | GITHUB_USER=horta GITHUB_PROJECT=logaddexp bash
         - curl -fsSL https://git.io/JerYI | GITHUB_USER=limix GITHUB_PROJECT=liknorm bash
-        - LIKNORM_INCLUDE_DIRS=/usr/local/include
-        - LIKNORM_LIBRARY_DIRS=/usr/local/lib
-        - LIKNORM_EXTRA_LINK_ARGS="-Wl,-rpath,/usr/local/lib"
     # - os: windows
     #   language: shell
     #   before_install:
