@@ -41,24 +41,20 @@ libs = ["liknorm"]
 #     if len(library_dirs) > 0:
 #         extra_link_args += ["-Wl,-rpath,/usr/local/lib"]
 
-if platform.system() == "Windows":
-    sep = ";"
-else:
-    sep = ":"
-
+sep = os.pathsep
 extra_link_args = os.environ.get("LIKNORM_EXTRA_LINK_ARGS", "").split(sep)
-include_dirs = os.environ.get("LIKNORM_INCLUDE_DIRS", "").split(sep)
-library_dirs = os.environ.get("LIKNORM_LIBRARY_DIRS", "").split(sep)
+# include_dirs = os.environ.get("LIKNORM_INCLUDE_DIRS", "").split(sep)
+# library_dirs = os.environ.get("LIKNORM_LIBRARY_DIRS", "").split(sep)
 
 
 ffibuilder.set_source(
     "liknorm._ffi",
     _get_interface_c(),
     extra_link_args=extra_link_args,
-    include_dirs=include_dirs,
+    # include_dirs=include_dirs,
     language="c",
     libraries=libs,
-    library_dirs=library_dirs,
+    # library_dirs=library_dirs,
 )
 
 if __name__ == "__main__":
