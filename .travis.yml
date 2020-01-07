@@ -18,6 +18,7 @@ matrix:
         - curl -fsSL https://git.io/JerYI | GITHUB_USER=limix GITHUB_PROJECT=liknorm bash
         - LIKNORM_INCLUDE_DIRS=/usr/local/include
         - LIKNORM_LIBRARY_DIRS=/usr/local/lib
+        - LIKNORM_EXTRA_LINK_ARGS="-Wl,-rpath,/usr/local/lib"
     - os: osx
       language: shell
       before_install:
@@ -26,6 +27,7 @@ matrix:
         - curl -fsSL https://git.io/JerYI | GITHUB_USER=limix GITHUB_PROJECT=liknorm bash
         - LIKNORM_INCLUDE_DIRS=/usr/local/include
         - LIKNORM_LIBRARY_DIRS=/usr/local/lib
+        - LIKNORM_EXTRA_LINK_ARGS="-Wl,-rpath,/usr/local/lib"
     # - os: windows
     #   language: shell
     #   before_install:
