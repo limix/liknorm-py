@@ -1,13 +1,6 @@
 import os
-
-# import platform
 from os.path import join
-
-# from typing import List
-
 from cffi import FFI
-
-# from libpath import System, Unix, Windows
 
 
 def _get_interface_h():
