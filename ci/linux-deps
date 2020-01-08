@@ -1,5 +1,7 @@
 #!/bin/bash
 
+env
+
 yum install -y libffi libffi-devel
 yum remove -y cmake
 
