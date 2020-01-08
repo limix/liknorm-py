@@ -43,22 +43,22 @@ addons:
       - libffi6
       - cmake
 install:
-  - curl -fsSL $URL/travis-check-readme.sh | bash
-  - curl -fsSL $URL/travis-py-min-deps.sh | bash
-  - curl -fsSL $URL/travis-py-check-style.sh | bash
-  - curl -fsSL $URL/travis-py-dev-test.sh | bash
-  - curl -fsSL $URL/travis-py-install-test.sh | bash
-  - curl -fsSL $URL/travis-py-sdist-test.sh | bash
-  - git clean -xdf
-  - python3 -m pip install cibuildwheel>=1.1.0
-script:
-  - cibuildwheel --output-dir wheelhouse
-  - |
-    if [ "${TRAVIS_TAG:-}" != "" ]; then
-      python3 -m pip install twine
-      python3 -m twine upload --skip-existing wheelhouse/*
-    fi
-  - git clean -xdf
+  - curl -fsSL $URL/check-readme.sh | bash
+  - curl -fsSL $URL/py-min-deps.sh | bash
+  # - curl -fsSL $URL/py-check-style.sh | bash
+  # - curl -fsSL $URL/py-dev-test.sh | bash
+  # - curl -fsSL $URL/py-import-time.sh | bash
+  # - curl -fsSL $URL/py-sdist-test.sh | bash
+  # - git clean -xdf
+  # - python3 -m pip install cibuildwheel>=1.1.0
+# script:
+  # - cibuildwheel --output-dir wheelhouse
+  # - |
+  #   if [ "${TRAVIS_TAG:-}" != "" ]; then
+  #     python3 -m pip install twine
+  #     python3 -m twine upload --skip-existing wheelhouse/*
+  #   fi
+  # - git clean -xdf
 notifications:
   email:
     recipients:
