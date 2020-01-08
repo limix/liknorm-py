@@ -2,10 +2,10 @@ env:
   global:
     - URL=https://raw.githubusercontent.com/horta/ci/master
     - CIBW_SKIP="cp27-* cp34-* cp35-* *i686*"
-    - CIBW_BEFORE_BUILD_LINUX="bash ci/before-build-linux"
-    - CIBW_BEFORE_BUILD_MACOS="bash ci/before-build-macos"
-    - CIBW_BEFORE_BUILD_WINDOWS="bash ci/before-build-windows"
-    - CIBW_TEST_COMMAND="python -c \"import $PKG_NAME; import sys; sys.exit($PKG_NAME.test())\""
+    - CIBW_BEFORE_BUILD_LINUX="bash ci/linux-deps"
+    - CIBW_BEFORE_BUILD_MACOS="bash ci/macos-deps"
+    - CIBW_BEFORE_BUILD_WINDOWS="bash ci/windows-deps"
+    - CIBW_TEST_COMMAND="bash ci/test"
 matrix:
   include:
     - os: linux

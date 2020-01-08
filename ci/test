@@ -1,0 +1,3 @@
+#!/bin/bash
+
+(cd ~/ && python -c "import liknorm; import sys; sys.exit(liknorm.test())")
