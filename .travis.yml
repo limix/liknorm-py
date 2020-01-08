@@ -28,8 +28,8 @@ matrix:
     - os: windows
       language: shell
       env:
-        - C_INCLUDE_PATH="C:/Program Files (x86)/liknorm/include"
-        - LIBRARY_PATH="C:/Program Files (x86)/liknorm/lib"
+        - C_INCLUDE_PATH="/c/Program Files (x86)/liknorm/include"
+        - LIBRARY_PATH="/c/Program Files (x86)/liknorm/lib"
       before_install:
         - choco install python --version 3.8.0
         - export PATH="/c/Python38:/c/Python38/Scripts:$PATH"
