@@ -28,8 +28,8 @@ matrix:
     - os: windows
       language: shell
       env:
-        - INCLUDE="/c/Program Files (x86)/liknorm/include"
-        - LIB="/c/Program Files (x86)/liknorm/lib"
+        - INCLUDE="/c/Program Files/liknorm/include"
+        - LIB="/c/Program Files/liknorm/lib"
         - CMAKE_GENERATOR="Visual Studio 15 2017 Win64"
       before_install:
         - choco install python --version 3.8.0
@@ -38,12 +38,12 @@ matrix:
     #     - export CMAKE_PREFIX_PATH="/c/Program Files"
         - curl -fsSL https://git.io/JerYI | GITHUB_USER=horta GITHUB_PROJECT=logaddexp bash
         - curl -fsSL https://git.io/JerYI | GITHUB_USER=limix GITHUB_PROJECT=liknorm bash
-        - cp /c/Program\ Files\ \(x86\)/liknorm/bin/liknorm.dll /c/Windows/system32/
-        - cp /c/Program\ Files\ \(x86\)/liknorm/bin/liknorm.dll /c/Windows/
-        - ls /c/Windows/system32/
-        - ls /c/Windows/
-        - cp /c/Program\ Files\ \(x86\)/liknorm/bin/liknorm.dll liknorm/
-        - file liknorm/liknorm.dll
+        - cp /c/Program\ Files/liknorm/bin/liknorm.dll /c/Windows/system32/
+        # - cp /c/Program\ Files/liknorm/bin/liknorm.dll /c/Windows/
+        # - ls /c/Windows/system32/
+        # - ls /c/Windows/
+        # - cp /c/Program\ Files/liknorm/bin/liknorm.dll liknorm/
+        # - file liknorm/liknorm.dll
         # - echo $PATH
         # - export PATH=$PATH:";C:\Program Files (x86)\liknorm\bin"
         # - echo $PATH
