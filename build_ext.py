@@ -1,4 +1,5 @@
 import os
+from typing import List
 from os.path import join
 
 from cffi import FFI
@@ -40,20 +41,17 @@ libs = ["liknorm"]
 #     if len(library_dirs) > 0:
 #         extra_link_args += ["-Wl,-rpath,/usr/local/lib"]
 
-sep = os.pathsep
-extra_link_args = os.environ.get("LIKNORM_EXTRA_LINK_ARGS", "").split(sep)
-# include_dirs = os.environ.get("LIKNORM_INCLUDE_DIRS", "").split(sep)
-# library_dirs = os.environ.get("LIKNORM_LIBRARY_DIRS", "").split(sep)
+extra_link_args: List[str] = []
+if "LIKNORM_EXTRA_LINK_ARGS" in os.environ:
+    extra_link_args += os.environ["LIKNORM_EXTRA_LINK_ARGS"].split(os.pathsep)
 
 
 ffibuilder.set_source(
     "liknorm._ffi",
     _get_interface_c(),
     extra_link_args=extra_link_args,
-    # include_dirs=include_dirs,
     language="c",
     libraries=libs,
-    # library_dirs=library_dirs,
 )
 
 if __name__ == "__main__":
