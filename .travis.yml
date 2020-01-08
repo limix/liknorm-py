@@ -6,7 +6,7 @@ env:
     - CIBW_BEFORE_BUILD_LINUX="bash ci/before-build-linux"
     - CIBW_BEFORE_BUILD_MACOS="bash ci/before-build-macos"
     - CIBW_BEFORE_BUILD_WINDOWS="bash ci/before-build-windows"
-    - CIBW_TEST_COMMAND="python3 -c \"import $PKG_NAME; import sys; sys.exit($PKG_NAME.test())\""
+    - CIBW_TEST_COMMAND="python -c \"import $PKG_NAME; import sys; sys.exit($PKG_NAME.test())\""
 matrix:
   include:
     - os: linux
@@ -35,19 +35,9 @@ matrix:
         - choco install python --version 3.8.0
         - export PATH="/c/Python38:/c/Python38/Scripts:$PATH"
         - cp /c/Python38/python.exe /c/Python38/python3.exe
-    #     - export CMAKE_PREFIX_PATH="/c/Program Files"
         - curl -fsSL https://git.io/JerYI | GITHUB_USER=horta GITHUB_PROJECT=logaddexp bash
         - curl -fsSL https://git.io/JerYI | GITHUB_USER=limix GITHUB_PROJECT=liknorm bash
         - cp /c/Program\ Files/liknorm/bin/liknorm.dll /c/Windows/system32/
-        # - cp /c/Program\ Files/liknorm/bin/liknorm.dll /c/Windows/
-        # - ls /c/Windows/system32/
-        # - ls /c/Windows/
-        # - cp /c/Program\ Files/liknorm/bin/liknorm.dll liknorm/
-        # - file liknorm/liknorm.dll
-        # - echo $PATH
-        # - export PATH=$PATH:";C:\Program Files (x86)\liknorm\bin"
-        # - echo $PATH
-    #     - cp "$CMAKE_PREFIX_PATH/liknorm/bin/liknorm.dll" liknorm/
 addons:
   apt:
     packages:
@@ -57,8 +47,6 @@ addons:
 install:
   - curl -fsSL $URL/check-readme.sh | bash
   - curl -fsSL $URL/py-min-deps.sh | bash -s -- --numpy
-  # - python3 -m pip install pytest -U
-  # - python3 setup.py test
   - curl -fsSL $URL/py-check-style.sh | bash
   - curl -fsSL $URL/py-dev-test.sh | bash
   - curl -fsSL $URL/py-import-time.sh | bash
@@ -66,13 +54,13 @@ install:
   - python3 -m pip install cibuildwheel>=1.1.0
 script:
   - pwd
-  # - cibuildwheel --output-dir wheelhouse
-  # - |
-  #   if [ "${TRAVIS_TAG:-}" != "" ]; then
-  #     python3 -m pip install twine
-  #     python3 -m twine upload --skip-existing wheelhouse/*
-  #   fi
-  # - git clean -xdfq
+  - cibuildwheel --output-dir wheelhouse
+  - |
+    if [ "${TRAVIS_TAG:-}" != "" ]; then
+      python3 -m pip install twine
+      python3 -m twine upload --skip-existing wheelhouse/*
+    fi
+  - git clean -xdfq
 notifications:
   email:
     recipients:
