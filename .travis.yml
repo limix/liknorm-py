@@ -34,10 +34,10 @@ matrix:
         - choco install python --version 3.8.0
         - export PATH="/c/Python38:/c/Python38/Scripts:$PATH"
         - cp /c/Python38/python.exe /c/Python38/python3.exe
-        - cp /c/Program\ Files\ \(x86\)/liknorm/bin/liknorm.dll /c/Windows/system32/
     #     - export CMAKE_PREFIX_PATH="/c/Program Files"
         - curl -fsSL https://git.io/JerYI | GITHUB_USER=horta GITHUB_PROJECT=logaddexp bash
         - curl -fsSL https://git.io/JerYI | GITHUB_USER=limix GITHUB_PROJECT=liknorm bash
+        - cp /c/Program\ Files\ \(x86\)/liknorm/bin/liknorm.dll /c/Windows/system32/
         # - echo $PATH
         # - export PATH=$PATH:";C:\Program Files (x86)\liknorm\bin"
         # - echo $PATH
