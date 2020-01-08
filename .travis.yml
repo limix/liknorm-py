@@ -36,12 +36,12 @@ matrix:
     #     - curl -fsSL https://git.io/JerYI | GITHUB_USER=horta GITHUB_PROJECT=logaddexp INSTALL_PREFIX="$CMAKE_PREFIX_PATH/logaddexp" bash
     #     - curl -fsSL https://git.io/JerYI | GITHUB_USER=limix GITHUB_PROJECT=liknorm INSTALL_PREFIX="$CMAKE_PREFIX_PATH/liknorm" bash
     #     - cp "$CMAKE_PREFIX_PATH/liknorm/bin/liknorm.dll" liknorm/
-addons:
-  apt:
-    packages:
-      - libffi-dev
-      - libffi6
-      - cmake
+# addons:
+#   apt:
+#     packages:
+#       - libffi-dev
+#       - libffi6
+#       - cmake
 install:
   - curl -fsSL $URL/check-readme.sh | bash
   - curl -fsSL $URL/py-min-deps.sh | bash
