@@ -45,7 +45,7 @@ addons:
       - cmake
 install:
   - curl -fsSL $URL/check-readme.sh | bash
-  - curl -fsSL $URL/py-min-deps.sh | bash
+  - curl -fsSL $URL/py-min-deps.sh | bash -s -- --numpy
   - curl -fsSL $URL/py-check-style.sh | bash
   - curl -fsSL $URL/py-dev-test.sh | bash
   # - curl -fsSL $URL/py-import-time.sh | bash
