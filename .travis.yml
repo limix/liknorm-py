@@ -41,6 +41,8 @@ matrix:
         - cp /c/Program\ Files\ \(x86\)/liknorm/bin/liknorm.dll /c/Windows/
         - ls /c/Windows/system32/
         - ls /c/Windows/
+        - cp /c/Program\ Files\ \(x86\)/liknorm/bin/liknorm.dll liknorm/
+        - file liknorm/liknorm.dll
         # - echo $PATH
         # - export PATH=$PATH:";C:\Program Files (x86)\liknorm\bin"
         # - echo $PATH
@@ -55,7 +57,6 @@ install:
   - curl -fsSL $URL/check-readme.sh | bash
   - curl -fsSL $URL/py-min-deps.sh | bash -s -- --numpy
   - python3 -m pip install pytest -U
-  - cp /c/Program\ Files\ \(x86\)/liknorm/bin/liknorm.dll liknorm/
   - python3 setup.py test
   # - curl -fsSL $URL/py-check-style.sh | bash
   # - curl -fsSL $URL/py-dev-test.sh | bash
