@@ -1,7 +1,6 @@
 env:
   global:
     - URL=https://raw.githubusercontent.com/horta/ci/master
-    - PKG_NAME=liknorm
     - CIBW_SKIP="cp27-* cp34-* cp35-* *i686*"
     - CIBW_BEFORE_BUILD_LINUX="bash ci/before-build-linux"
     - CIBW_BEFORE_BUILD_MACOS="bash ci/before-build-macos"
