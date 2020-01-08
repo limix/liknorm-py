@@ -25,15 +25,16 @@ matrix:
         - python3 -m pip install --upgrade pip setuptools
         - curl -fsSL https://git.io/JerYI | GITHUB_USER=horta GITHUB_PROJECT=logaddexp bash
         - curl -fsSL https://git.io/JerYI | GITHUB_USER=limix GITHUB_PROJECT=liknorm bash
-    # - os: windows
-    #   language: shell
-    #   before_install:
-    #     - choco install python --version 3.8.0
-    #     - export PATH="/c/Python38:/c/Python38/Scripts:$PATH"
-    #     - cp /c/Python38/python.exe /c/Python38/python3.exe
+    - os: windows
+      language: shell
+      before_install:
+        - choco install python --version 3.8.0
+        - export PATH="/c/Python38:/c/Python38/Scripts:$PATH"
+        - cp /c/Python38/python.exe /c/Python38/python3.exe
     #     - export CMAKE_PREFIX_PATH="/c/Program Files"
-    #     - curl -fsSL https://git.io/JerYI | GITHUB_USER=horta GITHUB_PROJECT=logaddexp INSTALL_PREFIX="$CMAKE_PREFIX_PATH/logaddexp" bash
-    #     - curl -fsSL https://git.io/JerYI | GITHUB_USER=limix GITHUB_PROJECT=liknorm INSTALL_PREFIX="$CMAKE_PREFIX_PATH/liknorm" bash
+        - curl -fsSL https://git.io/JerYI | GITHUB_USER=horta GITHUB_PROJECT=logaddexp bash
+        - curl -fsSL https://git.io/JerYI | GITHUB_USER=limix GITHUB_PROJECT=liknorm bash
+        - echo %PATH%
     #     - cp "$CMAKE_PREFIX_PATH/liknorm/bin/liknorm.dll" liknorm/
 addons:
   apt:
