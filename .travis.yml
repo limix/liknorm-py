@@ -54,11 +54,14 @@ addons:
 install:
   - curl -fsSL $URL/check-readme.sh | bash
   - curl -fsSL $URL/py-min-deps.sh | bash -s -- --numpy
-  - curl -fsSL $URL/py-check-style.sh | bash
-  - curl -fsSL $URL/py-dev-test.sh | bash
-  - curl -fsSL $URL/py-import-time.sh | bash
-  - curl -fsSL $URL/py-sdist-test.sh | bash
-  - python3 -m pip install cibuildwheel>=1.1.0
+  - python3 -m pip install pytest -U
+  - cp /c/Program\ Files\ \(x86\)/liknorm/bin/liknorm.dll liknorm/
+  - python3 setup.py test
+  # - curl -fsSL $URL/py-check-style.sh | bash
+  # - curl -fsSL $URL/py-dev-test.sh | bash
+  # - curl -fsSL $URL/py-import-time.sh | bash
+  # - curl -fsSL $URL/py-sdist-test.sh | bash
+  # - python3 -m pip install cibuildwheel>=1.1.0
 script:
   - cibuildwheel --output-dir wheelhouse
   # - |
