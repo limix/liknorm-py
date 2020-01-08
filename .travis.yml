@@ -28,7 +28,7 @@ matrix:
       language: shell
       env:
         - INCLUDE="/c/Program Files/liknorm/include"
-        - LIB="/c/Program Files/liknorm/lib"
+        - LIB="/c/Program Files/liknorm/lib:/c/Program Files (x86)/liknorm/lib"
         - CMAKE_GENERATOR="Visual Studio 15 2017 Win64"
       before_install:
         - choco install python --version 3.8.0
