@@ -57,15 +57,16 @@ addons:
 install:
   - curl -fsSL $URL/check-readme.sh | bash
   - curl -fsSL $URL/py-min-deps.sh | bash -s -- --numpy
-  - python3 -m pip install pytest -U
-  - python3 setup.py test
-  # - curl -fsSL $URL/py-check-style.sh | bash
-  # - curl -fsSL $URL/py-dev-test.sh | bash
-  # - curl -fsSL $URL/py-import-time.sh | bash
-  # - curl -fsSL $URL/py-sdist-test.sh | bash
+  # - python3 -m pip install pytest -U
+  # - python3 setup.py test
+  - curl -fsSL $URL/py-check-style.sh | bash
+  - curl -fsSL $URL/py-dev-test.sh | bash
+  - curl -fsSL $URL/py-import-time.sh | bash
+  - curl -fsSL $URL/py-sdist-test.sh | bash
   - python3 -m pip install cibuildwheel>=1.1.0
 script:
-  - cibuildwheel --output-dir wheelhouse
+  - pwd
+  # - cibuildwheel --output-dir wheelhouse
   # - |
   #   if [ "${TRAVIS_TAG:-}" != "" ]; then
   #     python3 -m pip install twine
