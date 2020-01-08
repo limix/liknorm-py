@@ -5,7 +5,7 @@ env:
     - CIBW_BEFORE_BUILD_LINUX="{project}/ci/linux-deps"
     - CIBW_BEFORE_BUILD_MACOS="{project}/ci/macos-deps"
     - CIBW_BEFORE_BUILD_WINDOWS="bash {project}/ci/windows-deps"
-    - CIBW_TEST_COMMAND="{project}/ci/test"
+    - CIBW_TEST_COMMAND="bash {project}/ci/test"
 matrix:
   include:
     - os: linux
