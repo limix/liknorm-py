@@ -39,8 +39,8 @@ matrix:
 addons:
   apt:
     packages:
-#       - libffi-dev
-#       - libffi6
+      - libffi-dev
+      - libffi6
       - cmake
 install:
   - curl -fsSL $URL/check-readme.sh | bash
