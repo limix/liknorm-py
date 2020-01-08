@@ -15,8 +15,6 @@ matrix:
       services: docker
       env:
         - LIBRARY_PATH=/usr/local/lib
-      #   - LIKNORM_INCLUDE_DIRS=/usr/local/include
-      #   - LIKNORM_LIBRARY_DIRS=/usr/local/lib
       #   - LIKNORM_EXTRA_LINK_ARGS="-Wl,-rpath,/usr/local/lib"
       before_install:
         - curl -fsSL https://git.io/JerYI | GITHUB_USER=horta GITHUB_PROJECT=logaddexp bash
