@@ -77,3 +77,4 @@ deploy:
     tags: true
     repo: limix/liknorm-py
     branch: master
+    condition: $TRAVIS_OS_NAME = linux
