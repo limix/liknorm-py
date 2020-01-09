@@ -59,6 +59,7 @@ after_success:
       python3 -m pip install twine -U
       python3 -m twine upload --skip-existing wheelhouse/*
     fi
+  - git clean -xdfq
 notifications:
   email:
     recipients:
@@ -68,11 +69,11 @@ notifications:
 deploy:
   provider: pypi
   user: dhorta
+  skip_existing: true
+  distributions: sdist
   password:
     secure: fMasPDnDnJOgzbgS+UcNTvykBhTQxsAXm2aCdSB1W9XM3f98+Qlmd1w0jbDrljkCo+e1trnZDn+eW0fW4h+oX7FdlwAM1ktOJVJJI1wNq/xai8q5a4NAtY/us8OKF5sg2UfyuuPXm6P4dhdW9minbTJ3bmh+n7IftrVYwFf8gSBAg6OEN07NrAQzHOb05Jkcop6d1JDjzperVWyc/0GwVSZN+vx5Z1eBk6uVFffNSXduZvn1ykqv7a6rw/n+PDQK9Dzpwn+OqFv407uoMcORxPDYJBFb3KRXPnZNSmtbDQsAxbgoa5HDFmEELpQoDf3eWqFYG9LxS3fVSPTn0pyObx+hNXUFvKXdouYnGi19yHULVFWLCjGXSwL2OwXDOkQlPi4pOR73RlwU/T71qfzPmivVpcAYZrV+/c7ljL8vfGqVQpgOJRzo5fmI7NXd26FIHcf4O1NVeL763v0LTVGnTjutm2mdwZJbez6R6aIyDnzOIeXtZ4uiFwjnXaS4HKGRFvKHld4Q7SgjzDpj1I6OgQufh4/7mulFWnbjgZVVzDWW3OhHKR3bG7CrP0kJCD4y6WX1rMVtsl4aZgnCLFDV9xOiH/diSx2vIbP+zR4W0VXu/1xIrqVNGdodq7hjbUtvdbRPMqwvNnk2ymCtT/u7cNjYe74alHG2y8+8WBe/UGg=
   on:
     tags: true
     repo: limix/liknorm-py
     branch: master
-    skip_existing: true
-    distributions: sdist
