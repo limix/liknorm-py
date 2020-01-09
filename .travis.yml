@@ -1,3 +1,4 @@
+python: 3.8
 env:
   global:
     - URL=https://raw.githubusercontent.com/horta/ci/master
@@ -49,7 +50,7 @@ install:
   - curl -fsSL $URL/py-check-style.sh | bash
   - curl -fsSL $URL/py-dev-test.sh | bash
   - curl -fsSL $URL/py-sdist-test.sh | bash
-  - python3 -m pip install cibuildwheel>=1.1.0
+  - python3 -m pip install cibuildwheel
 script:
   - python3 -m cibuildwheel --output-dir wheelhouse
 after_success:
@@ -74,3 +75,4 @@ deploy:
     repo: limix/liknorm-py
     branch: master
     skip_existing: true
+    distributions: sdist
