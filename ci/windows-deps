@@ -6,3 +6,5 @@ curl -fsSL https://git.io/JerYI | GITHUB_USER=horta GITHUB_PROJECT=logaddexp bas
 curl -fsSL https://git.io/JerYI | GITHUB_USER=limix GITHUB_PROJECT=liknorm bash
 
 cp /c/Windows/system32/liknorm.dll liknorm/
+pwd
+ls liknorm/
