@@ -1,4 +1,4 @@
-#include "liknorm.h"
+#include "liknorm/liknorm.h"
 
 enum Lik {
     BERNOULLI,
