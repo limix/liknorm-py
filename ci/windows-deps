@@ -1,9 +1,6 @@
 #!/bin/bash
 
-# export CMAKE_GENERATOR="Visual Studio 15 2017 Win64"
-
 /bin/bash -c "$(curl -fsSL https://git.io/JerYI)" -s limix/liknorm
 
-cp /c/Windows/system32/liknorm.dll liknorm/
-pwd
-ls liknorm/
+cp "/c/Program Files (x86)/liknorm/bin/liknorm.dll" /c/Windows/system32/
+cp "/c/Program Files (x86)/liknorm/bin/liknorm.dll" liknorm/
