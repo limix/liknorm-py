@@ -23,6 +23,12 @@ jobs:
         run: /bin/bash -c ci/install-deps
         shell: bash
 
+      - name: Windows environment
+        if: matrix.os == 'windows-2019'
+        env:
+          INCLUDE: "/c/Program Files (x86)/liknorm/include:$INCLUDE"
+          LIB: "/c/Program Files (x86)/liknorm/lib:$LIB"
+
       - name: Build wheels
         run: python -m cibuildwheel --output-dir wheelhouse
         env:

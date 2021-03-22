@@ -1,5 +1,5 @@
 #!/bin/bash
 
-SUDO=$(type sudo >/dev/null && echo -n "sudo" || true)
+SUDO=$(type sudo 2>&1 >/dev/null && echo -n "sudo" || true)
 
 $SUDO /bin/bash -c "$(curl -fsSL https://git.io/JerYI)" -s limix/liknorm
