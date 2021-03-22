@@ -46,9 +46,7 @@ jobs:
           CIBW_TEST_COMMAND: "bash {project}/ci/test"
           C_INCLUDE_PATH: /usr/local/include
           LIBRARY_PATH: /usr/local/lib
-          LD_LIBRARY_PATH: /usr/local/lib
           LIKNORM_EXTRA_LINK_ARGS: "-Wl,-rpath,/usr/local/lib"
-
 
       - uses: actions/upload-artifact@v2
         with:
