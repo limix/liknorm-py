@@ -23,19 +23,23 @@ jobs:
         run: /bin/bash -c ci/install-deps
         shell: bash
 
-      - name: Windows environment
+      - name: Windows wheels
         if: matrix.os == 'windows-2019'
+        run: python -m cibuildwheel --output-dir wheelhouse
         env:
+          CIBW_SKIP: "pp* cp27-* cp34-* cp35-* cp36-* *_i686 *-win32"
+          CIBW_BEFORE_BUILD_WINDOWS: "bash {project}/ci/windows-deps"
+          CIBW_TEST_COMMAND: "bash {project}/ci/test"
           INCLUDE: "/c/Program Files (x86)/liknorm/include:$INCLUDE"
           LIB: "/c/Program Files (x86)/liknorm/lib:$LIB"
 
-      - name: Build wheels
+      - name: Mac/Linux wheels
+        if: matrix.os != 'windows-2019'
         run: python -m cibuildwheel --output-dir wheelhouse
         env:
           CIBW_SKIP: "pp* cp27-* cp34-* cp35-* cp36-* *_i686 *-win32"
           CIBW_BEFORE_BUILD_LINUX: "{project}/ci/linux-deps"
           CIBW_BEFORE_BUILD_MACOS: "{project}/ci/macos-deps"
-          CIBW_BEFORE_BUILD_WINDOWS: "bash {project}/ci/windows-deps"
           CIBW_TEST_COMMAND: "bash {project}/ci/test"
 
       - uses: actions/upload-artifact@v2
