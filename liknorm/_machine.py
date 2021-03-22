@@ -72,8 +72,7 @@ class LikNormMachine(object):
         moments : dict
             Log_zeroth, mean, and variance result.
         """
-        from numpy import all as npall
-        from numpy import asarray, float64, isfinite
+        from numpy import all as npall, asarray, float64, isfinite
 
         size = len(moments["log_zeroth"])
         if not isinstance(y, (list, tuple)):

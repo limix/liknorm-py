@@ -1,6 +1,6 @@
 import os
-from typing import List
 from os.path import join
+from typing import List
 
 from cffi import FFI
 
