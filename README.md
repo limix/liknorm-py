@@ -1,7 +1,5 @@
 # liknorm-py
 
-[![Travis](https://travis-ci.com/limix/liknorm-py.svg?branch=master)](https://travis-ci.com/limix/liknorm-py)
-
 Liknorm Python wrapper.
 
 ## Install
