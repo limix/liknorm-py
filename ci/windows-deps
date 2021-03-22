@@ -2,5 +2,4 @@
 
 /bin/bash -c "$(curl -fsSL https://git.io/JerYI)" -s limix/liknorm
 
-cp "/c/Program Files (x86)/liknorm/bin/liknorm.dll" /c/Windows/system32/
 cp "/c/Program Files (x86)/liknorm/bin/liknorm.dll" liknorm/
