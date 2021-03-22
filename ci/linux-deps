@@ -5,5 +5,5 @@ yum remove -y cmake
 
 pip install cmake
 
-curl -fsSL https://git.io/JerYI | GITHUB_USER=horta GITHUB_PROJECT=logaddexp bash
-curl -fsSL https://git.io/JerYI | GITHUB_USER=limix GITHUB_PROJECT=liknorm bash
+/bin/bash -c "$(curl -fsSL https://git.io/JerYI)" -s horta/logaddexp
+/bin/bash -c "$(curl -fsSL https://git.io/JerYI)" -s limix/liknorm

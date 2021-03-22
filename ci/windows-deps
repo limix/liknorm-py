@@ -2,8 +2,8 @@
 
 export CMAKE_GENERATOR="Visual Studio 15 2017 Win64"
 
-curl -fsSL https://git.io/JerYI | GITHUB_USER=horta GITHUB_PROJECT=logaddexp bash
-curl -fsSL https://git.io/JerYI | GITHUB_USER=limix GITHUB_PROJECT=liknorm bash
+/bin/bash -c "$(curl -fsSL https://git.io/JerYI)" -s horta/logaddexp
+/bin/bash -c "$(curl -fsSL https://git.io/JerYI)" -s limix/liknorm
 
 cp /c/Windows/system32/liknorm.dll liknorm/
 pwd
