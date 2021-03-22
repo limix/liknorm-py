@@ -8,14 +8,14 @@ from cffi import FFI
 def _get_interface_h():
     folder = os.path.dirname(os.path.abspath(__file__))
 
-    with open(join(folder, "liknorm", "interface.h"), "r") as f:
+    with open(join(folder, "interface.h"), "r") as f:
         return f.read()
 
 
 def _get_interface_c():
     folder = os.path.dirname(os.path.abspath(__file__))
 
-    with open(join(folder, "liknorm", "interface.c"), "r") as f:
+    with open(join(folder, "interface.c"), "r") as f:
         return f.read()
 
 
