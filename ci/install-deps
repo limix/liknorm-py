@@ -1,0 +1,6 @@
+#!/bin/bash
+
+SUDO=$(type sudoa >/dev/null && echo -n "sudo" || true)
+
+$SUDO /bin/bash -c "$(curl -fsSL https://git.io/JerYI)" -s horta/logaddexp
+$SUDO /bin/bash -c "$(curl -fsSL https://git.io/JerYI)" -s limix/liknorm

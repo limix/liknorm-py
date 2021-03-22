@@ -19,11 +19,8 @@ jobs:
       - name: Install cibuildwheel
         run: python -m pip install cibuildwheel==1.10.0
 
-      - name: Install logaddexp
-        run: $(type sudo && echo "sudo") /bin/bash -c "$(curl -fsSL https://git.io/JerYI)" -s horta/logaddexp
-
-      - name: Install liknorm
-        run: $(type sudo && echo "sudo") /bin/bash -c "$(curl -fsSL https://git.io/JerYI)" -s limix/liknorm
+      - name: Install dependencies
+        run: /bin/bash -c "{project}/ci/install-deps"
 
       - name: Build wheels
         run: python -m cibuildwheel --output-dir wheelhouse
