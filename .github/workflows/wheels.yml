@@ -21,6 +21,7 @@ jobs:
 
       - name: Install dependencies
         run: /bin/bash -c ci/install-deps
+        shell: bash
 
       - name: Build wheels
         run: python -m cibuildwheel --output-dir wheelhouse
