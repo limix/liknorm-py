@@ -25,7 +25,7 @@ jobs:
         if: matrix.os == 'windows-2019'
         run: python -m cibuildwheel --output-dir wheelhouse
         env:
-          CIBW_SKIP: "pp* cp27-* cp34-* cp35-* cp36-* *_i686 *-win32"
+          CIBW_SKIP: "pp27-* pp36-* cp27-* cp34-* cp35-* cp36-* *_i686 *-win32"
           CIBW_BEFORE_BUILD_WINDOWS: "bash {project}/ci/windows-deps"
           CIBW_TEST_COMMAND: "bash {project}/ci/test"
           INCLUDE: "C:\\Program Files (x86)\\liknorm\\include"
@@ -35,7 +35,7 @@ jobs:
         if: matrix.os == 'ubuntu-20.04'
         run: python -m cibuildwheel --output-dir wheelhouse
         env:
-          CIBW_SKIP: "pp* cp27-* cp34-* cp35-* cp36-* *_i686 *-win32"
+          CIBW_SKIP: "pp27-* pp36-* cp27-* cp34-* cp35-* cp36-* *_i686 *-win32"
           CIBW_BEFORE_BUILD_LINUX: "{project}/ci/linux-deps"
           CIBW_TEST_COMMAND: "bash {project}/ci/test"
 
@@ -43,7 +43,7 @@ jobs:
         if: matrix.os == 'macos-10.15'
         run: python -m cibuildwheel --output-dir wheelhouse
         env:
-          CIBW_SKIP: "pp* cp27-* cp34-* cp35-* cp36-* *_i686 *-win32"
+          CIBW_SKIP: "pp27-* pp36-* cp27-* cp34-* cp35-* cp36-* *_i686 *-win32"
           CIBW_BEFORE_BUILD_MACOS: "{project}/ci/macos-deps"
           CIBW_TEST_COMMAND: "bash {project}/ci/test"
           CIBW_ARCHS: "x86_64 arm64 universal2"
