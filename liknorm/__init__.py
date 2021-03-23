@@ -12,9 +12,7 @@ from ._machine import LikNormMachine
 from ._testit import test
 
 try:
-    from ._ffi import ffi as _
-
-    del _
+    from ._ffi import lib
 except Exception as e:
     _ffi_err = """
 It is likely caused by a broken installation of this package.
@@ -25,4 +23,4 @@ and reinstall the package again."""
 
 __version__ = "1.2.5"
 
-__all__ = ["__version__", "test", "LikNormMachine"]
+__all__ = ["__version__", "test", "LikNormMachine", "lib"]

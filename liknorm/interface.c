@@ -1,4 +1,5 @@
 #include "liknorm/liknorm.h"
+#include <math.h>
 
 enum Lik {
     BERNOULLI,
@@ -46,4 +47,11 @@ void apply2d(struct LikNormMachine *machine, enum Lik lik, int size, double *x0,
         liknorm_set_prior(machine, tau[i], eta[i]);
         liknorm_integrate(machine, log_zeroth + i, mean + i, variance + i);
     }
+}
+
+int allfinite(int size, double const *arr) {
+    for (int i = 0; i < size; ++i)
+        if (!isfinite(arr[i]))
+            return 0;
+    return 1;
 }

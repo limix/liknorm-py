@@ -1,15 +1,6 @@
-try:
-    from ._ffi import ffi, lib
-    from ._ffi.lib import apply1d, apply2d, create_machine, destroy_machine
-except ImportError as e:
-    msg = "\nIt is likely caused by a broken installation of this package."
-    msg += "\nPlease, make sure you have a C compiler and try to uninstall"
-    msg += "\nand reinstall the package again."
-    raise ImportError(str(e) + msg)
+from ._ffi import ffi, lib
 
-
-def ptr(a):
-    return ffi.cast("double *", a.ctypes.data)
+__all__ = ["LikNormMachine"]
 
 
 class LikNormMachine(object):
@@ -44,17 +35,17 @@ class LikNormMachine(object):
 
     def __init__(self, likname, npoints=500):
         self._likname = likname
-        self._machine = create_machine(npoints)
+        self._machine = lib.create_machine(npoints)
         self._lik = getattr(lib, likname.upper())
         if likname.lower() == "binomial":
-            self._apply = apply2d
+            self._apply = lib.apply2d
         elif likname.lower() == "nbinomial":
-            self._apply = apply2d
+            self._apply = lib.apply2d
         else:
-            self._apply = apply1d
+            self._apply = lib.apply1d
 
     def finish(self):
-        destroy_machine(self._machine)
+        lib.destroy_machine(self._machine)
 
     def moments(self, y, eta, tau, moments):
         r"""First three moments of ExpFam times Normal distribution.
@@ -72,15 +63,13 @@ class LikNormMachine(object):
         moments : dict
             Log_zeroth, mean, and variance result.
         """
-        from numpy import all as npall, asarray, float64, isfinite
-
         size = len(moments["log_zeroth"])
         if not isinstance(y, (list, tuple)):
             y = (y,)
 
-        y = tuple(asarray(yi, float64) for yi in y)
-        tau = asarray(tau, float64)
-        eta = asarray(eta, float64)
+        y = tuple(asarray(yi) for yi in y)
+        tau = asarray(tau)
+        eta = asarray(eta)
 
         args = y + (
             tau,
@@ -92,11 +81,35 @@ class LikNormMachine(object):
 
         self._apply(self._machine, self._lik, size, *(ptr(a) for a in args))
 
-        if not npall(isfinite(moments["log_zeroth"])):
+        if not allfinite(moments["log_zeroth"]):
             raise ValueError("Non-finite value found in _log_zeroth_.")
 
-        if not npall(isfinite(moments["mean"])):
+        if not allfinite(moments["mean"]):
             raise ValueError("Non-finite value found in _mean_.")
 
-        if not npall(isfinite(moments["variance"])):
+        if not allfinite(moments["variance"]):
             raise ValueError("Non-finite value found in _variance_.")
+
+
+def asarray(seq):
+    from ctypes import c_double
+
+    tup = tuple(seq)
+    return (c_double * len(tup))(*tup)
+
+
+def allfinite(arr):
+    return lib.allfinite(len(arr), ptr(arr)) == 1
+
+
+def ptr(a):
+    import ctypes
+
+    if a.__class__.__name__ == "<cdata>":
+        return a
+    elif hasattr(a, "ctypes"):
+        addr = a.ctypes.data
+    else:
+        addr = ctypes.addressof(a)
+
+    return ffi.cast("double *", addr)

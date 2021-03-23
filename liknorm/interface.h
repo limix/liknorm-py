@@ -17,3 +17,4 @@ void apply1d(struct LikNormMachine *, enum Lik, int, double *, double *,
 void apply2d(struct LikNormMachine *, enum Lik, int, double *, double *,
              double *, double *, double *, double *, double *);
 void destroy_machine(struct LikNormMachine *);
+int allfinite(int size, double const *arr);
