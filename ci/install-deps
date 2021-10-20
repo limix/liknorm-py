@@ -2,4 +2,4 @@
 
 SUDO=$(type sudo 2>&1 >/dev/null && echo -n "sudo" || true)
 
-$SUDO /bin/bash -c "$(curl -fsSL https://git.io/JerYI)" -s limix/liknorm
+$SUDO /bin/bash -c "$(curl -fsSL https://git.io/Jz7Oa)" -s limix/liknorm
