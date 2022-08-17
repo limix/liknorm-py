@@ -11,17 +11,21 @@ class LikNormMachine(object):
 
     .. doctest::
 
-        >>> from array import array
+        >>> import ctypes
         >>> from liknorm import LikNormMachine
         >>>
-        >>> machine = LikNormMachine('bernoulli')
-        >>> outcome = array("d", [0, 1, 1, 0, 1])
-        >>> tau = array("d", [0.85794562, 0.84725174, 0.6235637 , 0.38438171, 0.29753461])
-        >>> eta = array("d", [-0.04721714, -0.09091897,  0.85145577, -0.03755245, -0.72180545])
+        >>> def array(x):
+        ...     seq = ctypes.c_double * len(x)
+        ...     return seq(*x)
         >>>
-        >>> log_zeroth = empty(5, dtype=float64)
-        >>> mean = empty(5, dtype=float64)
-        >>> variance = empty(5, dtype=float64)
+        >>> machine = LikNormMachine('bernoulli')
+        >>> outcome = array([0, 1, 1, 0, 1])
+        >>> tau = array([0.85794562, 0.84725174, 0.6235637, 0.38438171, 0.29753461])
+        >>> eta = array([-0.04721714, -0.09091897, 0.85145577, -0.03755245, -0.72180545])
+        >>>
+        >>> log_zeroth = array([0] * 5)
+        >>> mean = empty([0] * 5)
+        >>> variance = empty([0] * 5)
         >>>
         >>> moments = {'log_zeroth': log_zeroth, 'mean': mean,
         ...            'variance': variance}

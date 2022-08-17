@@ -1,8 +1,13 @@
-from array import array
+import ctypes
 
 import pytest
 
 from liknorm import LikNormMachine
+
+
+def array(x):
+    seq = ctypes.c_double * len(x)
+    return seq(*x)
 
 
 def test_sizeof_double():
@@ -20,16 +25,16 @@ def test_alignof_double():
 def test_nbinomial():
     machine = LikNormMachine("nbinomial", 500)
 
-    nfails = array("d", [45, 48, 65, 68, 68])
-    nsuc = array("d", [10, 84, 22, 37, 88])
+    nfails = array([45, 48, 65, 68, 68])
+    nsuc = array([10, 84, 22, 37, 88])
 
     y = (nsuc, nfails)
-    ceta = array("d", [0.891773, 0.96366276, 0.38344152, 0.79172504, 0.52889492])
-    ctau = array("d", [0.6786729, 0.11725368, 0.17019559, 0.26417832, 0.79021083])
+    ceta = array([0.891773, 0.96366276, 0.38344152, 0.79172504, 0.52889492])
+    ctau = array([0.6786729, 0.11725368, 0.17019559, 0.26417832, 0.79021083])
 
-    lmom0 = array("d", [0] * 5)
-    hmu = array("d", [0] * 5)
-    hvar = array("d", [0] * 5)
+    lmom0 = array([0] * 5)
+    hmu = array([0] * 5)
+    hvar = array([0] * 5)
 
     machine.moments(y, ceta, ctau, {"log_zeroth": lmom0, "mean": hmu, "variance": hvar})
     assert lmom0 == pytest.approx(
@@ -64,16 +69,16 @@ def test_nbinomial():
 def test_liknormmachine():
     machine = LikNormMachine("binomial", 500)
 
-    ntrials = array("d", [45, 48, 65, 68, 68])
-    nsuccesses = array("d", [39, 9, 21, 36, 12])
+    ntrials = array([45, 48, 65, 68, 68])
+    nsuccesses = array([39, 9, 21, 36, 12])
 
     y = (nsuccesses, ntrials)
-    ceta = array("d", [0.38344152, 0.79172504, 0.52889492, 0.56804456, 0.92559664])
-    ctau = array("d", [0.17019559, 0.26417832, 0.79021083, -0.11653904, 0.28977441])
+    ceta = array([0.38344152, 0.79172504, 0.52889492, 0.56804456, 0.92559664])
+    ctau = array([0.17019559, 0.26417832, 0.79021083, -0.11653904, 0.28977441])
 
-    lmom0 = array("d", [0] * 5)
-    hmu = array("d", [0] * 5)
-    hvar = array("d", [0] * 5)
+    lmom0 = array([0] * 5)
+    hmu = array([0] * 5)
+    hvar = array([0] * 5)
 
     machine.moments(y, ceta, ctau, {"log_zeroth": lmom0, "mean": hmu, "variance": hvar})
 
@@ -85,7 +90,8 @@ def test_liknormmachine():
             -5413594.18975537,
             -7.042068e00,
         ],
-        atol=1e-7,
+        abs=1e-7,
+        rel=1e-7,
     )
     assert hmu == pytest.approx(
         [
@@ -95,8 +101,8 @@ def test_liknormmachine():
             0.1536059386302032,
             -1.4381119148114612,
         ],
-        rtol=1e-5,
-        atol=1e-5,
+        rel=1e-5,
+        abs=1e-5,
     )
     assert hvar == pytest.approx(
         [
@@ -106,7 +112,7 @@ def test_liknormmachine():
             0.06004980146234101,
             0.09355299409238738,
         ],
-        atol=1e-7,
+        abs=1e-7,
     )
 
     machine.finish()
