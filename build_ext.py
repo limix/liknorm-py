@@ -7,18 +7,7 @@ from pathlib import Path
 from typing import List
 
 from cffi import FFI
-
-CMAKE_BIN_DIR: str = ""
-if "LIKNORM_USE_NATIVE_CMAKE" in os.environ:
-    import shutil
-
-    which = shutil.which("cmake")
-    if which is None:
-        CMAKE_BIN_DIR = ""
-    else:
-        CMAKE_BIN_DIR = str(Path(which).parent)
-else:
-    from cmake import CMAKE_BIN_DIR
+from cmake import CMAKE_BIN_DIR
 
 pwd = Path(os.path.dirname(os.path.abspath(__file__)))
 

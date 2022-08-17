@@ -1,4 +1,3 @@
 #!/bin/bash
 
-python -m pip install numpy pytest
 (cd ~/ && python -c "import liknorm; import sys; sys.exit(liknorm.test())")

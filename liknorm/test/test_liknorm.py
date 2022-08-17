@@ -1,6 +1,6 @@
-from numpy import asarray, empty, float64
-from numpy.random import RandomState
-from numpy.testing import assert_allclose, assert_equal
+from array import array
+
+import pytest
 
 from liknorm import LikNormMachine
 
@@ -8,89 +8,76 @@ from liknorm import LikNormMachine
 def test_sizeof_double():
     from liknorm._ffi import ffi
 
-    assert_equal(ffi.sizeof("double"), 8)
+    assert ffi.sizeof("double") == 8
 
 
 def test_alignof_double():
     from liknorm._ffi import ffi
 
-    assert_equal(ffi.alignof("double"), 8)
+    assert ffi.alignof("double") == 8
 
 
 def test_nbinomial():
     machine = LikNormMachine("nbinomial", 500)
-    random = RandomState(0)
 
-    nfails = random.randint(1, 100, 5)
-    nsuc = random.randint(1, 100, 5)
-
-    nfails = asarray(nfails)
-    nsuc = asarray(nsuc)
+    nfails = array("d", [45, 48, 65, 68, 68])
+    nsuc = array("d", [10, 84, 22, 37, 88])
 
     y = (nsuc, nfails)
-    ceta = random.rand(5)
-    ctau = random.randn(5) * ceta
+    ceta = array("d", [0.891773, 0.96366276, 0.38344152, 0.79172504, 0.52889492])
+    ctau = array("d", [0.6786729, 0.11725368, 0.17019559, 0.26417832, 0.79021083])
 
-    lmom0 = empty(5, dtype=float64)
-    hmu = empty(5, dtype=float64)
-    hvar = empty(5, dtype=float64)
+    lmom0 = array("d", [0] * 5)
+    hmu = array("d", [0] * 5)
+    hvar = array("d", [0] * 5)
 
     machine.moments(y, ceta, ctau, {"log_zeroth": lmom0, "mean": hmu, "variance": hvar})
-    assert_allclose(
-        lmom0,
+    assert lmom0 == pytest.approx(
         [
             -6.688190743822304,
             -11.848482135668725,
             -6.320829229997251,
             -7.7975162914848495,
             -6.961932752665928,
-        ],
+        ]
     )
-    assert_allclose(
-        hmu,
+    assert hmu == pytest.approx(
         [
             -1.6079762669836217,
             -0.45726655885016254,
             -1.382021246058259,
             -1.0425380666681345,
             -0.5764620124469887,
-        ],
+        ]
     )
-    assert_allclose(
-        hvar,
+    assert hvar == pytest.approx(
         [
             0.0661209766656623,
             0.00433977357754467,
             0.0336457123502909,
             0.017150960486480127,
             0.004931267843872045,
-        ],
+        ]
     )
-    pass
 
 
 def test_liknormmachine():
     machine = LikNormMachine("binomial", 500)
-    random = RandomState(0)
 
-    ntrials = random.randint(1, 100, 5)
-    nsuccesses = [random.randint(0, i + 1) for i in ntrials]
-
-    ntrials = asarray(ntrials)
-    nsuccesses = asarray(nsuccesses)
+    ntrials = array("d", [45, 48, 65, 68, 68])
+    nsuccesses = array("d", [39, 9, 21, 36, 12])
 
     y = (nsuccesses, ntrials)
-    ceta = random.rand(5)
-    ctau = random.randn(5) * ceta
+    ceta = array("d", [0.38344152, 0.79172504, 0.52889492, 0.56804456, 0.92559664])
+    ctau = array("d", [0.17019559, 0.26417832, 0.79021083, -0.11653904, 0.28977441])
 
-    lmom0 = empty(5, dtype=float64)
-    hmu = empty(5, dtype=float64)
-    hvar = empty(5, dtype=float64)
+    lmom0 = array("d", [0] * 5)
+    hmu = array("d", [0] * 5)
+    hvar = array("d", [0] * 5)
 
     machine.moments(y, ceta, ctau, {"log_zeroth": lmom0, "mean": hmu, "variance": hvar})
 
-    assert_allclose(
-        lmom0,
+    assert lmom0 == pytest.approx(
         [
             -3.4782483463503002,
             -6.179203e00,
@@ -100,8 +87,7 @@ def test_liknormmachine():
         ],
         atol=1e-7,
     )
-    assert_allclose(
-        hmu,
+    assert hmu == pytest.approx(
         [
             1.9525410876129807,
             -1.3518369482936494,
@@ -112,8 +98,7 @@ def test_liknormmachine():
         rtol=1e-5,
         atol=1e-5,
     )
-    assert_allclose(
-        hvar,
+    assert hvar == pytest.approx(
         [
             0.20087012833902396,
             0.12571722809509622,

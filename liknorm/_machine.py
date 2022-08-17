@@ -11,15 +11,13 @@ class LikNormMachine(object):
 
     .. doctest::
 
-        >>> from numpy import empty, float64
-        >>> from numpy.random import RandomState
+        >>> from array import array
         >>> from liknorm import LikNormMachine
         >>>
         >>> machine = LikNormMachine('bernoulli')
-        >>> random = RandomState(0)
-        >>> outcome = random.randint(0, 2, 5)
-        >>> tau = random.rand(5)
-        >>> eta = random.randn(5) * tau
+        >>> outcome = array("d", [0, 1, 1, 0, 1])
+        >>> tau = array("d", [0.85794562, 0.84725174, 0.6235637 , 0.38438171, 0.29753461])
+        >>> eta = array("d", [-0.04721714, -0.09091897,  0.85145577, -0.03755245, -0.72180545])
         >>>
         >>> log_zeroth = empty(5, dtype=float64)
         >>> mean = empty(5, dtype=float64)
