@@ -24,8 +24,8 @@ class LikNormMachine(object):
         >>> eta = array([-0.04721714, -0.09091897, 0.85145577, -0.03755245, -0.72180545])
         >>>
         >>> log_zeroth = array([0] * 5)
-        >>> mean = empty([0] * 5)
-        >>> variance = empty([0] * 5)
+        >>> mean = array([0] * 5)
+        >>> variance = array([0] * 5)
         >>>
         >>> moments = {'log_zeroth': log_zeroth, 'mean': mean,
         ...            'variance': variance}
