@@ -1,9 +1,53 @@
-[project]
-requires-python = ">=3.7"
-
-# Aside - in pyproject.toml you should always specify minimal build
-# system options, like this:
-
 [build-system]
-requires = ["setuptools>=54", "wheel", "cffi"]
-build-backend = "setuptools.build_meta"
+requires = ["poetry_core>=1.0.8", "cffi>=1.15.1", "cmake>=3.22.5"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "liknorm"
+version = "1.2.7"
+description = "Liknorm Python wrapper"
+
+license = "MIT"
+
+authors = ["Danilo Horta <danilo.horta@pm.me>"]
+
+readme = "README.md"
+
+repository = "https://github.com/limix/liknorm-py"
+homepage = "https://github.com/limix/liknorm-py"
+
+keywords = ["liknorm", "integration"]
+
+classifiers = ["License :: OSI Approved :: MIT License"]
+include = [
+  { path = "build_ext_deps", format = "sdist" },
+  { path = "liknorm/*.c", format = "sdist" },
+  { path = "liknorm/*.h", format = "sdist" },
+  { path = "liknorm/*.pyd", format = "wheel" },
+  { path = "liknorm/*.so", format = "wheel" },
+]
+
+[tool.poetry.dependencies]
+pytest = "*"
+python = ">=3.7,<3.11"
+
+[tool.poetry.dev-dependencies]
+black = "*"
+isort = "*"
+pyright = "*"
+pytest = "*"
+
+[tool.poetry.build]
+script = "build_ext.py"
+generate-setup-file = false
+
+[tool.cibuildwheel]
+skip = "pp* *-win32 *_i686 *musllinux*"
+manylinux-x86_64-image = "manylinux2014"
+manylinux-aarch64-image = "manylinux2014"
+
+[tool.cibuildwheel.linux]
+before-all = "yum install -y libffi-devel"
+
+[tool.isort]
+profile = "black"
