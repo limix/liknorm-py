@@ -19,7 +19,7 @@ def rm(folder: Path, pattern: str):
 
 def get_cmake_bin():
     bins = [str(v) for v in Path(CMAKE_BIN_DIR).glob("cmake*")]
-    return str(sorted(bins, key=lambda v: len(v)))
+    return str(sorted(bins, key=lambda v: len(v))[0])
 
 
 def build_deps(pwd: Path, user: str, project: str, version: str):
