@@ -1,8 +1,0 @@
-#!/bin/bash
-
-yum install -y libffi libffi-devel
-yum remove -y cmake
-
-pip install cmake
-
-/bin/bash -c "$(curl -fsSL https://git.io/JerYI)" -s limix/liknorm

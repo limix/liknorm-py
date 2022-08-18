@@ -1,5 +1,0 @@
-#!/bin/bash
-
-SUDO=$(type sudo 2>&1 >/dev/null && echo -n "sudo" || true)
-
-$SUDO /bin/bash -c "$(curl -fsSL https://bit.ly/3Kv06KA)" -s limix/liknorm
