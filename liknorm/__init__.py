@@ -21,6 +21,6 @@ and reinstall the package again."""
 
     raise RuntimeError(str(e) + _ffi_err)
 
-__version__ = "1.2.7"
+__version__ = "1.2.8"
 
 __all__ = ["__version__", "test", "LikNormMachine", "lib"]
