@@ -1,15 +1,12 @@
 import os
+import platform
 import shutil
 import subprocess
+import sys
 import tarfile
 import urllib.request
 from pathlib import Path
 from typing import List
-
-from cffi import FFI
-from cmake import CMAKE_BIN_DIR
-
-pwd = Path(os.path.dirname(os.path.abspath(__file__)))
 
 
 def rm(folder: Path, pattern: str):
@@ -18,8 +15,22 @@ def rm(folder: Path, pattern: str):
 
 
 def get_cmake_bin():
+    from cmake import CMAKE_BIN_DIR
+
     bins = [str(v) for v in Path(CMAKE_BIN_DIR).glob("cmake*")]
     return str(sorted(bins, key=lambda v: len(v))[0])
+
+
+def darwin_setup():
+    os.environ.setdefault("MACOSX_DEPLOYMENT_TARGET", "11.0")
+
+    machine = platform.machine()
+    # Set by setuptools/cibuildwheels
+    archflags = os.environ.get("ARCHFLAGS")
+    if archflags is not None:
+        machine = ";".join(set(archflags.split()) & {"x86_64", "arm64"})
+
+    os.environ.setdefault("CMAKE_OSX_ARCHITECTURES", machine)
 
 
 def build_deps(pwd: Path, user: str, project: str, version: str):
@@ -42,6 +53,9 @@ def build_deps(pwd: Path, user: str, project: str, version: str):
 
     with tarfile.open(ext_dir / tar_filename) as tf:
         tf.extractall(ext_dir)
+
+    if sys.platform == "darwin":
+        darwin_setup()
 
     cmake_bin = get_cmake_bin()
     subprocess.check_call(
@@ -66,30 +80,39 @@ def build_deps(pwd: Path, user: str, project: str, version: str):
     rm(ext_dir / "lib64", "*.so*")
 
 
-if not os.getenv("LIKNORM_SKIP_BUILD_DEPS", False):
-    build_deps(pwd, "limix", "liknorm", "1.5.7")
+def compile_extension():
 
-with open(pwd / "liknorm" / "interface.h", "r") as f:
-    interface_h = f.read()
+    from cffi import FFI
 
-with open(pwd / "liknorm" / "interface.c", "r") as f:
-    interface_c = f.read()
+    ffibuilder = FFI()
 
-extra_link_args: List[str] = []
-if "LIKNORM_EXTRA_LINK_ARGS" in os.environ:
-    extra_link_args += os.environ["LIKNORM_EXTRA_LINK_ARGS"].split(os.pathsep)
+    pwd = Path(os.path.dirname(os.path.abspath(__file__)))
 
-ffibuilder = FFI()
-ffibuilder.cdef(interface_h)
-ffibuilder.set_source(
-    "liknorm._ffi",
-    interface_c,
-    libraries=["liknorm"],
-    extra_link_args=extra_link_args,
-    language="c",
-    library_dirs=[str(pwd / ".ext_deps" / "lib"), str(pwd / ".ext_deps" / "lib64")],
-    include_dirs=[str(pwd / ".ext_deps" / "include")],
-)
+    if not os.getenv("LIKNORM_SKIP_BUILD_DEPS", False):
+        build_deps(pwd, "limix", "liknorm", "1.5.7")
+
+    with open(pwd / "liknorm" / "interface.h", "r") as f:
+        interface_h = f.read()
+
+    with open(pwd / "liknorm" / "interface.c", "r") as f:
+        interface_c = f.read()
+
+    extra_link_args: List[str] = []
+    if "LIKNORM_EXTRA_LINK_ARGS" in os.environ:
+        extra_link_args += os.environ["LIKNORM_EXTRA_LINK_ARGS"].split(os.pathsep)
+
+    ffibuilder.cdef(interface_h)
+    ffibuilder.set_source(
+        "liknorm._ffi",
+        interface_c,
+        libraries=["liknorm"],
+        extra_link_args=extra_link_args,
+        language="c",
+        library_dirs=[str(pwd / ".ext_deps" / "lib"), str(pwd / ".ext_deps" / "lib64")],
+        include_dirs=[str(pwd / ".ext_deps" / "include")],
+    )
+    ffibuilder.compile(verbose=True)
+
 
 if __name__ == "__main__":
-    ffibuilder.compile(verbose=True)
+    compile_extension()
