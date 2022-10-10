@@ -89,7 +89,7 @@ def compile_extension():
     pwd = Path(os.path.dirname(os.path.abspath(__file__)))
 
     if not os.getenv("LIKNORM_SKIP_BUILD_DEPS", False):
-        build_deps(pwd, "limix", "liknorm", "1.5.7")
+        build_deps(pwd, "limix", "liknorm", "1.5.8")
 
     with open(pwd / "liknorm" / "interface.h", "r") as f:
         interface_h = f.read()

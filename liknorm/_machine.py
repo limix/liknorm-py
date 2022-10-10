@@ -6,6 +6,11 @@ __all__ = ["LikNormMachine"]
 class LikNormMachine(object):
     r"""Moments of ExpFam times Normal distribution.
 
+    Parameters
+    ----------
+    likname : string
+        Likelihood name.
+
     Example
     -------
 
@@ -54,14 +59,12 @@ class LikNormMachine(object):
 
         Parameters
         ----------
-        likname : string
-            Likelihood name.
         y : array_like
             Outcome.
         eta : array_like
-            Inverse of the variance (1/variance).
+            Mean times tau.
         tau : array_like
-            Mean times eta.
+            Inverse of the variance (1/variance).
         moments : dict
             Log_zeroth, mean, and variance result.
         """

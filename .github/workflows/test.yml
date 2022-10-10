@@ -15,6 +15,6 @@ jobs:
 
       - name: Test it
         run: |
-          pipx install poetry==1.2.0b3
+          pipx install poetry>=1.2.1
           poetry install
           poetry run pytest

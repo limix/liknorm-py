@@ -4,23 +4,16 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "liknorm"
-version = "1.2.8"
+version = "1.2.9"
 description = "Liknorm Python wrapper"
-
 license = "MIT"
-
 authors = ["Danilo Horta <danilo.horta@pm.me>"]
-
 readme = "README.md"
-
 repository = "https://github.com/limix/liknorm-py"
 homepage = "https://github.com/limix/liknorm-py"
-
 keywords = ["liknorm", "integration"]
-
 classifiers = ["License :: OSI Approved :: MIT License"]
 include = [
-  { path = "build_ext_deps", format = "sdist" },
   { path = "liknorm/*.c", format = "sdist" },
   { path = "liknorm/*.h", format = "sdist" },
   { path = "liknorm/*.pyd", format = "wheel" },
@@ -31,6 +24,7 @@ include = [
 cffi = "*"
 pytest = "*"
 python = ">=3.8,<3.11"
+urllib3 = ">=1.26"
 
 [tool.poetry.dev-dependencies]
 black = "*"
