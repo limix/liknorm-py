@@ -30,7 +30,7 @@ jobs:
         uses: pypa/cibuildwheel@v2.9.0
         env:
           CIBW_ARCHS_LINUX: ${{ matrix.config.arch }}
-          CIBW_PROJECT_REQUIRES_PYTHON: ">=3.8,<3.11"
+          CIBW_PROJECT_REQUIRES_PYTHON: ">=3.8,<3.12"
           CIBW_TEST_COMMAND: "bash {project}/ci/test"
           CIBW_BEFORE_BUILD: "python -m pip install cffi cmake --upgrade && python build_ext.py"
           CIBW_BUILD_VERBOSITY: 1
@@ -39,7 +39,7 @@ jobs:
         if: matrix.config.name == 'Windows'
         uses: pypa/cibuildwheel@v2.9.0
         env:
-          CIBW_PROJECT_REQUIRES_PYTHON: ">=3.8,<3.11"
+          CIBW_PROJECT_REQUIRES_PYTHON: ">=3.8,<3.12"
           CIBW_TEST_COMMAND: "bash {project}/ci/test"
           CIBW_BEFORE_BUILD: "python -m pip install cffi cmake --upgrade && python build_ext.py"
           CIBW_BUILD_VERBOSITY: 1
@@ -49,7 +49,7 @@ jobs:
         uses: pypa/cibuildwheel@v2.9.0
         env:
           CIBW_ARCHS_MACOS: ${{ matrix.config.arch }}
-          CIBW_PROJECT_REQUIRES_PYTHON: ">=3.8,<3.11"
+          CIBW_PROJECT_REQUIRES_PYTHON: ">=3.8,<3.12"
           CIBW_TEST_COMMAND: "bash {project}/ci/test"
           CIBW_BEFORE_BUILD: "python -m pip install cffi cmake --upgrade && python build_ext.py"
           CIBW_BUILD_VERBOSITY: 1
