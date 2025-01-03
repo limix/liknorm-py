@@ -1,5 +1,5 @@
 [build-system]
-requires = ["poetry-core>=1.0.8", "cffi>=1.15.1", "cmake>=3.22.5"]
+requires = ["poetry-core", "cffi", "cmake", "urllib3"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
@@ -21,20 +21,15 @@ include = [
 ]
 
 [tool.poetry.dependencies]
-cffi = "*"
-pytest = "*"
-python = ">=3.8,<3.12"
-urllib3 = ">=1.26"
-
-[tool.poetry.dev-dependencies]
-black = "*"
-isort = "*"
-pyright = "*"
-pytest = "*"
+python = "^3.10"
+cffi = "^1.17.1"
 
 [tool.poetry.build]
 script = "build_ext.py"
 generate-setup-file = false
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.4"
 
 [tool.cibuildwheel]
 skip = "pp* *-win32 *_i686 *musllinux*"
@@ -43,6 +38,3 @@ manylinux-aarch64-image = "manylinux2014"
 
 [tool.cibuildwheel.linux]
 before-all = "yum install -y libffi-devel"
-
-[tool.isort]
-profile = "black"
