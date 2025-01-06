@@ -11,8 +11,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run image
+        uses: abatilo/actions-poetry@v4
+        with:
+          poetry-version: "latest"
 
       - name: Run tests
         run: |
-          pipx run poetry install
-          pipx run poetry run pytest
+          poetry install
+          poetry run pytest
