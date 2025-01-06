@@ -16,6 +16,8 @@ def envlist(name: str) -> list[str]:
 
 
 def uname():
+    if os.name == "nt":
+        return "Windows"
     return os.uname().sysname
 
 
