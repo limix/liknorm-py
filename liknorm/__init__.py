@@ -12,7 +12,7 @@ from ._machine import LikNormMachine
 from ._testit import test
 
 try:
-    from ._ffi import lib
+    from ._cffi import lib
 except Exception as e:
     _ffi_err = """
 It is likely caused by a broken installation of this package.
