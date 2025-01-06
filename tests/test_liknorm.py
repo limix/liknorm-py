@@ -11,13 +11,13 @@ def array(x):
 
 
 def test_sizeof_double():
-    from liknorm._ffi import ffi
+    from liknorm._cffi import ffi
 
     assert ffi.sizeof("double") == 8
 
 
 def test_alignof_double():
-    from liknorm._ffi import ffi
+    from liknorm._cffi import ffi
 
     assert ffi.alignof("double") == 8
 
