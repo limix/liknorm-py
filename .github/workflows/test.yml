@@ -2,6 +2,9 @@ name: 🧪 Test
 
 on: push
 
+env:
+  CC: gcc
+
 jobs:
   test:
     runs-on: ${{ matrix.os }}
@@ -19,6 +22,10 @@ jobs:
         uses: abatilo/actions-poetry@v4
         with:
           poetry-version: "latest"
+
+      - name: install make
+        run: choco install -y make
+        if: runner.os == 'Windows'
 
       - name: Run tests
         run: |
