@@ -1,10 +1,6 @@
-[build-system]
-requires = ["poetry-core", "cffi", "cmake", "urllib3"]
-build-backend = "poetry.core.masonry.api"
-
 [tool.poetry]
 name = "liknorm"
-version = "1.2.10"
+version = "2.0.0"
 description = "Liknorm Python wrapper"
 license = "MIT"
 authors = ["Danilo Horta <danilo.horta@pm.me>"]
@@ -14,27 +10,38 @@ homepage = "https://github.com/limix/liknorm-py"
 keywords = ["liknorm", "integration"]
 classifiers = ["License :: OSI Approved :: MIT License"]
 include = [
-  { path = "liknorm/*.c", format = "sdist" },
-  { path = "liknorm/*.h", format = "sdist" },
-  { path = "liknorm/*.pyd", format = "wheel" },
   { path = "liknorm/*.so", format = "wheel" },
+  { path = "liknorm/*.pyd", format = "wheel" },
+  { path = "liknorm/lib/lib*", format = "wheel" },
+  { path = "build_ext.py", format = "sdist" },
 ]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-cffi = "^1.17.1"
+cffi = "^1.17"
 
 [tool.poetry.build]
 script = "build_ext.py"
 generate-setup-file = false
 
 [tool.poetry.group.dev.dependencies]
-pytest = "^8.3.4"
+pytest = "^8.2"
+gitpython = "^3.1.43"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+
+[build-system]
+requires = [
+  "poetry-core",
+  "cffi",
+  "GitPython",
+  "setuptools;python_version>='3.12'",
+]
+build-backend = "poetry.core.masonry.api"
 
 [tool.cibuildwheel]
-skip = "pp* *-win32 *_i686 *musllinux*"
-manylinux-x86_64-image = "manylinux2014"
-manylinux-aarch64-image = "manylinux2014"
+skip = ["*i686"]
 
 [tool.cibuildwheel.linux]
-before-all = "yum install -y libffi-devel"
+archs = ["auto", "aarch64"]

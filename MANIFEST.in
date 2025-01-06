@@ -1,6 +1,0 @@
-include LICENSE.md
-include README.md
-include liknorm/interface.c
-include liknorm/interface.h
-include liknorm/liknorm.dll
-include version.py
