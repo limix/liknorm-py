@@ -1,4 +1,4 @@
-from ._ffi import ffi, lib
+from liknorm._cffi import ffi, lib
 
 __all__ = ["LikNormMachine"]
 
