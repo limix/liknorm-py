@@ -1,3 +1,10 @@
+.build_ext/
+cffi.*
+_cffi.*
+liknorm/include/
+liknorm/lib/
+liknorm/share/
+
 poetry.lock
 liknorm/_ffi.c
 .ext_deps/
