@@ -2,7 +2,7 @@ import os
 import shutil
 import sysconfig
 from pathlib import Path
-from subprocess import check_call
+from subprocess import check_call, check_output
 
 from cffi import FFI
 from git import Repo
@@ -38,7 +38,9 @@ def build_and_install(root: Path, prefix: str, git_url: str, dst_dir: str):
         target = sysconfig.get_config_var("MACOSX_DEPLOYMENT_TARGET")
         env["MACOSX_DEPLOYMENT_TARGET"] = target
 
-    check_call(["ls"], cwd=root / dst_dir, env=env)
+    output = check_output(["ls"], cwd=root / dst_dir, env=env)
+    print("DANILO AQUI")
+    print(output)
     check_call(["make"], cwd=root / dst_dir, env=env)
     check_call(["make", "install"], cwd=root / dst_dir, env=env)
 
