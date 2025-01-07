@@ -156,6 +156,11 @@ jobs:
             make_linux_intel_pp_wheels, make_linux_arm_pp_wheels, make_macos_intel_wheels,
             make_macos_arm_wheels, make_sdist]
     runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/deciphon-poster
+    permissions:
+      id-token: write
     steps:
       - uses: actions/download-artifact@v3
         with:
@@ -164,5 +169,6 @@ jobs:
 
       - uses: pypa/gh-action-pypi-publish@release/v1
         with:
-          password: ${{ secrets.PYPI_API_TOKEN }}
+          packages-dir: poster/dist
           skip-existing: true
+          verbose: true
