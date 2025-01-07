@@ -41,7 +41,10 @@ requires = [
 build-backend = "poetry.core.masonry.api"
 
 [tool.cibuildwheel]
-skip = ["*i686"]
+skip = ["*i686", "*-win32"]
 
 [tool.cibuildwheel.linux]
 archs = ["auto", "aarch64"]
+
+[tool.cibuildwheel.windows]
+archs = ["auto64"]
