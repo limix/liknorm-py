@@ -22,11 +22,14 @@ def uname():
 
 
 def build_and_install(root: Path, prefix: str, git_url: str, dst_dir: str):
-    os.makedirs(root / ".gitdir", exist_ok=True)
-    shutil.rmtree(root / ".gitdir" / dst_dir, ignore_errors=True)
-    Repo.clone_from(git_url, root / ".gitdir" / dst_dir, depth=1)
-    shutil.rmtree(root / dst_dir, ignore_errors=True)
-    shutil.move(root / ".gitdir" / dst_dir, root / dst_dir)
+    git_dir = root / ".gitdir"
+
+    os.makedirs(git_dir, exist_ok=True)
+    shutil.rmtree(git_dir / dst_dir)
+    Repo.clone_from(git_url, git_dir / dst_dir, depth=1)
+
+    shutil.rmtree(root / dst_dir)
+    shutil.move(git_dir / dst_dir, root / dst_dir)
 
     env = os.environ.copy()
     env["C_INCLUDE_PATH"] = ":".join(envlist("C_INCLUDE_PATH") + [f"{prefix}/include"])
@@ -38,9 +41,18 @@ def build_and_install(root: Path, prefix: str, git_url: str, dst_dir: str):
         target = sysconfig.get_config_var("MACOSX_DEPLOYMENT_TARGET")
         env["MACOSX_DEPLOYMENT_TARGET"] = target
 
-    output = check_output(["ls"], cwd=root / dst_dir, env=env)
-    print("DANILO AQUI")
+    output = check_output(["ls"], cwd=root, env=env)
+    print("DANILO AQUI: ROOT")
     print(output)
+
+    output = check_output(["ls"], cwd=root / ".gitdir", env=env)
+    print("DANILO AQUI: ROOT/.gitdir")
+    print(output)
+
+    output = check_output(["ls"], cwd=root / dst_dir, env=env)
+    print("DANILO AQUI ROOT/dst_dir")
+    print(output)
+
     check_call(["make"], cwd=root / dst_dir, env=env)
     check_call(["make", "install"], cwd=root / dst_dir, env=env)
 
