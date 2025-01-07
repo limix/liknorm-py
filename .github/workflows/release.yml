@@ -158,7 +158,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: pypi
-      url: https://pypi.org/p/deciphon-poster
+      url: https://pypi.org/p/liknorm
     permissions:
       id-token: write
     steps:
@@ -169,6 +169,6 @@ jobs:
 
       - uses: pypa/gh-action-pypi-publish@release/v1
         with:
-          packages-dir: poster/dist
+          packages-dir: dist
           skip-existing: true
           verbose: true
