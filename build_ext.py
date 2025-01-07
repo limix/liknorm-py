@@ -25,10 +25,12 @@ def build_and_install(root: Path, prefix: str, git_url: str, dst_dir: str):
     git_dir = root / ".gitdir"
 
     os.makedirs(git_dir, exist_ok=True)
-    shutil.rmtree(git_dir / dst_dir)
+    if (git_dir / dst_dir).exists():
+        shutil.rmtree(git_dir / dst_dir)
     Repo.clone_from(git_url, git_dir / dst_dir, depth=1)
 
-    shutil.rmtree(root / dst_dir)
+    if (root / dst_dir).exists():
+        shutil.rmtree(root / dst_dir)
     shutil.move(git_dir / dst_dir, root / dst_dir)
 
     env = os.environ.copy()
