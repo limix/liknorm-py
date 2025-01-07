@@ -27,6 +27,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Setup architecture
+        run: |
+          echo "CIBW_ARCHS_WINDOWS=AMD64" >> "$GITHUB_ENV"
+          echo "CIBW_BUILD=cp*" >> "$GITHUB_ENV"
+
       - name: Build wheels
         run: pipx run cibuildwheel==2.22.0
 
