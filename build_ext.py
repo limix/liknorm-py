@@ -43,7 +43,6 @@ def build_and_install(
 
     check_call(["make"], cwd=root / dst_dir, env=env)
     if uname() == "Windows":
-        env["CC"] = "gcc"
         lib_dir = Path(prefix) / "lib"
         os.makedirs(lib_dir)
         shutil.copy(root / dst_dir / "libliknorm.a", lib_dir / "liknorm.lib")

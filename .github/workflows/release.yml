@@ -21,6 +21,18 @@ jobs:
         with:
           path: dist/*.tar.gz
 
+  make_windows_wheels:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Build wheels
+        run: pipx run cibuildwheel==2.22.0
+
+      - uses: actions/upload-artifact@v3
+        with:
+          path: wheelhouse/*.whl
+
   make_linux_intel_cp_wheels:
     runs-on: ubuntu-latest
     steps:
@@ -133,7 +145,7 @@ jobs:
           path: wheelhouse/*.whl
 
   upload_all:
-    needs: [make_linux_intel_cp_wheels, make_linux_arm_cp_wheels, make_linux_intel_pp_wheels, make_linux_arm_pp_wheels, make_macos_intel_wheels, make_macos_arm_wheels, make_sdist]
+    needs: [make_windows_wheels, make_linux_intel_cp_wheels, make_linux_arm_cp_wheels, make_linux_intel_pp_wheels, make_linux_arm_pp_wheels, make_macos_intel_wheels, make_macos_arm_wheels, make_sdist]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v3
