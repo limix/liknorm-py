@@ -6,10 +6,8 @@ on:
       - v*
 
 env:
-  CC: gcc
-
-env:
   CIBW_PROJECT_REQUIRES_PYTHON: ">=3.10,<3.14"
+  CC: gcc
 
 jobs:
   make_sdist:
