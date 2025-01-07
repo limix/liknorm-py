@@ -1,5 +1,6 @@
 import os
 import shutil
+import stat
 import sysconfig
 from pathlib import Path
 from subprocess import check_call, check_output
@@ -21,16 +22,22 @@ def uname():
     return os.uname().sysname
 
 
+# https://stackoverflow.com/a/12990113
+def redo_with_write(redo_func, path, err):
+    os.chmod(path, stat.S_IWRITE)
+    redo_func(path)
+
+
 def build_and_install(root: Path, prefix: str, git_url: str, dst_dir: str):
     git_dir = root / ".gitdir"
 
     os.makedirs(git_dir, exist_ok=True)
     if (git_dir / dst_dir).exists():
-        shutil.rmtree(git_dir / dst_dir)
+        shutil.rmtree(git_dir / dst_dir, onerror=redo_with_write)
     Repo.clone_from(git_url, git_dir / dst_dir, depth=1)
 
     if (root / dst_dir).exists():
-        shutil.rmtree(root / dst_dir)
+        shutil.rmtree(root / dst_dir, onerror=redo_with_write)
     shutil.move(git_dir / dst_dir, root / dst_dir)
 
     env = os.environ.copy()
