@@ -3,7 +3,7 @@ import shutil
 import stat
 import sysconfig
 from pathlib import Path
-from subprocess import check_call, check_output
+from subprocess import check_call
 
 from cffi import FFI
 from git import Repo
@@ -22,22 +22,24 @@ def uname():
     return os.uname().sysname
 
 
-# https://stackoverflow.com/a/12990113
-def redo_with_write(redo_func, path, err):
-    os.chmod(path, stat.S_IWRITE)
-    redo_func(path)
+def rmtree(x: Path):
+    # https://stackoverflow.com/a/12990113
+    def redo_with_write(redo_func, path, err):
+        os.chmod(path, stat.S_IWRITE)
+        redo_func(path)
+
+    if x.exists():
+        shutil.rmtree(x, onerror=redo_with_write)
 
 
 def build_and_install(root: Path, prefix: str, git_url: str, dst_dir: str):
     git_dir = root / ".gitdir"
 
     os.makedirs(git_dir, exist_ok=True)
-    if (git_dir / dst_dir).exists():
-        shutil.rmtree(git_dir / dst_dir, onerror=redo_with_write)
+    rmtree(git_dir / dst_dir)
     Repo.clone_from(git_url, git_dir / dst_dir, depth=1)
 
-    if (root / dst_dir).exists():
-        shutil.rmtree(root / dst_dir, onerror=redo_with_write)
+    rmtree(root / dst_dir)
     shutil.move(git_dir / dst_dir, root / dst_dir)
 
     env = os.environ.copy()
@@ -49,18 +51,6 @@ def build_and_install(root: Path, prefix: str, git_url: str, dst_dir: str):
     if uname() == "Darwin" and "MACOSX_DEPLOYMENT_TARGET" not in env:
         target = sysconfig.get_config_var("MACOSX_DEPLOYMENT_TARGET")
         env["MACOSX_DEPLOYMENT_TARGET"] = target
-
-    output = check_output(["ls"], cwd=root, env=env)
-    print("DANILO AQUI: ROOT")
-    print(output)
-
-    output = check_output(["ls"], cwd=root / ".gitdir", env=env)
-    print("DANILO AQUI: ROOT/.gitdir")
-    print(output)
-
-    output = check_output(["ls"], cwd=root / dst_dir, env=env)
-    print("DANILO AQUI ROOT/dst_dir")
-    print(output)
 
     check_call(["make"], cwd=root / dst_dir, env=env)
     check_call(["make", "install"], cwd=root / dst_dir, env=env)
