@@ -145,7 +145,9 @@ jobs:
           path: wheelhouse/*.whl
 
   upload_all:
-    needs: [make_windows_wheels, make_linux_intel_cp_wheels, make_linux_arm_cp_wheels, make_linux_intel_pp_wheels, make_linux_arm_pp_wheels, make_macos_intel_wheels, make_macos_arm_wheels, make_sdist]
+    needs: [make_windows_wheels, make_linux_intel_cp_wheels, make_linux_arm_cp_wheels,
+            make_linux_intel_pp_wheels, make_linux_arm_pp_wheels, make_macos_intel_wheels,
+            make_macos_arm_wheels, make_sdist]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v3
